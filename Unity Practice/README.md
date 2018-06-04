@@ -5,5 +5,6 @@ The contents in this folder is for Unity Practice and Git Collaboration Practice
 
 ## Test Notes and Record
 - Pull & Push
+	- First Modify (By Peter)
 
 - Other
