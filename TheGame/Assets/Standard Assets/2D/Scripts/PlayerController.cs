@@ -12,4 +12,14 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, z);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("DoorSwitch"))
+        {
+            //if (Input.GetKeyUp("space")){
+                GameObject.FindGameObjectWithTag("DoorSwitch").GetComponent<SwitchController>().triggered = true;
+            //}
+        }
+    }
 }
