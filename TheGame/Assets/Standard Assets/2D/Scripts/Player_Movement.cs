@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_Movement : MonoBehaviour
 {
 
-    public float xSpeed = 0f; // how fast player moves. Can be adjusted in the spector.
+    public float xSpeed = 0f; // how fast player moves. Can be adjusted in the inspector.
 
     Rigidbody2D myRigidbody;
 
