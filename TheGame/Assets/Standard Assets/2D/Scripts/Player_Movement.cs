@@ -36,14 +36,4 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("DoorSwitch"))
-        {
-            //if (Input.GetKeyUp("space")){
-                GameObject.FindGameObjectWithTag("DoorSwitch").GetComponent<SwitchController>().triggered = true;
-            //}
-        }
-    }
 }
