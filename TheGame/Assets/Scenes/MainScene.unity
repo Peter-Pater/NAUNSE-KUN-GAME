@@ -122,6 +122,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 6584485}
+  - component: {fileID: 6584486}
   m_Layer: 0
   m_Name: Outside KUN
   m_TagString: Untagged
@@ -161,6 +162,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6584486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 6584484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735306f2338d24e62ae2ff6e3af05783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftBoarder: 0
+  rightBoarder: 0
+  upBoarder: 0
+  downBoarder: 0
+  cameraWidth: 0
+  cameraHeight: 0
 --- !u!1 &44196070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,14 +1297,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d4c21ee333140fd88fff316b863b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftBoarder: 134.8
-  rightBoarder: 154.7
-  upBoarder: 4.4
-  downBoarder: -4.4
-  cameraWidth: 15.4
-  cameraHeight: 8.8
-  isLocked: 0
-  player: {fileID: 2015325409}
+  currentScene: 0
+  insideKUN: {fileID: 579123007}
+  outsideKUN: {fileID: 6584484}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1418,6 +1431,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 579123008}
+  - component: {fileID: 579123009}
   m_Layer: 0
   m_Name: Inside KUN
   m_TagString: Untagged
@@ -1445,6 +1459,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &579123009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 579123007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735306f2338d24e62ae2ff6e3af05783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftBoarder: 0
+  rightBoarder: 0
+  upBoarder: 0
+  downBoarder: 0
+  cameraWidth: 0
+  cameraHeight: 0
 --- !u!1 &598124360
 GameObject:
   m_ObjectHideFlags: 0
