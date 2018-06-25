@@ -30,9 +30,15 @@ public class Camera_Movement : MonoBehaviour {
 	public Vector3 offset;
 	public float smoothSpeed;
 
+
+    // camera will be locked when switching scenes
+    // so that it won't follow player
+    // it will instead be relocated by code
+    bool isLocked = false;
+
 	// Use this for initialization
 	void Start () {
-        transform.position = new Vector3(144.1f, 1.6f, -10);
+        transform.position = new Vector3(144.3f, 1.6f, -10);
 	}
 	
 
@@ -42,9 +48,12 @@ public class Camera_Movement : MonoBehaviour {
 		UpdateSceneObj();
 		UpdateSceneInfo();
 
-		Vector3 desiredPos = GetDesiredPos();
-        Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed);
-        transform.position = smoothedPos;
+        if (!isLocked)
+        {
+            Vector3 desiredPos = GetDesiredPos();
+            Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed);
+            transform.position = smoothedPos;
+        }
 	}
 
 
@@ -86,4 +95,14 @@ public class Camera_Movement : MonoBehaviour {
 
 		return targetPos;
 	}
+
+
+    public void LockCamera(){
+        isLocked = true;
+    }
+
+
+    public void UnlockCamera(){
+        isLocked = false;
+    }
 }
