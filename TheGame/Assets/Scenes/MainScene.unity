@@ -173,12 +173,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735306f2338d24e62ae2ff6e3af05783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftBoarder: 0
-  rightBoarder: 0
-  upBoarder: 0
-  downBoarder: 0
-  cameraWidth: 0
-  cameraHeight: 0
+  leftBoarder: -100
+  rightBoarder: 89
+  upBoarder: 100
+  downBoarder: -5
+  cameraWidth: 23.4
+  cameraHeight: 13.2
 --- !u!1 &44196070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,7 +1346,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 144.9, y: 1.1, z: -10}
+  m_LocalPosition: {x: 77.4, y: 1.53, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2205,6 +2205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1163330187}
   - component: {fileID: 1163330188}
+  - component: {fileID: 1163330189}
   m_Layer: 0
   m_Name: Ground (0)
   m_TagString: Untagged
@@ -2272,6 +2273,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &1163330189
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1163330186}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1210267067
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,6 +2904,7 @@ GameObject:
   - component: {fileID: 1847587317}
   - component: {fileID: 1847587319}
   - component: {fileID: 1847587318}
+  - component: {fileID: 1847587320}
   m_Layer: 0
   m_Name: TransToOutsideKUN
   m_TagString: Untagged
@@ -2968,6 +2995,19 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1847587320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1847587316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 257ff63f7f86349beb7eab79f01e0fb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTargetPos: {x: 81.3, y: -2.3, z: 0}
+  cameraTargetPos: {x: 77.7, y: 2, z: 0}
 --- !u!1 &1953968853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3190,7 +3230,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2015325409}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 149.69, y: -1.71, z: 0}
+  m_LocalPosition: {x: 81.3, y: -2.3, z: 0}
   m_LocalScale: {x: 0.48687592, y: 0.3887778, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
