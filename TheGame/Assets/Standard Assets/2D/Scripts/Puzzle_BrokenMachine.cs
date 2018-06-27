@@ -27,6 +27,9 @@ public class Puzzle_BrokenMachine : MonoBehaviour {
     bool isCorrect = false;
 
 
+    GameObject brokenMachine;
+    Event_BrokenMachine bmEvent;
+
 	// Use this for initialization
 	void Start () {
 
@@ -45,6 +48,11 @@ public class Puzzle_BrokenMachine : MonoBehaviour {
 
         // initialize cursor
         currentSquare = SQUARE0;
+
+
+        // find reference to the broken machine object and its script
+        brokenMachine = GameObject.FindWithTag("Puzzle1Trigger");
+        bmEvent = brokenMachine.GetComponent<Event_BrokenMachine>();
 	}
 	
 	// Update is called once per frame
@@ -55,8 +63,14 @@ public class Puzzle_BrokenMachine : MonoBehaviour {
 
         isCorrect = CheckingAnswers();
 
+
+        // if puzzle solved
+        // change states in broken machine
+        // and destroy the puzzle obj
         if(isCorrect){
-            Debug.Log("Correct!");
+            bmEvent.isPuzzleSolved = true;
+            bmEvent.isPuzzleTriggered = false;
+
             Destroy(this.gameObject);
         }
 
@@ -98,7 +112,7 @@ public class Puzzle_BrokenMachine : MonoBehaviour {
 
 
     void ChangeColor(){
-        if (Input.GetKeyDown(KeyCode.Space)){
+        if (Input.GetKeyDown(KeyCode.Space) && bmEvent.isPuzzleTriggered){
             currentSquareObj.GetComponent<Puzzle_BM_Square>().currentColor += 1;
         }
     }

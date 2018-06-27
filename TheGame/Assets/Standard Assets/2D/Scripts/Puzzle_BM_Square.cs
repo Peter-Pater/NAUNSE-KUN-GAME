@@ -17,11 +17,12 @@ public class Puzzle_BM_Square : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        currentColor = initialColor;
-
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+
+        currentColor = initialColor;
 	}
 	
+
 	// Update is called once per frame
 	void Update () {
 		

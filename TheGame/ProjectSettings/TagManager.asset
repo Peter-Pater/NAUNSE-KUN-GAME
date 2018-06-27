@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LeftDoor
   - DoorSwitch
+  - Puzzle1Trigger
   layers:
   - Default
   - TransparentFX
