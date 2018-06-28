@@ -26,11 +26,22 @@ public class Event_BrokenMachine : MonoBehaviour {
 
 	private void OnTriggerStay2D(Collider2D collision)
 	{
-        if (collision.tag == "Player" && !isPuzzleTriggered && !isPuzzleSolved){
-            if (Input.GetKeyDown(KeyCode.Space)){
-                GameObject puzzleObj = Instantiate(puzzle1Prefab) as GameObject;
-                puzzleObj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
-                isPuzzleTriggered = true;
+        if (collision.tag == "Player"){
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (!isPuzzleTriggered && !isPuzzleSolved)
+                {
+                    GameObject puzzleObj = Instantiate(puzzle1Prefab) as GameObject;
+                    puzzleObj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
+                    isPuzzleTriggered = true;
+
+                }
+                else if (!isPuzzleTriggered && isPuzzleSolved)
+                {
+                    player.GetComponent<Player_Items>().whatsInHand = General_ItemList.GEAR;
+                    Debug.Log("Gear Obtained");
+
+                }
             }
         }
 	}
