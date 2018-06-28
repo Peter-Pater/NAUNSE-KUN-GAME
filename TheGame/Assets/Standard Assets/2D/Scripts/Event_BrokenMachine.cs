@@ -39,8 +39,7 @@ public class Event_BrokenMachine : MonoBehaviour {
                 else if (!isPuzzleTriggered && isPuzzleSolved)
                 {
                     player.GetComponent<Player_Items>().whatsInHand = General_ItemList.GEAR;
-                    Debug.Log("Gear Obtained");
-
+                    Debug.Log("Gear obtained!");
                 }
             }
         }

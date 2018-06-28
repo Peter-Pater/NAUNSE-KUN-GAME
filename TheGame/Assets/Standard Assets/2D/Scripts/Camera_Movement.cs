@@ -51,7 +51,7 @@ public class Camera_Movement : MonoBehaviour {
         if (!isLocked)
         {
             Vector3 desiredPos = GetDesiredPos();
-            Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed);
+            Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed * Time.deltaTime);
             transform.position = smoothedPos;
         }
 	}
