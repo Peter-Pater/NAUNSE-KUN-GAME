@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera_Movement : MonoBehaviour {
+public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 
-	// scene state
-	int INSIDEKUN = 0;
-	int OUTSIDEKUN = 1;
-	public int currentScene = 0;
+	// Scene state -- which scene the camera is currently in
+    public int currentScene = General_SceneList.INSIDEKUN;
 
-
-	// scene object
+	// Scene object -- so that we can get scene info from these objects
 	public GameObject insideKUN;
 	public GameObject outsideKUN;
 	GameObject currentSceneObj;
 
 
-	// boarders that the camera will not move beyond
-	// will change depending on the current scene
+	// Boarders that the camera will not move beyond.
+	// They are contained in scene info.
+    // They will change depending on the current scene
 	float leftBoarder;
 	float rightBoarder;
 	float upBoarder;
@@ -27,17 +25,20 @@ public class Camera_Movement : MonoBehaviour {
 
 
 	public Transform playerTrans;
-	public Vector3 offset;
-	public float smoothSpeed;
+	public Vector3 offset; // the offset between player and the camera center
+	public float smoothSpeed; // how fast the camera moves
 
 
-    // camera will be locked when switching scenes
-    // so that it won't follow player
-    // it will instead be relocated by code
+    // When switching scenes, camera will be locked
+    // so that it won't follow player.
+    // It will instead be relocated by code. 
     bool isLocked = false;
+
 
 	// Use this for initialization
 	void Start () {
+
+        // Put camera at the starting position.
         transform.position = new Vector3(144.3f, 1.6f, -10);
 	}
 	
@@ -45,12 +46,16 @@ public class Camera_Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+        // Update the current scene and corresponding boarder info
 		UpdateSceneObj();
 		UpdateSceneInfo();
 
+
         if (!isLocked)
         {
-            Vector3 desiredPos = GetDesiredPos();
+            Vector3 desiredPos = GetDesiredPos(); // get the desired position that camera should move to
+
+            // This Lerp function is used to smoothen camera move movement. 
             Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed * Time.deltaTime);
             transform.position = smoothedPos;
         }
@@ -58,9 +63,9 @@ public class Camera_Movement : MonoBehaviour {
 
 
 	void UpdateSceneObj(){
-		if (currentScene == INSIDEKUN){
+        if (currentScene == General_SceneList.INSIDEKUN){
 			currentSceneObj = insideKUN;
-		}else if (currentScene == OUTSIDEKUN){
+        }else if (currentScene == General_SceneList.OUTSIDEKUN){
 			currentSceneObj = outsideKUN;
 		}
 	}
@@ -79,8 +84,13 @@ public class Camera_Movement : MonoBehaviour {
 
 
 	Vector3 GetDesiredPos(){
+
+        // The target position that camera is supposed to move to
 		Vector3 targetPos = new Vector3(playerTrans.position.x, playerTrans.position.y, -10) + offset;
 
+
+        // Check target position with boarders.
+        // Trim the target position down if it exceeds the boarder.
 		if (targetPos.x > (rightBoarder - (cameraWidth / 2))){
 			targetPos = new Vector3(rightBoarder - (cameraWidth / 2), targetPos.y, targetPos.z);
 		}else if (targetPos.x < (leftBoarder + (cameraWidth / 2))){
