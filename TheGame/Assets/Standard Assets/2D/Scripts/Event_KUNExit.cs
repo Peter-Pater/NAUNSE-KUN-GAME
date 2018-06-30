@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Event_KUNExit : MonoBehaviour {
+public class Event_KUNExit : MonoBehaviour { // This script moves up the exit door inside KUN.
     
     private float posY;
     private int CLOSED = 0;
@@ -11,6 +11,7 @@ public class Event_KUNExit : MonoBehaviour {
 
     public bool upDownComplete;
     public float moveSpeed; //Assigned in the inspector
+
 
     // Use this for initialization
 	void Start () {
@@ -28,7 +29,7 @@ public class Event_KUNExit : MonoBehaviour {
         if (status == CLOSED){
             upDownComplete = false;
             float translation = Time.deltaTime;
-            if (transform.position.y - posY <= GetComponent<SpriteRenderer>().bounds.size.y)
+            if ((transform.position.y - posY) <= GetComponent<SpriteRenderer>().bounds.size.y)
             {
                 transform.Translate(moveSpeed * Vector2.up * translation);
             }else{

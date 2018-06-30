@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
-{
+{ // This script is player control
 
-    public float xSpeed = 0f; // how fast player moves. Can be adjusted in the inspector.
+    public float xSpeed = 0f; // How fast player moves. Assigned in the inspector.
 
     Rigidbody2D myRigidbody;
 
@@ -18,6 +18,8 @@ public class Player_Movement : MonoBehaviour
 
 	void Update()
     {
+
+        // Using left and right arrow to move player.
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             myRigidbody.velocity = new Vector2(-xSpeed, myRigidbody.velocity.y);

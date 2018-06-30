@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Puzzle_BrokenMachine : MonoBehaviour {
+public class Puzzle_BrokenMachine : MonoBehaviour { // This script is about the puzzle at the broken machine. 
 
-    // keep track of which square the cursor is currently on
+    // Keep track of which square the cursor is currently on
     int SQUARE0 = 0;
     int SQUARE1 = 1;
     int SQUARE2 = 2;
     int currentSquare = 0;
 
 
-    // keep track of the currentSquareObj
+    // Keep track of the currentSquareObj
     GameObject square0;
     GameObject square1;
     GameObject square2;
@@ -30,31 +30,34 @@ public class Puzzle_BrokenMachine : MonoBehaviour {
     GameObject brokenMachine;
     Event_BrokenMachine bmEvent;
 
+
 	// Use this for initialization
 	void Start () {
 
+        // Get reference to three squares and the cursor.
         square0 = gameObject.transform.GetChild(1).gameObject;
         square1 = gameObject.transform.GetChild(2).gameObject;
         square2 = gameObject.transform.GetChild(3).gameObject;
         cursor = gameObject.transform.GetChild(4).gameObject;
 
 
-        //load answers
+        //Load the correct answer.
         correctAnswers = new int[3];
         correctAnswers[0] = BLUE;
         correctAnswers[1] = BLUE;
         correctAnswers[2] = YELLOW;
 
 
-        // initialize cursor
+        // Initialize cursor to pointing at the first square.
         currentSquare = SQUARE0;
 
 
-        // find reference to the broken machine object and its script
+        // Get reference to the broken machine object and its event script
         brokenMachine = GameObject.FindWithTag("Puzzle1Trigger");
         bmEvent = brokenMachine.GetComponent<Event_BrokenMachine>();
 	}
 	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -64,9 +67,9 @@ public class Puzzle_BrokenMachine : MonoBehaviour {
         isCorrect = CheckingAnswers();
 
 
-        // if puzzle solved
-        // change states in broken machine
-        // and destroy the puzzle obj
+        // If player gets the correct answer,
+        // change puzzle states in broken machine
+        // and destroy the puzzle obj.
         if(isCorrect){
             bmEvent.isPuzzleSolved = true;
             bmEvent.isPuzzleTriggered = false;
@@ -77,6 +80,7 @@ public class Puzzle_BrokenMachine : MonoBehaviour {
 	}
 
 
+    // Use left and right arrow to move the cursor.
     void MoveCursor(){
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -97,6 +101,7 @@ public class Puzzle_BrokenMachine : MonoBehaviour {
     }
 
 
+    // Update the current square obj based on what square the cursor is pointing at.
     void UpdateCursorAndSqObj(){
         if (currentSquare == SQUARE0){
             cursor.transform.position = square0.transform.position;
@@ -111,6 +116,7 @@ public class Puzzle_BrokenMachine : MonoBehaviour {
     }
 
 
+    // When pressing space, change the color of the current square.
     void ChangeColor(){
         if (Input.GetKeyDown(KeyCode.Space) && bmEvent.isPuzzleTriggered){
             currentSquareObj.GetComponent<Puzzle_BM_Square>().currentColor += 1;
@@ -119,11 +125,13 @@ public class Puzzle_BrokenMachine : MonoBehaviour {
 
 
     bool CheckingAnswers(){
+
+        // Get the current answer from the three squares.
         int answer0 = (square0.GetComponent<Puzzle_BM_Square>().currentColor) % 2;
         int answer1 = (square1.GetComponent<Puzzle_BM_Square>().currentColor) % 2;
         int answer2 = (square2.GetComponent<Puzzle_BM_Square>().currentColor) % 2;
 
-
+        // Check if the current answer is the same as the correct answer.
         if (answer0 != correctAnswers[0]){
             return false;
         }

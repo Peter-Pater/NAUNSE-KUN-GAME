@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class General_ItemList : MonoBehaviour {
+public class General_ItemList : MonoBehaviour { // This is general item list of this game.
 
-    // reference for different items player can hold
+    // Reference for different items player can hold.
     public static int NONE = 0;
     public static int GEAR = 1;
     public static int MOUNTAINEERINGPICK = 2;

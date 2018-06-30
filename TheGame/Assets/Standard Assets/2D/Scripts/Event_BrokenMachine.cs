@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Event_BrokenMachine : MonoBehaviour {
+public class Event_BrokenMachine : MonoBehaviour { // This script triggers the first puzzle and gets player the GEAR.
 
+    // Keep track of puzzle states.
+    // Assign puzzle1prefab through inspector.
     public bool isPuzzleTriggered = false;
     public bool isPuzzleSolved = false;
     public GameObject puzzle1Prefab;
 
     public Transform cameraTrans;
     public GameObject player;
+
+
+    bool isGearObtained = false;
 
 
 	// Use this for initialization
@@ -31,21 +36,32 @@ public class Event_BrokenMachine : MonoBehaviour {
             {
                 if (!isPuzzleTriggered && !isPuzzleSolved)
                 {
+
+                    // If player interacts for the first time,
+                    // instantiate the puzzle at the center of the camera.
+                    // Mark the state.
                     GameObject puzzleObj = Instantiate(puzzle1Prefab) as GameObject;
                     puzzleObj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
                     isPuzzleTriggered = true;
 
                 }
-                else if (!isPuzzleTriggered && isPuzzleSolved)
+                else if (!isPuzzleTriggered && isPuzzleSolved && !isGearObtained)
                 {
+
+                    // If player interacts after solving the puzzle,
+                    // player obtains the GEAR.
+                    // Mark the state.
                     player.GetComponent<Player_Items>().whatsInHand = General_ItemList.GEAR;
                     Debug.Log("Gear obtained!");
+                    isGearObtained = true;
                 }
             }
         }
 	}
 
 
+    // Disable player control when puzzle is triggered
+    // and reenable it otherwise.
     void UpdatePlayerControlState(){
         if (isPuzzleTriggered){
             player.GetComponent<Player_Movement>().enabled = false;

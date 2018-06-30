@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Event_PowerStation : MonoBehaviour { // This script triggers event after repairing the power station
+public class Event_PowerStation : MonoBehaviour { // This script triggers events after repairing the power station
 
     // Repair state
     bool isRepaired = false;

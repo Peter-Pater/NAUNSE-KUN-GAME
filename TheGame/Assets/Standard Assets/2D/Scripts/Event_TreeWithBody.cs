@@ -17,6 +17,7 @@ public class Event_TreeWithBody : MonoBehaviour { // This scripts gets player mo
 	}
 
 
+    // Player obtains the mountaineering pick when interacting with this tree.
 	private void OnTriggerStay2D(Collider2D collision)
 	{
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){

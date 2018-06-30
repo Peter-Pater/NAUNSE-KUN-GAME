@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Event_GiantStone : MonoBehaviour {
+public class Event_GiantStone : MonoBehaviour { // This script makes player climb up the giant stone.
 
+    // Keep track of climbing states.
     bool isClimbFinished = false;
     bool isPlayerClimbing = false;
+
+    // Reference to the top of the stone.
     GameObject stoneTop;
+
 
     public GameObject player;
     public float playerClimbingSpeed;
@@ -22,16 +26,28 @@ public class Event_GiantStone : MonoBehaviour {
 	void Update () {
 		
         if (isPlayerClimbing){
+
+            // When climbing, get rid of player gravity scale
+            // so that it won't fall for gravity.
+            // Disable player control as well.
             player.GetComponent<Rigidbody2D>().gravityScale = 0;
             player.GetComponent<Player_Movement>().enabled = false;
+
+            // Smooth move the player with Lerp.
             Vector3 targetPos = Vector3.Lerp(player.transform.position, new Vector3(8, 2, player.transform.position.z), playerClimbingSpeed * Time.deltaTime);
             player.transform.position = targetPos;
         }
 
+
+        // When player finished climbing,
+        // solidify the top of the stone so that player can stand on the stone.
+        // Restore player gravity scale and control.
+        // Mark the states.
         if (Mathf.Abs(player.transform.position.y - 2f) <= 0.05f){
             isClimbFinished = true;
 
             stoneTop.GetComponent<Collider2D>().isTrigger = false;
+
             player.GetComponent<Rigidbody2D>().gravityScale = 1;
             player.GetComponent<Player_Movement>().enabled = true;
 

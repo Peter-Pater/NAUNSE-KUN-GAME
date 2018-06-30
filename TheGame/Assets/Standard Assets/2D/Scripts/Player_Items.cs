@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Items : MonoBehaviour {
+public class Player_Items : MonoBehaviour { // This script keep track of player's current item in hand.
 
-    // keep track of what's in hand
+    // Keep track of the item.
     public int whatsInHand;
+
 
 	// Use this for initialization
 	void Start () {
-        whatsInHand = General_ItemList.NONE;
+        whatsInHand = General_ItemList.NONE; // Initialize the item with nothing.
 	}
 	
+
 	// Update is called once per frame
 	void Update () {
 
-        // update player sprite based on what's in hand
+        // Update player sprite based on what's in hand.
         UpdateSprite();
 	}
 
