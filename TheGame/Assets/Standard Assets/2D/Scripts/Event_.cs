@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class General_ItemList : MonoBehaviour {
-
-    // reference for different items player can hold
-    public static int NONE = 0;
-    public static int GEAR = 1;
-    public static int MOUNTAINEERINGPICK = 2;
+public class Event_ : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

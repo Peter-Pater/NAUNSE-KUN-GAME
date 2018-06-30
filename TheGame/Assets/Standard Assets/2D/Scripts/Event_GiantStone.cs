@@ -23,15 +23,17 @@ public class Event_GiantStone : MonoBehaviour {
 		
         if (isPlayerClimbing){
             player.GetComponent<Rigidbody2D>().gravityScale = 0;
+            player.GetComponent<Player_Movement>().enabled = false;
             Vector3 targetPos = Vector3.Lerp(player.transform.position, new Vector3(8, 2, player.transform.position.z), playerClimbingSpeed * Time.deltaTime);
             player.transform.position = targetPos;
         }
 
-        if (Mathf.Abs(player.transform.position.y - 2f) <= 0.1f){
+        if (Mathf.Abs(player.transform.position.y - 2f) <= 0.05f){
             isClimbFinished = true;
 
             stoneTop.GetComponent<Collider2D>().isTrigger = false;
             player.GetComponent<Rigidbody2D>().gravityScale = 1;
+            player.GetComponent<Player_Movement>().enabled = true;
 
             isPlayerClimbing = false;
         }
