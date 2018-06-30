@@ -37,6 +37,7 @@ public class Event_PowerStation : MonoBehaviour {
 	{
         if (collision.tag == "Player" && collision.gameObject.GetComponent<Player_Items>().whatsInHand == General_ItemList.GEAR){
             if (Input.GetKeyDown(KeyCode.Space)){
+                collision.gameObject.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 isRepaired = true;
             }
         }
