@@ -59,7 +59,7 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
 	private void OnTriggerStay2D(Collider2D collision)
 	{
         if (collision.tag == "Player"){
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (!isClimbFinished)
                 {
