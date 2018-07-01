@@ -10,6 +10,7 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 	// Scene object -- so that we can get scene info from these objects
 	public GameObject insideKUN;
 	public GameObject outsideKUN;
+    public GameObject kunCoreRoom;
 	GameObject currentSceneObj;
 
 
@@ -67,7 +68,9 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 			currentSceneObj = insideKUN;
         }else if (currentScene == General_SceneList.OUTSIDEKUN){
 			currentSceneObj = outsideKUN;
-		}
+        }else if (currentScene == General_SceneList.COREROOM){
+            currentSceneObj = kunCoreRoom;
+        }
 	}
 
 
