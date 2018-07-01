@@ -39,7 +39,7 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 	void Start () {
 
         // Put camera at the starting position.
-        transform.position = new Vector3(144.3f, 1.6f, -10);
+        transform.position = new Vector3(198.3f, 1.6f, -10);
 	}
 	
 

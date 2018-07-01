@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transition_toOutsideKUN : MonoBehaviour { // The script transit player and camera to the "Outside KUN" scene.
+public class Transition : MonoBehaviour { // The script transit player and camera between scenes.
 
     public GameObject cameraObj;
     public GameObject player;
 
 
-    // Positions that Camera and player are supposed to be moved to.
+    // Scene and positions that Camera and player are supposed to be moved to.
     // Assigned in the inspector.
     public Vector3 playerTargetPos;
     public Vector3 cameraTargetPos;
+    public int targetScene;
 
 
     // Keep track of transition state
     bool isTransiting = false;
-    bool isTransComplete = false;
+    bool isRelocateComplete = false;
 
 
     float curtainOpacity = 0; // Used to change opacity of the black curtain in front of camera.
@@ -33,7 +34,7 @@ public class Transition_toOutsideKUN : MonoBehaviour { // The script transit pla
 	void Update () {
 		
         if (isTransiting){
-            if (!isTransComplete){
+            if (!isRelocateComplete){
 
                 // Start transiting.
                 // Enable player movement.
@@ -56,15 +57,15 @@ public class Transition_toOutsideKUN : MonoBehaviour { // The script transit pla
 
                     // Change the current scene.
                     // Unlock camera so that it follows player again.
-                    cameraObj.GetComponent<Camera_Movement>().currentScene = General_SceneList.OUTSIDEKUN;
+                    cameraObj.GetComponent<Camera_Movement>().currentScene = targetScene;
                     cameraObj.GetComponent<Camera_Movement>().UnlockCamera();
 
-                    isTransComplete = true;
+                    isRelocateComplete = true;
                 }
 
             }else{
 
-                // After completing transiting player and camera,
+                // After completing relocating player and camera,
                 // black curtain fades out so that camera view comes back.
                 if (curtainOpacity > 0.01f){
                     curtainOpacity -= 0.01f;
@@ -76,7 +77,7 @@ public class Transition_toOutsideKUN : MonoBehaviour { // The script transit pla
                     // Transition complete.
                     player.GetComponent<Player_Movement>().enabled = true;
                     isTransiting = false;
-                    isTransComplete = false;
+                    isRelocateComplete = false;
                 }
             }
         }
