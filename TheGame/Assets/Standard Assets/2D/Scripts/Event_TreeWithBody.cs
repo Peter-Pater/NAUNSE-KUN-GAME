@@ -6,6 +6,9 @@ public class Event_TreeWithBody : MonoBehaviour { // This scripts gets player mo
     
     public GameObject player;
 
+    bool isPickObtained = false;
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -21,8 +24,12 @@ public class Event_TreeWithBody : MonoBehaviour { // This scripts gets player mo
 	private void OnTriggerStay2D(Collider2D collision)
 	{
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
-            player.GetComponent<Player_Items>().whatsInHand = General_ItemList.MOUNTAINEERINGPICK;
-            Debug.Log("Mountaineering pick obtained!");
+            if (!isPickObtained)
+            {
+                player.GetComponent<Player_Items>().whatsInHand = General_ItemList.MOUNTAINEERINGPICK;
+                Debug.Log("Mountaineering pick obtained!");
+                isPickObtained = true;
+            }
         }
 	}
 }
