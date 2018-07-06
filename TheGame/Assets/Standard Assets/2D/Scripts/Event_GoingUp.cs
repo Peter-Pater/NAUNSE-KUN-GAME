@@ -7,6 +7,7 @@ public class Event_GoingUp : MonoBehaviour { // This script makes player go to t
     public GameObject currentLevelGround; // Ground on the current level to disable.
     public GameObject upperLevelGround; // Ground on the next level to solidify.
     public GameObject airwallToDestroy; // Airwall on the current level to destroy. The airway is to prevent player from falling down on the lower level.
+    public GameObject airwallToBuild; // Airwall on the next level to build. Sometimes used to prevent player from falling down from the level.
 
     public Vector3 playerTargetPos; // Where player is supposed to move to.
 
@@ -54,10 +55,22 @@ public class Event_GoingUp : MonoBehaviour { // This script makes player go to t
                 airwallToDestroy.GetComponent<Collider2D>().isTrigger = true;
             }
 
-            // Disable ground on previous level.
-            // Solidify ground on this upper level.
-            currentLevelGround.GetComponent<Collider2D>().isTrigger = true;
-            upperLevelGround.GetComponent<Collider2D>().isTrigger = false;
+            // Enable the new airwall if there's any.
+            if (airwallToBuild != null){
+                airwallToBuild.GetComponent<Collider2D>().isTrigger = false;
+            }
+
+            // Disable ground on previous level if there's any.
+            if (currentLevelGround != null)
+            {
+                currentLevelGround.GetComponent<Collider2D>().isTrigger = true;
+            }
+
+            // Solidify ground on this upper level if there's any.
+            if (upperLevelGround != null)
+            {
+                upperLevelGround.GetComponent<Collider2D>().isTrigger = false;
+            }
 
             // Mark the states.
             state = UP;
