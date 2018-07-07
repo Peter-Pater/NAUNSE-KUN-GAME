@@ -44,6 +44,9 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
                 isPuzzleTriggered = true;
             }
 
+
+            // If player interactis with containers after puzzle solved,
+            // player obtains the new core.
             if (isContainerOpen && !isPuzzleTriggered){
                 Debug.Log("New core obtained!");
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.CORE;
