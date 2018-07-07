@@ -45,7 +45,8 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
             }
 
             if (isContainerOpen && !isPuzzleTriggered){
-                
+                Debug.Log("New core obtained!");
+                player.GetComponent<Player_Items>().whatsInHand = General_ItemList.CORE;
             }
         }
     }
