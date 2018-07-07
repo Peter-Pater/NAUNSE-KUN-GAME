@@ -8,7 +8,7 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
     // Assign puzzle1prefab through inspector.
     public bool isPuzzleTriggered = false;
     public bool isPuzzleSolved = false;
-    public GameObject puzzle1Prefab;
+    public GameObject puzzlePrefab;
 
     public Transform cameraTrans;
     public GameObject player;
@@ -40,7 +40,7 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
                     // If player interacts for the first time,
                     // instantiate the puzzle at the center of the camera.
                     // Mark the state.
-                    GameObject puzzleObj = Instantiate(puzzle1Prefab) as GameObject;
+                    GameObject puzzleObj = Instantiate(puzzlePrefab) as GameObject;
                     puzzleObj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
                     isPuzzleTriggered = true;
 
