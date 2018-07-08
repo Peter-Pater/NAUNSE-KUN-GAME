@@ -11,7 +11,7 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
 
     public bool isPuzzleTriggered = false;
     public bool isContainerOpen = false;
-    bool isCoreInContainer = true;
+    public bool isCoreInContainer = true;
 
 
     public Transform cameraTrans;
@@ -37,7 +37,7 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
             // If player interacts with container for the first time
             // (i.e. the container is not open and puzzle is not triggered),
             // instantiate the puzzle.
-            if (!isContainerOpen && !isPuzzleTriggered){
+            if (!isContainerOpen && !isPuzzleTriggered && isCoreInContainer){
 
                 GameObject puzzle1Obj = Instantiate(puzzle1Prefab) as GameObject;
                 puzzle1Obj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
@@ -47,9 +47,12 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
 
             // If player interactis with containers after puzzle solved,
             // player obtains the new core.
-            if (isContainerOpen && !isPuzzleTriggered){
-                Debug.Log("New core obtained!");
-                player.GetComponent<Player_Items>().whatsInHand = General_ItemList.CORE;
+            if (isContainerOpen && !isPuzzleTriggered && isCoreInContainer){
+                    Debug.Log("New core obtained, triggering new puzzle");
+                    player.GetComponent<Player_Items>().whatsInHand = General_ItemList.CORE;
+                    GameObject puzzle2Obj = Instantiate(puzzle2Prefab) as GameObject;
+                    puzzle2Obj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
+                    isPuzzleTriggered = true;
             }
         }
     }
