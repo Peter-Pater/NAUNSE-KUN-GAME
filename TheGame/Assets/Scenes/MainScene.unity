@@ -1348,7 +1348,7 @@ GameObject:
   - component: {fileID: 212207007}
   - component: {fileID: 212207006}
   m_Layer: 0
-  m_Name: Trans out of Store House
+  m_Name: Trans out of Storehouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1563,7 +1563,7 @@ GameObject:
   - component: {fileID: 256412193}
   - component: {fileID: 256412192}
   m_Layer: 0
-  m_Name: Store House
+  m_Name: Storehouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6321,7 +6321,7 @@ GameObject:
   - component: {fileID: 1267356682}
   - component: {fileID: 1267356681}
   m_Layer: 0
-  m_Name: Trans to Store House
+  m_Name: Trans to Storehouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7802,6 +7802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolWall: {fileID: 1014734044}
+  player: {fileID: 2015325409}
 --- !u!1 &1688610399
 GameObject:
   m_ObjectHideFlags: 0

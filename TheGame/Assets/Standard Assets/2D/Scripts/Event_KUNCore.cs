@@ -12,6 +12,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
 
     public GameObject toolWall;
+    public GameObject player;
 
 
 	// Use this for initialization
@@ -34,6 +35,9 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
             if (coreState == ONTHEGROUND){
                 coreState = PUTBACK;
                 toolWall.GetComponent<Event_ToolWall>().isOpen = true;
+            }else if (coreState == PUTBACK){
+                player.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
+                coreState = REPLACED;
             }
         }
 	}
