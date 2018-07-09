@@ -56,15 +56,11 @@ public class Puzzle_CoreContainer_1 : MonoBehaviour
         bool isSolved = CheckWinningCondition();
 
 
-        // (Change this part later
-        // when the second puzzle at the container
-        // is finished.
-        // It is supposed to trigger the second puzzle
-        // when the first puzzle is solved.)
+        // If this puzzle is solved,
+        // trigger the second puzzle.
+        // Destory this puzzle.
         if (isSolved){
-            ccEvent.isPuzzleTriggered = false;
-            ccEvent.isContainerOpen = true;
-
+            ccEvent.TriggerPuzzle2();
             Destroy(this.gameObject);
         }
     }

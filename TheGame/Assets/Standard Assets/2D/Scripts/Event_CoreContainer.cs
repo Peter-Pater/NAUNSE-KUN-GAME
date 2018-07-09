@@ -6,7 +6,7 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
 
     // Assign prefabs of the two puzzle in inspector
     public GameObject puzzle1Prefab;
-    public GameObject puzzle2Prefab; // (assign later when puzzle 2 is finished)
+    public GameObject puzzle2Prefab;
 
 
     public bool isPuzzleTriggered = false;
@@ -48,11 +48,9 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
             // If player interactis with containers after puzzle solved,
             // player obtains the new core.
             if (isContainerOpen && !isPuzzleTriggered && isCoreInContainer){
-                    Debug.Log("New core obtained, triggering new puzzle");
-                    player.GetComponent<Player_Items>().whatsInHand = General_ItemList.CORE;
-                    GameObject puzzle2Obj = Instantiate(puzzle2Prefab) as GameObject;
-                    puzzle2Obj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
-                    isPuzzleTriggered = true;
+                Debug.Log("New core obtained");
+                player.GetComponent<Player_Items>().whatsInHand = General_ItemList.CORE;
+                isCoreInContainer = false;
             }
         }
     }
@@ -70,5 +68,11 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
         {
             player.GetComponent<Player_Movement>().enabled = true;
         }
+    }
+
+
+    public void TriggerPuzzle2(){
+        GameObject puzzle2Obj = Instantiate(puzzle2Prefab) as GameObject;
+        puzzle2Obj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
     }
 }

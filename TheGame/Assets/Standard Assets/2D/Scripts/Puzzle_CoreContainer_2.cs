@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Puzzle_CoreContainer_2 : MonoBehaviour {
+public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about the second puzzle at core container.
 
     GameObject[] staticObj = new GameObject[8];
     GameObject[] spinningObj = new GameObject[8];
@@ -110,10 +110,10 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour {
                 counter++;
                 if (counter >= 8){
                     ccEvent.isPuzzleTriggered = false;
-                    ccEvent.isCoreInContainer = false;
+                    ccEvent.isContainerOpen = true;
                     mergeTriggered = false;
-                    Debug.Log("Activated!");
-                    Destroy(transform.gameObject);
+                    //Debug.Log("Activated!");
+                    Destroy(this.gameObject);
                 }else{
                     if (counter == 2){
                         spinSpeed = 50;
@@ -123,7 +123,7 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour {
                         spinSpeed = 100;
                     }
                     current = order[counter];
-                    Debug.Log(current);
+                    //Debug.Log(current);
                     UpdateCursorPosition(current);
                     mergeTriggered = false;   
                 }
