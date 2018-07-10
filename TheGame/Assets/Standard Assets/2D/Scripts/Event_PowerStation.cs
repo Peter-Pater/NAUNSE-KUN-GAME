@@ -5,6 +5,7 @@ using UnityEngine;
 public class Event_PowerStation : MonoBehaviour { // This script triggers events after repairing the power station
 
     // Repair state
+    bool isRepairing = false;
     bool isRepaired = false;
 
 
@@ -30,18 +31,28 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
 		
         // Rotate the platform and move KUN head
         // when the power station is repaired.
-        if (isRepaired){
+        if (isRepairing){
             RotatePlatform();
             RotateAndMoveKUNHead();
+
+            // Stone drops and tree falls
+            // after platform and KUN head finish moving.
+            if (kunHead.rotation.z <= 0.02f)
+            {
+                DropStone();
+                TreeFalls();
+            }
+
+
+            // Stop repairing process when it's repaired.
+            if (Mathf.Abs(treeRotPoint.rotation.z + 1f) < 0.1f){
+                isRepairing = false;
+                isRepaired = true;
+            }
         }
 
 
-        // Stone drops and tree falls
-        // after platform and KUN head finish moving.
-        if (kunHead.rotation.z <= 0.02f){
-            DropStone();
-            TreeFalls();
-        }
+
 	}
 
 
@@ -51,9 +62,9 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
         // When player interacts with power station with GEAR in hand,
         // remove GEAR from hand and mark repaired.
         if (collision.tag == "Player" && collision.gameObject.GetComponent<Player_Items>().whatsInHand == General_ItemList.GEAR){
-            if (Input.GetKeyDown(KeyCode.Space)){
+            if (Input.GetKeyDown(KeyCode.Space) && !isRepaired){
                 collision.gameObject.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
-                isRepaired = true;
+                isRepairing = true;
             }
         }
 	}

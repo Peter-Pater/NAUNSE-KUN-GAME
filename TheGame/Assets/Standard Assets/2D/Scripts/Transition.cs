@@ -16,8 +16,8 @@ public class Transition : MonoBehaviour { // The script transit player and camer
 
 
     // Keep track of transition state
-    bool isTransiting = false;
-    bool isRelocateComplete = false;
+    public bool isTransiting = false;
+    public bool isRelocateComplete = false;
 
 
     float curtainOpacity = 0; // Used to change opacity of the black curtain in front of camera.

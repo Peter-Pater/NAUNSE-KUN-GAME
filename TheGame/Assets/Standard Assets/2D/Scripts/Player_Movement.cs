@@ -22,14 +22,29 @@ public class Player_Movement : MonoBehaviour
         // Using left and right arrow to move player.
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            myRigidbody.velocity = new Vector2(-xSpeed, myRigidbody.velocity.y);
+            WalkLeft(); 
         }else if (Input.GetKey(KeyCode.RightArrow))
         {
-            myRigidbody.velocity = new Vector2(xSpeed, myRigidbody.velocity.y);      
+            WalkRight();    
         }else
         {
-            myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
+            Standstill();
         }
+    }
+
+
+    public void WalkLeft(){
+        myRigidbody.velocity = new Vector2(-xSpeed * Time.deltaTime, myRigidbody.velocity.y);
+    }
+
+
+    public void WalkRight(){
+        myRigidbody.velocity = new Vector2(xSpeed * Time.deltaTime, myRigidbody.velocity.y);     
+    }
+
+
+    public void Standstill(){
+        myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
     }
 
 }
