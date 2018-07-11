@@ -47,7 +47,7 @@ public class Event_GoingUp : MonoBehaviour { // This script makes player go to t
 
 
         // When player has moved to the target pos
-        if (Vector3.Distance(player.transform.position, playerTargetPos) <= 0.05f)
+        if (Vector3.Distance(player.transform.position, playerTargetPos) <= 0.1f)
         {
 
             // Disable the airwall if there's any.
@@ -77,7 +77,7 @@ public class Event_GoingUp : MonoBehaviour { // This script makes player go to t
             isGoingUp = false;
 
             // "Free" the player.
-            player.GetComponent<Rigidbody2D>().gravityScale = 1;
+            player.GetComponent<Rigidbody2D>().gravityScale = 3;
             player.GetComponent<Player_Movement>().enabled = true;
         }
             

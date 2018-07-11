@@ -40,7 +40,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
             if (kunHead.rotation.z <= 0.02f)
             {
                 DropStone();
-                TreeFalls();
+                //TreeFalls();
             }
 
 
@@ -85,8 +85,8 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
 
     // Relocate giant stone so that it drops.
     void DropStone(){
-        if (Mathf.Abs(giantStone.position.x - 7.7f) > 0.01f){
-            giantStone.position = new Vector3(7.7f, 3.6f, giantStone.position.z);
+        if (Mathf.Abs(giantStone.position.x - 32.8f) > 0.1f){
+            giantStone.position = new Vector3(32.8f, 9.4f, giantStone.position.z);
         }
 
         giantStone.rotation = Quaternion.Euler(0, 0, 0);

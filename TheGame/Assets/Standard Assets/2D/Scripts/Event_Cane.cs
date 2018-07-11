@@ -67,7 +67,7 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
             // Mark the end of sliding process.
             if (Vector3.Distance(player.transform.position, pos2) < 0.1f){
                 player.GetComponent<Player_Movement>().enabled = true;
-                player.GetComponent<Rigidbody2D>().gravityScale = 1;
+                player.GetComponent<Rigidbody2D>().gravityScale = 3;
 
                 isSlidingDown = false;
             }
