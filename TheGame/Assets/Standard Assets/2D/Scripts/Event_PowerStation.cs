@@ -7,7 +7,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
     // Repair state
     bool isRepairing = false;
     bool isRepaired = false;
-
+    bool isStoneDropped = false;
 
     // Speed that each event happens at
     public float platformMovingSpeed;
@@ -37,15 +37,15 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
 
             // Stone drops and tree falls
             // after platform and KUN head finish moving.
-            if (kunHead.rotation.z <= 0.02f)
+            if (kunHead.rotation.z <= 0.01f)
             {
                 DropStone();
-                //TreeFalls();
             }
 
 
-            // Stop repairing process when it's repaired.
-            if (Mathf.Abs(treeRotPoint.rotation.z + 1f) < 0.1f){
+            // Finish repairing process
+            // after stone dropped.
+            if (isStoneDropped){
                 isRepairing = false;
                 isRepaired = true;
             }
@@ -85,11 +85,10 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
 
     // Relocate giant stone so that it drops.
     void DropStone(){
-        if (Mathf.Abs(giantStone.position.x - 32.8f) > 0.1f){
-            giantStone.position = new Vector3(32.8f, 9.4f, giantStone.position.z);
+        if (!isStoneDropped){
+            giantStone.position = new Vector3(32.89f, 9.4f, giantStone.position.z);
+            isStoneDropped = true;
         }
-
-        giantStone.rotation = Quaternion.Euler(0, 0, 0);
     }
 
 

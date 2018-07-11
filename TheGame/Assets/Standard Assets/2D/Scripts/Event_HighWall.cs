@@ -35,7 +35,7 @@ public class Event_HighWall : MonoBehaviour { // This script makes player climb 
             player.GetComponent<Player_Movement>().enabled = false;
 
             // Smooth climbing
-            Vector3 targetPos = Vector3.Lerp(player.transform.position, new Vector3(60.99f, 20.76f, player.transform.position.z), playerClimbingSpeed * Time.deltaTime);
+            Vector3 targetPos = Vector3.Lerp(player.transform.position, new Vector3(61.76f, 20.97f, player.transform.position.z), playerClimbingSpeed * Time.deltaTime);
             player.transform.position = targetPos;
         }
 
@@ -43,8 +43,9 @@ public class Event_HighWall : MonoBehaviour { // This script makes player climb 
         // When finishing climbing,
         // restore player gravity scale and reenable player control.
         // Mark the climbing states as well.
-        if (Mathf.Abs(player.transform.position.x - 60.99f) <= 0.1f && Mathf.Abs(player.transform.position.y - 20.76f) <= 0.1f)
+        if (Mathf.Abs(player.transform.position.x - 61.76f) <= 0.5f && Mathf.Abs(player.transform.position.y - 20.97f) <= 0.5f)
         {
+            Debug.Log("climb finihsed");
             isClimbingComplete = true;
             player.GetComponent<Rigidbody2D>().gravityScale = 3;
             player.GetComponent<Player_Movement>().enabled = true;
