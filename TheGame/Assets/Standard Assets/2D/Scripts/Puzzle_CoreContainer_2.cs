@@ -13,6 +13,8 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
 
     Event_CoreContainer ccEvent;
 
+    Vector3[] triggerPos = new Vector3[8];
+
     // current square to match
     int current;
 
@@ -31,6 +33,9 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
     // The allowed residue of positioning
     float d1;
 
+    // The count of failure, reset all if reaches three
+    int failureCount = 0;
+
 	// Use this for initialization
 	void Start () {
         
@@ -48,34 +53,33 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
                 //Debug.Log(spinningObj[i - 8].name);
             }else{
                 triggers[i - 16] = transform.GetChild(i).gameObject;
+                triggerPos[i - 16] = triggers[i - 16].transform.position;
                 transform.GetChild(i).gameObject.GetComponent<Renderer>().enabled = false;
             }
         }
 
-        d1 = (triggers[1].transform.position.x - (triggers[0].transform.position.x)) / 3;
+        d1 = (triggers[1].transform.position.x - (triggers[0].transform.position.x)) / 2;
 
         cursor = transform.GetChild(24).gameObject;
 
         ccEvent = GameObject.FindWithTag("Puzzle3&4Trigger").GetComponent<Event_CoreContainer>();
 
-        UpdateCursorPosition(current);
+        UpdateCursorPosition(current, 0);
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
         for (int i = 0; i < 8; i++){
-            if (destroyed[i] == 0){
                 spinningObj[i].transform.RotateAround(new Vector2(transform.position.x, transform.position.y), Vector3.forward, spinSpeed * Time.deltaTime);   
-            }
         }
         Match();
 	}
 
-    void UpdateCursorPosition(int i){
+    void UpdateCursorPosition(int i, int j){
         //cursor.transform.position = staticObj[i].transform.position;
         if (counter > 0){
-            staticObj[order[counter - 1]].transform.localScale -= new Vector3((float)0.015, (float)0.015, 1);   
+            staticObj[j].transform.localScale -= new Vector3((float)0.015, (float)0.015, 1);   
         }
         staticObj[i].transform.localScale += new Vector3((float) 0.015, (float) 0.015, 1);
     }
@@ -83,7 +87,7 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
     void Match(){
 
         if (spinSpeed == 0){
-            spinSpeed = 30;
+            spinSpeed = 80;
         }else if (Input.GetKeyDown(KeyCode.Space) && !mergeTriggered){
 
             float x0 = spinningObj[current].transform.position.x;
@@ -95,8 +99,20 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
             if (Mathf.Abs(x0 - x1) < d1 && Mathf.Abs(y0 - y1) < d1){
                 destroyed[current] = 1;
                 mergeTriggered = true;
-                Destroy(spinningObj[current]);
+                //Destroy(spinningObj[current]);
+                spinningObj[current].GetComponent<Renderer>().enabled = false;
+                //spinningObj[current].GetComponent<Renderer>().material.color = new Color(1, 1, 1);
                 triggers[current].GetComponent<Renderer>().enabled = true;
+                failureCount = 0;
+            }else{
+                if (counter > 0){
+                    failureCount++;
+                    if (failureCount == 3)
+                    {
+                        failureCount = 0;
+                        Reset();
+                    }   
+                }
             }
 
         }
@@ -106,7 +122,8 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
             if (Mathf.Abs(staticObj[current].transform.position.x - triggers[current].transform.position.x) > 0.05 || Mathf.Abs(staticObj[current].transform.position.y - triggers[current].transform.position.y) > 0.05){
                 triggers[current].transform.Translate(new Vector2(staticObj[current].transform.position.x - triggers[current].transform.position.x, staticObj[current].transform.position.y - triggers[current].transform.position.y) * Time.deltaTime * 5);
             }else{
-                Destroy(triggers[current]);
+                //Destroy(triggers[current]);
+                triggers[current].GetComponent<Renderer>().enabled = false;
                 counter++;
                 if (counter >= 8){
                     ccEvent.isPuzzleTriggered = false;
@@ -116,19 +133,34 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
                     Destroy(this.gameObject);
                 }else{
                     if (counter == 2){
-                        spinSpeed = 50;
+                        spinSpeed = 120;
                     }else if (counter == 4){
-                        spinSpeed = -80;
+                        spinSpeed = -160;
                     }else if (counter == 7){
-                        spinSpeed = 100;
+                        spinSpeed = 200;
                     }
                     current = order[counter];
                     //Debug.Log(current);
-                    UpdateCursorPosition(current);
+                    UpdateCursorPosition(current, order[counter - 1]);
                     mergeTriggered = false;   
                 }
             }
         }
 
     }
+
+	private void Reset()
+	{
+        for (int i = 0; i < 8; i++){
+            if (destroyed[i] == 1){
+                spinningObj[i].GetComponent<Renderer>().enabled = true;
+                triggers[i].transform.position = triggerPos[i];
+                destroyed[i] = 0;
+            }
+        }
+        UpdateCursorPosition(0, current);
+        counter = 0;
+        current = 0;
+        spinSpeed = 80;
+	}
 }
