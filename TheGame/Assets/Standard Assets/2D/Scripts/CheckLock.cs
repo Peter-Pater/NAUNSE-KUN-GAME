@@ -15,7 +15,6 @@ public class CheckLock : MonoBehaviour {
 	public GameObject preB;
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -33,16 +32,6 @@ public class CheckLock : MonoBehaviour {
 	
 	
 	 bool checkLock(){
-	// 	// scriptR = GameObject.Find("red").GetComponent<Puzzle_TL_Rotate>();
-	// 	// int upper = scriptR.values[2];
-	// 	// print(upper);
-	// 	// scriptG = GameObject.Find("green").GetComponent<Puzzle_TL_Rotate>();
-	// 	// int left = scriptG.values[1];
-	// 	// print(left);
-	// 	// scriptB = GameObject.Find("blue").GetComponent<Puzzle_TL_Rotate>();
-	// 	// int right = scriptB.values[0];
-	// 	// print(right);
-	// 	preR = Resources.Load("prefabs/prefab1", GameObject) as GameObject;
 	 	scriptR = preR.GetComponent<Puzzle_TL_Rotate>();
 	 	int upper = scriptR.values[1];
 	 	print(upper);

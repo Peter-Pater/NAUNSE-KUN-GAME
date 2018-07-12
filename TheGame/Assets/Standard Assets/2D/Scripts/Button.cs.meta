@@ -3,7 +3,12 @@ guid: 9ba925faa5ccc44038385181ce55b467
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - preR: {fileID: 1047859952903516, guid: 8c25ce4db57df4db2924315b7eed04c7, type: 2}
+  - preG: {fileID: 1785279730467990, guid: 8c25ce4db57df4db2924315b7eed04c7, type: 2}
+  - preB: {fileID: 1235817847192698, guid: 8c25ce4db57df4db2924315b7eed04c7, type: 2}
+  - prePuzzle: {fileID: 1404818512568918, guid: 8c25ce4db57df4db2924315b7eed04c7,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

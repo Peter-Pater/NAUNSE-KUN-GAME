@@ -38,17 +38,16 @@ public class Puzzle_TL_Rotate : MonoBehaviour {
 	
 	public void RotateValues()
 	{
-
-		// int aux = values [0];
-		//
-		// for (int i = 0; i < values.Length-1; i++) {
-		// 	values [i] = values [i + 1];
-		// }
-		// values [2] = aux;
+		print("Rotate Once");
 		int temp = values[2];
-		for (int i = 0; i < values.Length - 1; i++) {
+		for (int i = 0; i < values.Length - 2; i++) {
+			int mid = values[i+1];
 			values [i+1] = values [i];
+			values[i+2] = mid;
 		}
 		values[0] = temp;
+		// for (int i = 0; i < values.Length; ++i ){
+		// 	print(values[i]);
+		// }
 	}
 }
