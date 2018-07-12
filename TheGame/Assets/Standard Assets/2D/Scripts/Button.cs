@@ -13,13 +13,6 @@ public class Button : MonoBehaviour {
 	public GameObject prePuzzle;
 	// Use this for initialization
 	void Start () {
-		// Button bL = buttonL.GetComponent<Button>();
-		// Button bR = buttonR.GetComponent<Button>();
-		// Button bD = buttonD.GetComponent<Button>();
-		//
-		// bL.onClick.AddListener(moveL);
-		// bR.onClick.AddListener(moveR);
-		// bD.onClick.AddListener(moveD);
 	}
 	
 	// Update is called once per frame
@@ -40,6 +33,7 @@ public class Button : MonoBehaviour {
 		}
 		// GameObject.Find("big").SendMessage("RotatePiece");
 		prePuzzle.SendMessage("checkLock");
+		//GameObject.Find("big").SendMessage("checkLock");
 	}
 	
 	void moveL(){
@@ -48,9 +42,7 @@ public class Button : MonoBehaviour {
 		// GameObject.Find("green").SendMessage("RotatePiece");
 		// GameObject.Find("green").SendMessage("RotateValues");
 		preR.SendMessage("RotatePiece");
-		preR.SendMessage("RotateValues");
 		preG.SendMessage("RotatePiece");
-		preG.SendMessage("RotateValues");
 	}
 	
 	void moveR(){
@@ -59,9 +51,7 @@ public class Button : MonoBehaviour {
 		// GameObject.Find("blue").SendMessage("RotatePiece");
 		// GameObject.Find("blue").SendMessage("RotateValues");
 		preR.SendMessage("RotatePiece");
-		preR.SendMessage("RotateValues");
 		preB.SendMessage("RotatePiece");
-		preB.SendMessage("RotateValues");
 		
 		
 	}
@@ -72,10 +62,8 @@ public class Button : MonoBehaviour {
 		// GameObject.Find("blue").SendMessage("RotatePiece");
 		// GameObject.Find("blue").SendMessage("RotateValues");
 		preG.SendMessage("RotatePiece");
-		preG.SendMessage("RotateValues");
 		preB.SendMessage("RotatePiece");
-		preB.SendMessage("RotateValues");
-		
+
 	}
 	
 }
