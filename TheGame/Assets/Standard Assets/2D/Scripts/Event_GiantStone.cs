@@ -16,9 +16,13 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
     public float playerClimbingSpeed;
 
 
+    AudioSource myAudioPlayer;
+
+
 	// Use this for initialization
 	void Start () {
         stoneTop = transform.parent.GetChild(0).gameObject;
+        myAudioPlayer = GetComponent<AudioSource>();
 	}
 	
 
@@ -44,7 +48,7 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
         // Restore player gravity scale and control.
         // Mark the states.
         if (Mathf.Abs(player.transform.position.y - 6.23f) <= 0.5f){
-            isClimbFinished = true;
+            //isClimbFinished = true;
 
             stoneTop.GetComponent<Collider2D>().isTrigger = false;
 
@@ -61,8 +65,9 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
         if (collision.tag == "Player"){
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (!isClimbFinished)
+                if (!isPlayerClimbing)
                 {
+                    myAudioPlayer.Play();
                     isPlayerClimbing = true;
                 }
             }

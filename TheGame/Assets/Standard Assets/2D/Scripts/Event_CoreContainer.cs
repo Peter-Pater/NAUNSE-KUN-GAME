@@ -17,10 +17,11 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
     public Transform cameraTrans;
     public GameObject player;
 
+    AudioSource myAudioPlayer;
 
 	// Use this for initialization
 	void Start () {
-	
+        myAudioPlayer = GetComponent<AudioSource>();	
 	}
 	
 
@@ -38,7 +39,7 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
             // (i.e. the container is not open and puzzle is not triggered),
             // instantiate the puzzle.
             if (!isContainerOpen && !isPuzzleTriggered && isCoreInContainer){
-
+                myAudioPlayer.Play();
                 GameObject puzzle1Obj = Instantiate(puzzle1Prefab) as GameObject;
                 puzzle1Obj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
                 isPuzzleTriggered = true;
@@ -48,6 +49,7 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
             // If player interactis with containers after puzzle solved,
             // player obtains the new core.
             if (isContainerOpen && !isPuzzleTriggered && isCoreInContainer){
+                myAudioPlayer.Play();
                 Debug.Log("New core obtained");
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.CORE;
                 isCoreInContainer = false;

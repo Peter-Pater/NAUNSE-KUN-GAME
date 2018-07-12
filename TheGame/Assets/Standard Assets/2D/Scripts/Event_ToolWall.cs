@@ -12,9 +12,12 @@ public class Event_ToolWall : MonoBehaviour { // This script lets player obtain 
     bool isLightObtained = false;
 
 
+    AudioSource myAudioPlayer;
+
+
 	// Use this for initialization
 	void Start () {
-		
+        myAudioPlayer = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -29,6 +32,7 @@ public class Event_ToolWall : MonoBehaviour { // This script lets player obtain 
 	{
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
             if (isOpen && !isLightObtained){
+                myAudioPlayer.Play();
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.FLASHLIGHT;
                 Debug.Log("Flash light obtained!");
                 isLightObtained = true;

@@ -8,11 +8,13 @@ public class Player_Movement : MonoBehaviour
     public float xSpeed = 0f; // How fast player moves. Assigned in the inspector.
 
     Rigidbody2D myRigidbody;
+    Player_Flip myFlip;
 
 
 	private void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
+        myFlip = GetComponent<Player_Flip>();
 	}
 
 
@@ -20,14 +22,15 @@ public class Player_Movement : MonoBehaviour
     {
 
         // Using left and right arrow to move player.
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
-            WalkLeft(); 
-        }else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            WalkRight();    
-        }else
-        {
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                WalkRight();   
+            }else{
+                WalkLeft();
+            }
+        }else{
             Standstill();
         }
     }
@@ -35,11 +38,13 @@ public class Player_Movement : MonoBehaviour
 
     public void WalkLeft(){
         myRigidbody.velocity = new Vector2(-xSpeed * Time.deltaTime, myRigidbody.velocity.y);
+        myFlip.FlipLeft();
     }
 
 
     public void WalkRight(){
-        myRigidbody.velocity = new Vector2(xSpeed * Time.deltaTime, myRigidbody.velocity.y);     
+        myRigidbody.velocity = new Vector2(xSpeed * Time.deltaTime, myRigidbody.velocity.y);
+        myFlip.FlipRight();
     }
 
 
