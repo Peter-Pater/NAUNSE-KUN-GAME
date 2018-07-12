@@ -66,6 +66,7 @@ public class Event_HighWall : MonoBehaviour { // This script makes player climb 
                 if (!isClimbingComplete)
                 {
                     playerItem.whatsInHand = General_ItemList.NONE;
+                    player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                     isClimbing = true;
                 }
             }

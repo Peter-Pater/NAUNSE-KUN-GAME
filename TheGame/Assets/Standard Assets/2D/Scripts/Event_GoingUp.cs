@@ -90,6 +90,7 @@ public class Event_GoingUp : MonoBehaviour { // This script makes player go to t
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.UpArrow)){
             if (state != UP)
             {
+                player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                 isGoingUp = true;
             }
         }
