@@ -21,11 +21,12 @@ public class Event_TriLock : MonoBehaviour { // This script triggers the triangl
 	// Update is called once per frame
 	void Update () {
         UpdatePlayerControlState();
-		// isPuzzleSolved = puzzlePrefab.GetComponent<CheckLock>().unlock;
-		// Debug.Log("isPuzzleSolved: ");
-		// Debug.Log(isPuzzleSolved);
-		// temp = preTL.GetComponent<CheckLock>().unlock;
-		// Debug.Log(temp);
+		if (isPuzzleSolved) {
+			Destroy(GameObject.Find("Airwall_Real"));
+			Destroy(GameObject.Find("TriangleLock(Clone)"));
+			Destroy(GameObject.Find("cursor(Clone)"));
+			Destroy(GameObject.Find("AirwallPZ"));
+	    }
 	}
 
 
@@ -42,7 +43,7 @@ public class Event_TriLock : MonoBehaviour { // This script triggers the triangl
                     // instantiate the puzzle at the center of the camera.
                     // Mark the state.
                     GameObject puzzleObj = Instantiate(puzzlePrefab) as GameObject;
-                    puzzleObj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y - 5);
+                    puzzleObj.transform.position = new Vector2(cameraTrans.position.x - 5, cameraTrans.position.y - 5);
                     isPuzzleTriggered = true;
 
                 }
@@ -60,6 +61,7 @@ public class Event_TriLock : MonoBehaviour { // This script triggers the triangl
     void UpdatePlayerControlState(){
         if (isPuzzleTriggered && !isPuzzleSolved){
             player.GetComponent<Player_Movement>().enabled = false;
+			
         }else{
             player.GetComponent<Player_Movement>().enabled = true;
         }
