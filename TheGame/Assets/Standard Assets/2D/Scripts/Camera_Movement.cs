@@ -25,7 +25,7 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 	float downBoarder;
 	float cameraWidth;
 	float cameraHeight;
-
+    public Camera cam;
 
 	public Transform playerTrans;
 	public Vector3 offset; // the offset between player and the camera center
@@ -41,8 +41,10 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 	// Use this for initialization
 	void Start () {
 
+        cam = GetComponent<Camera>();
+
         // Put camera at the starting position.
-        transform.position = new Vector3(198.3f, 1.6f, -10);
+        //transform.position = new Vector3(198.3f, 1.6f, -10);
 	}
 	
 
@@ -89,6 +91,7 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 		downBoarder = targetInfo.downBoarder;
 		cameraWidth = targetInfo.cameraWidth;
 		cameraHeight = targetInfo.cameraHeight;
+        cam.orthographicSize = targetInfo.cameraViewSize;
 	}
 
 
