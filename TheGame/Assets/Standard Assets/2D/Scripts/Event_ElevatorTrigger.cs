@@ -6,10 +6,12 @@ public class Event_ElevatorTrigger : MonoBehaviour { // This script triggers ele
 
     Event_Elevator elevatorEvent;
 
+    AudioSource myAudioPlayer;
 
 	// Use this for initialization
 	void Start () {
         elevatorEvent = transform.parent.GetComponent<Event_Elevator>();
+        myAudioPlayer = GetComponent<AudioSource>();
 	}
 	
 
@@ -22,6 +24,7 @@ public class Event_ElevatorTrigger : MonoBehaviour { // This script triggers ele
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
+            myAudioPlayer.Play();
             elevatorEvent.isLifting = true;
         }
     }

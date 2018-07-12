@@ -18,6 +18,8 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
     public GameObject toolWall;
     public GameObject player;
 
+    AudioSource myAudioPlayer;
+
 
     // Objects relevant to the cutscene
     public GameObject cameraObj;
@@ -33,6 +35,8 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
 	// Use this for initialization
 	void Start () {
+        myAudioPlayer = GetComponent<AudioSource>();
+
         trans = transObj.GetComponent<Transition>();
         playerMove = player.GetComponent<Player_Movement>();
         cameraMove = cameraObj.GetComponent<Camera_Movement>();
@@ -80,12 +84,14 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
             // Put back the broken core on the ground
             // and the tool wall will open.
             if (coreState == ONTHEGROUND){
+                myAudioPlayer.Play();
                 coreState = PUTBACK;
                 toolWall.GetComponent<Event_ToolWall>().isOpen = true;
             }else if (coreState == PUTBACK && player.GetComponent<Player_Items>().whatsInHand == General_ItemList.CORE){
 
                 // Put on the new core,
                 // and starts cutscene.
+                myAudioPlayer.Play();
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 coreState = REPLACED;
                 isCutsceneOn = true;

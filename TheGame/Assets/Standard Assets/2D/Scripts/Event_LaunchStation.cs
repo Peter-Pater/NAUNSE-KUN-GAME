@@ -13,11 +13,13 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
     public float launchingSpeed;
     public float minimalHeight; // The minimal height KUN has to reach in order to launch.
     public float originalHeight;
-        
+
+    AudioSource myAudioPlayer;
+
 
 	// Use this for initialization
 	void Start () {
-		
+        myAudioPlayer = GetComponent<AudioSource>();
 	}
 	
 
@@ -61,6 +63,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
+            myAudioPlayer.Play();
             isLaunching = true;
         }
     }

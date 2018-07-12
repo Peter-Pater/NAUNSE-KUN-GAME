@@ -8,10 +8,11 @@ public class Event_TreeWithBody : MonoBehaviour { // This scripts gets player mo
 
     bool isPickObtained = false;
 
+    AudioSource myAudioPlayer;
 
 	// Use this for initialization
 	void Start () {
-		
+        myAudioPlayer = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -26,6 +27,7 @@ public class Event_TreeWithBody : MonoBehaviour { // This scripts gets player mo
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
             if (!isPickObtained)
             {
+                myAudioPlayer.Play();
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.MOUNTAINEERINGPICK;
                 Debug.Log("Mountaineering pick obtained!");
                 isPickObtained = true;

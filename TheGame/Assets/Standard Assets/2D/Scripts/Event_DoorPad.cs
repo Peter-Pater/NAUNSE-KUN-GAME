@@ -56,6 +56,7 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
         {
             if (Input.GetKey(KeyCode.Space)){
                 triggered = true;
+                GetComponent<AudioSource>().Play();
             }
         }
     }

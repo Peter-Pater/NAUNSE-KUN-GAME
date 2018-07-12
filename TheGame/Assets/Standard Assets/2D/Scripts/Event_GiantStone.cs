@@ -16,9 +16,13 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
     public float playerClimbingSpeed;
 
 
+    AudioSource myAudioPlayer;
+
+
 	// Use this for initialization
 	void Start () {
         stoneTop = transform.parent.GetChild(0).gameObject;
+        myAudioPlayer = GetComponent<AudioSource>();
 	}
 	
 
@@ -63,6 +67,7 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
             {
                 if (!isClimbFinished)
                 {
+                    myAudioPlayer.Play();
                     isPlayerClimbing = true;
                 }
             }

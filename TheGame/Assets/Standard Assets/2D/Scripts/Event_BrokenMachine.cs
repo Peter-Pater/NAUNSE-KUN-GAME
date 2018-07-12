@@ -15,11 +15,12 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
 
 
     bool isGearObtained = false;
+    AudioSource myAudioPlayer;
 
 
 	// Use this for initialization
 	void Start () {
-		
+        myAudioPlayer = GetComponent<AudioSource>();
 	}
 	
 
@@ -40,6 +41,7 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
                     // If player interacts for the first time,
                     // instantiate the puzzle at the center of the camera.
                     // Mark the state.
+                    myAudioPlayer.Play();
                     GameObject puzzleObj = Instantiate(puzzlePrefab) as GameObject;
                     puzzleObj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
                     isPuzzleTriggered = true;
@@ -51,6 +53,7 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
                     // If player interacts after solving the puzzle,
                     // player obtains the GEAR.
                     // Mark the state.
+                    myAudioPlayer.Play();
                     player.GetComponent<Player_Items>().whatsInHand = General_ItemList.GEAR;
                     Debug.Log("Gear obtained!");
                     isGearObtained = true;

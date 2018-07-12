@@ -21,9 +21,15 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
     public Transform giantStone;
 
 
+    // Get reference for camera screen shake.
+    public GameObject cameraObj;
+
+    AudioSource myAudioPlayer;
+
+
 	// Use this for initialization
 	void Start () {
-		
+        myAudioPlayer = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -39,6 +45,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
             // after platform and KUN head finish moving.
             if (kunHead.rotation.z <= 0.01f)
             {
+                cameraObj.GetComponent<Camera_ScreenShake>().StartShake(0.8f, 0.05f, 0.2f);
                 DropStone();
             }
 
@@ -63,6 +70,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
         // remove GEAR from hand and mark repaired.
         if (collision.tag == "Player" && collision.gameObject.GetComponent<Player_Items>().whatsInHand == General_ItemList.GEAR){
             if (Input.GetKeyDown(KeyCode.Space) && !isRepaired){
+                myAudioPlayer.Play();
                 collision.gameObject.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 isRepairing = true;
             }
