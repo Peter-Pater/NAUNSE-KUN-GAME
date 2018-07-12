@@ -57,7 +57,9 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 if ((trans.isTransiting && trans.isRelocateComplete) || (!trans.isTransiting && !trans.isRelocateComplete))
                 {
                     player.transform.parent = kunTrans;
-                    kunTrans.position = Vector3.Lerp(kunTrans.position, kunTargetPos, kunMovingSpeed * Time.deltaTime);
+                    //kunTrans.position = Vector3.Lerp(kunTrans.position, kunTargetPos, kunMovingSpeed * Time.deltaTime);
+                    float newHeight = Mathf.Lerp(kunTrans.position.y, kunTargetPos.y, kunMovingSpeed * Time.deltaTime);
+                    kunTrans.position = new Vector3(kunTrans.position.x, newHeight, kunTrans.position.z);
                 }
 
                 // When KUN reaches the end,
