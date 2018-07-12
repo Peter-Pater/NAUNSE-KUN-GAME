@@ -16,7 +16,7 @@ public class CheckLock : MonoBehaviour {
 	
     int buttonL = 0;
     int buttonD = 1;
-    int buttonR = 2;
+    int buttonR = 2;
 	
 	public GameObject cursor_;
 	GameObject cursor;
