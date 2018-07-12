@@ -20,7 +20,7 @@ public class Button : MonoBehaviour {
 
 	}
 	
-	void OnMouseDown() {
+	void ButtonMove() {
 		string objectName = gameObject.name;
 		if (objectName == "buttonL"){
 			moveL();
