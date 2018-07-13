@@ -8,6 +8,7 @@ public class Player_Movement : MonoBehaviour
     public float xSpeed = 0f; // How fast player moves. Assigned in the inspector.
 
     Rigidbody2D myRigidbody;
+    GameObject myLight;
     Player_Flip myFlip;
     Player_Animation myAnimationControl;
 
@@ -15,6 +16,7 @@ public class Player_Movement : MonoBehaviour
 	private void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
+        myLight = transform.GetChild(0).gameObject;
         myFlip = GetComponent<Player_Flip>();
         myAnimationControl = GetComponent<Player_Animation>();
 	}
@@ -40,8 +42,8 @@ public class Player_Movement : MonoBehaviour
 
     public void WalkLeft(){
         myRigidbody.velocity = new Vector2(-xSpeed * Time.deltaTime, myRigidbody.velocity.y);
-        myFlip.FlipLeft();
-        myAnimationControl.StartWalking();
+        myFlip.FlipLeft(); // Flip character to left.
+        myAnimationControl.StartWalking(); // Play walking animation.
     }
 
 
