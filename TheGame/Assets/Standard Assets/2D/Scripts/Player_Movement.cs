@@ -9,12 +9,14 @@ public class Player_Movement : MonoBehaviour
 
     Rigidbody2D myRigidbody;
     Player_Flip myFlip;
+    Player_Animation myAnimationControl;
 
 
 	private void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myFlip = GetComponent<Player_Flip>();
+        myAnimationControl = GetComponent<Player_Animation>();
 	}
 
 
@@ -39,17 +41,20 @@ public class Player_Movement : MonoBehaviour
     public void WalkLeft(){
         myRigidbody.velocity = new Vector2(-xSpeed * Time.deltaTime, myRigidbody.velocity.y);
         myFlip.FlipLeft();
+        myAnimationControl.StartWalking();
     }
 
 
     public void WalkRight(){
         myRigidbody.velocity = new Vector2(xSpeed * Time.deltaTime, myRigidbody.velocity.y);
         myFlip.FlipRight();
+        myAnimationControl.StartWalking();
     }
 
 
     public void Standstill(){
         myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
+        myAnimationControl.StopWalking();
     }
 
 }
