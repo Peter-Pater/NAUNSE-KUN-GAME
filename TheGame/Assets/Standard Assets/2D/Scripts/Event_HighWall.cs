@@ -11,6 +11,8 @@ public class Event_HighWall : MonoBehaviour { // This script makes player climb 
 
     public float playerClimbingSpeed; // Assigned in the inspector
 
+    public GameObject airwallToBuild;
+
 
     // Get a reference to player.
     public GameObject player;
@@ -41,15 +43,18 @@ public class Event_HighWall : MonoBehaviour { // This script makes player climb 
 
 
         // When finishing climbing,
-        // restore player gravity scale and reenable player control.
-        // Mark the climbing states as well.
         if (Mathf.Abs(player.transform.position.x - 61.76f) <= 0.5f && Mathf.Abs(player.transform.position.y - 20.97f) <= 0.5f)
         {
-            Debug.Log("climb finihsed");
-            isClimbingComplete = true;
+            
+            // Build an airwall so that player can't get down this high wall.
+            airwallToBuild.GetComponent<Collider2D>().isTrigger = false;
+
+            // Restore player gravity scale and reenable player control.
             player.GetComponent<Rigidbody2D>().gravityScale = 3;
             player.GetComponent<Player_Movement>().enabled = true;
 
+            // Mark the climbing states as well.
+            isClimbingComplete = true;
             isClimbing = false;
         }
 
