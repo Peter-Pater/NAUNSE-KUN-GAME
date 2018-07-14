@@ -611,7 +611,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 63958593}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 0.03, z: -0.14061809}
+  m_LocalPosition: {x: 1.72, y: 0.03, z: -0.14061809}
   m_LocalScale: {x: 1, y: 7.172202, z: 1}
   m_Children: []
   m_Father: {fileID: 256412193}
@@ -3775,7 +3775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d4c21ee333140fd88fff316b863b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScene: 0
+  currentScene: 5
   insideKUN: {fileID: 579123007}
   outsideKUN: {fileID: 6584484}
   kunCoreRoom: {fileID: 1595646074}
@@ -7514,8 +7514,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1039748293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.92, y: -2.88, z: -0.14061809}
-  m_LocalScale: {x: 2.6812625, y: 2.4337587, z: 1}
+  m_LocalPosition: {x: 3.92, y: -3.06, z: -0.14061809}
+  m_LocalScale: {x: 2.6812625, y: 1.0541263, z: 1}
   m_Children: []
   m_Father: {fileID: 256412193}
   m_RootOrder: 5
@@ -7528,17 +7528,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1039748293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74630f2119dbb45eb88cf7f3f2388f5b, type: 3}
+  m_Script: {fileID: 11500000, guid: c09d17d85e4034f229e4e7068eec69b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevelGround: {fileID: 0}
-  upperLevelGround: {fileID: 1799021999}
-  airwallToDestroy: {fileID: 0}
-  airwallToBuild: {fileID: 63958593}
-  playerTargetPos: {x: 203.44, y: 74.7, z: 0}
-  playerOriginalPos: {x: 0, y: 0, z: 0}
-  goingUpSpeed: 1
   player: {fileID: 2015325409}
+  ladder: {fileID: 1799021999}
+  playerTargetPos: {x: 203.55, y: 74.11, z: 0}
+  goingUpSpeed: 1
 --- !u!61 &1039748296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11968,6 +11964,7 @@ GameObject:
   - component: {fileID: 1977975926}
   - component: {fileID: 1977975928}
   - component: {fileID: 1977975927}
+  - component: {fileID: 1977975929}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -12058,6 +12055,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1977975929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1977975925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41570ea98f55446c58f5fc47108ebe17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ladder: {fileID: 1799021999}
 --- !u!1 &2015325409
 GameObject:
   m_ObjectHideFlags: 0
@@ -12133,7 +12142,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2015325409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 203.33, y: -2.04, z: 0}
+  m_LocalPosition: {x: 195.69, y: 73.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1822378855}

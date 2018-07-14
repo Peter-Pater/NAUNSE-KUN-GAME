@@ -19,7 +19,7 @@ public class Event_GiantStoneRetrigger : MonoBehaviour { // This script makes ga
 	}
 
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player"){
             stoneTop.GetComponent<Collider2D>().isTrigger = true;

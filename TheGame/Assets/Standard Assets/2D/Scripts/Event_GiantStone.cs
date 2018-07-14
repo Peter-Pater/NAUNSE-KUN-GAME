@@ -5,7 +5,6 @@ using UnityEngine;
 public class Event_GiantStone : MonoBehaviour { // This script makes player climb up the giant stone.
 
     // Keep track of climbing states.
-    bool isClimbFinished = false;
     bool isPlayerClimbing = false;
 
     // Reference to the top of the stone.
