@@ -28,6 +28,7 @@ public class Player_Movement : MonoBehaviour
         // Using left and right arrow to move player.
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
+            myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 WalkRight();   
@@ -35,6 +36,7 @@ public class Player_Movement : MonoBehaviour
                 WalkLeft();
             }
         }else{
+            myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
             Standstill();
         }
     }
