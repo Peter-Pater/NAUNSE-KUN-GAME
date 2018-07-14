@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckLock : MonoBehaviour {
-    public Puzzle_TL_Rotate scriptR;
-	public Puzzle_TL_Rotate scriptG;
-	public Puzzle_TL_Rotate scriptB;
-	public Event_TriLock scriptE;
+public class Puzzle_Storehouse: MonoBehaviour {
+    
+    public Puzzle_SH_Rotate scriptR;
+    public Puzzle_SH_Rotate scriptG;
+	public Puzzle_SH_Rotate scriptB;
+    public Event_StorehouseLock scriptE;
 	
     public bool unlock = false;
 	
@@ -18,14 +19,21 @@ public class CheckLock : MonoBehaviour {
     int buttonD = 1;
     int buttonR = 2;
 	
-	public GameObject cursor_;
+	public GameObject cursorPrefab;
 	GameObject cursor;
+
 	int currentButton = 0;
 	GameObject currentButtonObj;
 	public GameObject[] buttons;
+
+
+    Event_StorehouseLock shEvent;
+
+
 	// Use this for initialization
 	void Start () {
-		cursor = Instantiate(cursor_) as GameObject;
+		cursor = Instantiate(cursorPrefab) as GameObject;
+        shEvent = GameObject.FindWithTag("Puzzle2Trigger").GetComponent<Event_StorehouseLock>();
 	}
 	
 	// Update is called once per frame
@@ -70,25 +78,25 @@ public class CheckLock : MonoBehaviour {
 		}
     }
 	
-	 bool checkLock(){
-	 	scriptR = preR.GetComponent<Puzzle_TL_Rotate>();
+	 bool CheckLock(){
+        scriptR = preR.GetComponent<Puzzle_SH_Rotate>();
 	 	int upper = scriptR.values[1];
-	 	print(upper);
-	 	scriptG = preG.GetComponent<Puzzle_TL_Rotate>();
+        scriptG = preG.GetComponent<Puzzle_SH_Rotate>();
 	 	int left = scriptG.values[2];
-	 	print(left);
-	 	scriptB = preB.GetComponent<Puzzle_TL_Rotate>();
+        scriptB = preB.GetComponent<Puzzle_SH_Rotate>();
 		int right = scriptB.values[0];
-		print(right);
-		scriptE = GameObject.Find("AirwallPZ").GetComponent<Event_TriLock>();
-		if (upper == 1 && left == 1 && right == 1){
-			print("all 1");
-			scriptE.isPuzzleSolved = true;
-			return true;
-	 	}
-		else{
-			print("not all 1");
-		}
-		return false;
+
+        if (upper == 1 && left == 1 && right == 1)
+        {
+            shEvent.isPuzzleSolved = true;
+            shEvent.isPuzzleTriggered = false;
+            Destroy(this.gameObject);
+            Destroy(GameObject.Find("cursor(Clone)"));
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 	}
 }

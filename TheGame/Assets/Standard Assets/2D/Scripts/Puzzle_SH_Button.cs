@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //The script for clicking the button
-public class Button : MonoBehaviour {
+public class Puzzle_SH_Button : MonoBehaviour {
 	
 	// public Button buttonL, buttonR, buttonD;
 	public GameObject preR;
@@ -32,7 +32,7 @@ public class Button : MonoBehaviour {
 			moveD();
 		}
 		// GameObject.Find("big").SendMessage("RotatePiece");
-		prePuzzle.SendMessage("checkLock");
+		prePuzzle.SendMessage("CheckLock");
 		//GameObject.Find("big").SendMessage("checkLock");
 	}
 	
