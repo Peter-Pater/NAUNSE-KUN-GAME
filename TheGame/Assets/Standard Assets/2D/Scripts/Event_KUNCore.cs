@@ -77,7 +77,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
                 // When KUN reaches the end,
                 // stop cutscene.
-                if (Vector3.Distance(kunTrans.position, kunTargetPos) < 1f)
+                if (Mathf.Abs(kunTrans.position.y - kunTargetPos.y) < 1f)
                 {
                     player.transform.parent = null;
                     player.GetComponent<Player_Constraints>().enabled = true;
