@@ -12,7 +12,7 @@ public class Event_StorehouseLock : MonoBehaviour { // This script triggers the 
 
     public Transform cameraTrans;
     public GameObject player;
-	// public GameObject preTL;
+	public GameObject lockeDoor;
 
 
 	// Use this for initialization
@@ -24,6 +24,12 @@ public class Event_StorehouseLock : MonoBehaviour { // This script triggers the 
 	// Update is called once per frame
 	void Update () {
         UpdatePlayerControlState();
+
+        if (isPuzzleSolved){
+            lockeDoor.GetComponent<Collider2D>().isTrigger = true;
+        }else{
+            lockeDoor.GetComponent<Collider2D>().isTrigger = false;
+        }
 	}
 
 

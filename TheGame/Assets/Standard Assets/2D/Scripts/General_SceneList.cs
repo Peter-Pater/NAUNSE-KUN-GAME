@@ -10,6 +10,7 @@ public class General_SceneList : MonoBehaviour { // This is a general scene list
     public static int COREROOM = 3;
     public static int CAVE = 4;
     public static int STOREHOUSE = 5;
+    public static int STOREHOUSE2ND = 6;
 
 	// Use this for initialization
 	void Start () {

@@ -13,6 +13,7 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
     public GameObject kunCoreRoom;
     public GameObject cave;
     public GameObject storeHouse;
+    public GameObject storeHouse2nd;
 	GameObject currentSceneObj;
 
 
@@ -78,6 +79,8 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
             currentSceneObj = cave;
         }else if (currentScene == General_SceneList.STOREHOUSE){
             currentSceneObj = storeHouse;
+        }else if (currentScene == General_SceneList.STOREHOUSE2ND){
+            currentSceneObj = storeHouse2nd;
         }
 	}
 
