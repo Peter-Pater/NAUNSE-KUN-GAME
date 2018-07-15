@@ -47,14 +47,23 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 	void Update () {
 
         UpdatePlayerControlState();
-		
-        if (isCutsceneOn){
+
+        if (isCutsceneOn)
+        {
+            // Disable rigidbody constraints on position
+            // since player will be moving without
+            // player control.
+            player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            player.GetComponent<Player_Constraints>().enabled = false;
 
             // During the cutscene,
             // player walks out out core room first.
-            if (cameraMove.currentScene == General_SceneList.COREROOM){
+            if (cameraMove.currentScene == General_SceneList.COREROOM)
+            {
                 playerMove.WalkLeft();
-            }else if (cameraMove.currentScene == General_SceneList.OUTSIDEKUN){
+            }
+            else if (cameraMove.currentScene == General_SceneList.OUTSIDEKUN)
+            {
 
                 // After player left core room,
                 // KUN starts to lift.
@@ -68,12 +77,15 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
                 // When KUN reaches the end,
                 // stop cutscene.
-                if (Vector3.Distance(kunTrans.position, kunTargetPos) < 1f){
+                if (Vector3.Distance(kunTrans.position, kunTargetPos) < 1f)
+                {
                     player.transform.parent = null;
+                    player.GetComponent<Player_Constraints>().enabled = true;
                     isCutsceneOn = false;
                 }
             }
         }
+        
 	}
 
 
