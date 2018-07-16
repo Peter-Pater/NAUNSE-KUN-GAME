@@ -81,7 +81,7 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
 
 
                     myAudioPlayer.Play(); // Play sound effect.
-                    playerAnimationControl.SetPick(); // Trigger animation.
+                    playerAnimationControl.SetPressButton(); // Trigger animation.
                     freezeTimerStart = true; // Start short animation freeze.
 
                 }

@@ -12,8 +12,8 @@ public class Puzzle_BM_Square : MonoBehaviour { // This script manges color of a
     public int initialColor; // Assigned in the inspector.
 
     // Colors are assigned in the inspector.
-    public Color yellow;
-    public Color blue;
+    public Sprite yellow;
+    public Sprite blue;
 
     SpriteRenderer mySpriteRenderer;
 
@@ -30,9 +30,9 @@ public class Puzzle_BM_Square : MonoBehaviour { // This script manges color of a
 		
         // Fill in corresponding colors.
         if ((currentColor % 2) == YELLOW){
-            mySpriteRenderer.color = yellow;
+            mySpriteRenderer.sprite = yellow;
         }else if ((currentColor % 2) == BLUE){
-            mySpriteRenderer.color = blue;
+            mySpriteRenderer.sprite = blue;
         }
 
 	}

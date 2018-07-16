@@ -43,7 +43,7 @@ public class Puzzle_BrokenMachine : MonoBehaviour { // This script is about the 
 
         //Load the correct answer.
         correctAnswers = new int[3];
-        correctAnswers[0] = BLUE;
+        correctAnswers[0] = YELLOW;
         correctAnswers[1] = BLUE;
         correctAnswers[2] = YELLOW;
 

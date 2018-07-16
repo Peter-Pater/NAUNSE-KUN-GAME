@@ -5,6 +5,7 @@ using UnityEngine;
 public class Event_PowerStation : MonoBehaviour { // This script triggers events after repairing the power station
 
     // Repair state
+    bool isCrossfading = false;
     bool isRepairing = false;
     bool isRepaired = false;
     bool isStoneDropped = false;
@@ -12,7 +13,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
     // Speed that each event happens at
     public float platformMovingSpeed;
     public float kunMovingSpeed;
-    public float treeFallingSpeed;
+    public float crossFadeSpeed;
 
 
     public Transform platformRotPoint;
@@ -28,6 +29,11 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
     AudioSource myAudioPlayer;
 
 
+    // The two layers for crossfading.
+    SpriteRenderer brokenLayer;
+    SpriteRenderer repairedLayer;
+
+
     // This timer is used to temporarily
     // lock player control during
     // animation
@@ -40,11 +46,28 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
 	void Start () {
         myAudioPlayer = GetComponent<AudioSource>();
         freezeTimer = animFreezeTime;
+
+        brokenLayer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        repairedLayer = transform.GetChild(1).GetComponent<SpriteRenderer>();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+        // Crossfading will make power station
+        // appears to be fixed.
+        if (isCrossfading){
+
+            if (brokenLayer.color.a >= 0.01f){
+                brokenLayer.color -= new Color(0, 0, 0, crossFadeSpeed);
+            }
+
+            if (repairedLayer.color.a <= 0.99f){
+                repairedLayer.color += new Color(0, 0, 0, crossFadeSpeed);
+            }
+        }
+
         // Rotate the platform and move KUN head
         // when the power station is repaired.
         if (isRepairing){
@@ -93,11 +116,12 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
         if (collision.tag == "Player" && collision.gameObject.GetComponent<Player_Items>().whatsInHand == General_ItemList.GEAR){
             if (Input.GetKeyDown(KeyCode.Space) && !isRepaired){
                 collision.gameObject.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
+                isCrossfading = true;
                 isRepairing = true;
 
 
                 myAudioPlayer.Play(); // Play sound effect.
-                player.GetComponent<Player_Animation>().SetPressButton(); // Trigger animation
+                player.GetComponent<Player_Animation>().SetPick(); // Trigger animation
                 freezeTimerStart = true; // Start short animation freeze.
             }
         }
