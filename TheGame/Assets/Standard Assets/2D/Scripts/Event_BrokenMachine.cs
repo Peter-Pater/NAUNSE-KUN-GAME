@@ -19,17 +19,36 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
     AudioSource myAudioPlayer;
 
 
+    // This timer is used to temporarily
+    // lock player control during
+    // animation
+    public float animFreezeTime;
+    float freezeTimer;
+    bool freezeTimerStart = false;
+
 
 	// Use this for initialization
 	void Start () {
         myAudioPlayer = GetComponent<AudioSource>();
         playerAnimationControl = player.GetComponent<Player_Animation>();
+
+        freezeTimer = animFreezeTime;
 	}
 	
 
 	// Update is called once per frame
 	void Update () {
        
+        if (freezeTimerStart){
+            player.GetComponent<Player_Movement>().LockControl();
+
+            freezeTimer -= Time.deltaTime;
+            if (freezeTimer <= 0){
+                player.GetComponent<Player_Movement>().UnlockControl();
+                freezeTimer = animFreezeTime;
+                freezeTimerStart = false;
+            }
+        }
 	}
 
 
@@ -54,14 +73,17 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
                 else if (!isPuzzleTriggered && isPuzzleSolved && !isGearObtained)
                 {
 
-                    // If player interacts after solving the puzzle,
-                    // player obtains the GEAR.
-                    // Mark the state.
-                    myAudioPlayer.Play();
-                    playerAnimationControl.SetPick();
+                    // When player interacts after solving the puzzle,
+                    // obtain gear.
                     player.GetComponent<Player_Items>().whatsInHand = General_ItemList.GEAR;
                     Debug.Log("Gear obtained!");
                     isGearObtained = true;
+
+
+                    myAudioPlayer.Play(); // Play sound effect.
+                    playerAnimationControl.SetPick(); // Trigger animation.
+                    freezeTimerStart = true; // Start short animation freeze.
+
                 }
             }
         }

@@ -13,6 +13,14 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
     Event_KUNExit exitEventScript;
 
 
+    // This timer is used to temporarily
+    // lock player control during
+    // animation
+    public float animFreezeTime;
+    float freezeTimer;
+    bool freezeTimerStart = false;
+
+
 	// Use this for initialization
 	void Start () {
         
@@ -20,13 +28,16 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
 
         // Refer to the exit event script.
         exitEventScript = kunExit.GetComponent<Event_KUNExit>();
+
+        // Initialize freeze timer
+        freezeTimer = animFreezeTime;
 	}
 
 
     // Update is called once per frame
     void Update()
     {
-
+        
         if (triggered)
         {
             // When the door pad is triggered,
@@ -47,6 +58,18 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
                 triggered = false;
             }
         }
+
+
+        if (freezeTimerStart){
+            player.GetComponent<Player_Movement>().LockControl();
+
+            freezeTimer -= Time.deltaTime;
+            if (freezeTimer <= 0){
+                player.GetComponent<Player_Movement>().UnlockControl();
+                freezeTimer = animFreezeTime;
+                freezeTimerStart = false;
+            }
+        }
     }
 
 
@@ -59,6 +82,7 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
                 triggered = true;
                 GetComponent<AudioSource>().Play();
                 player.GetComponent<Player_Animation>().SetPressButton();
+                freezeTimerStart = true;
             }
         }
     }

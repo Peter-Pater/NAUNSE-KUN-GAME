@@ -901,6 +901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kunExit: {fileID: 44196070}
   player: {fileID: 2015325409}
+  animFreezeTime: 2.5
 --- !u!82 &117644564
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2334,6 +2335,7 @@ MonoBehaviour:
     type: 2}
   cameraTrans: {fileID: 519420032}
   player: {fileID: 2015325409}
+  animFreezeTime: 2.5
 --- !u!61 &311604174
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2554,6 +2556,7 @@ MonoBehaviour:
   giantStone: {fileID: 1408769328}
   cameraObj: {fileID: 519420028}
   player: {fileID: 2015325409}
+  animFreezeTime: 2.5
 --- !u!61 &330202987
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4022,6 +4025,7 @@ MonoBehaviour:
   isCoreInContainer: 1
   cameraTrans: {fileID: 519420032}
   player: {fileID: 2015325409}
+  animFreezeTime: 2.5
 --- !u!82 &540165038
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4566,6 +4570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2015325409}
+  animFreezeTime: 2.5
 --- !u!82 &597311991
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5564,7 +5569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cavePortal: {fileID: 1603209807}
-  portalStayTime: 0.5
+  portalStayTime: 1
 --- !u!212 &714648972
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7295,6 +7300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2015325409}
   isOpen: 0
+  animFreezeTime: 2.5
 --- !u!82 &1014734049
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9880,7 +9886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cavePortal: {fileID: 1467517697}
-  portalStayTime: 0.5
+  portalStayTime: 1
 --- !u!212 &1481901963
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10710,6 +10716,7 @@ MonoBehaviour:
   transObj: {fileID: 1219178730}
   kunTargetPos: {x: 83.33, y: 88.2, z: -0.2617188}
   kunMovingSpeed: 0.1
+  animFreezeTime: 2.5
 --- !u!82 &1688345901
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12530,7 +12537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb48167599c1438199c3bf62a0ad6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSpeed: 300
+  xSpeed: 250
 --- !u!50 &2015325413
 Rigidbody2D:
   serializedVersion: 4

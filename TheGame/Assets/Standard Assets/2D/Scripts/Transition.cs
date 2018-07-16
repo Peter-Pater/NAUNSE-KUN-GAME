@@ -87,6 +87,7 @@ public class Transition : MonoBehaviour { // The script transit player and camer
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
         if (collision.tag == "Player"){
+            player.GetComponent<Player_Movement>().Standstill();
             isTransiting = true;
         }
 	}

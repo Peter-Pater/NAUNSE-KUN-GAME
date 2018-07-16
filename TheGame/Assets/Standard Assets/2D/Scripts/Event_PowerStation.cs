@@ -28,9 +28,18 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
     AudioSource myAudioPlayer;
 
 
+    // This timer is used to temporarily
+    // lock player control during
+    // animation
+    public float animFreezeTime;
+    float freezeTimer;
+    bool freezeTimerStart = false;
+
+
 	// Use this for initialization
 	void Start () {
         myAudioPlayer = GetComponent<AudioSource>();
+        freezeTimer = animFreezeTime;
 	}
 	
 	// Update is called once per frame
@@ -60,6 +69,18 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
         }
 
 
+        if (freezeTimerStart){
+            player.GetComponent<Player_Movement>().LockControl();
+
+            freezeTimer -= Time.deltaTime;
+            if (freezeTimer <= 0){
+                player.GetComponent<Player_Movement>().UnlockControl();
+                freezeTimer = animFreezeTime;
+                freezeTimerStart = false;
+            }
+        }
+
+
 
 	}
 
@@ -71,10 +92,13 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
         // remove GEAR from hand and mark repaired.
         if (collision.tag == "Player" && collision.gameObject.GetComponent<Player_Items>().whatsInHand == General_ItemList.GEAR){
             if (Input.GetKeyDown(KeyCode.Space) && !isRepaired){
-                myAudioPlayer.Play();
-                player.GetComponent<Player_Animation>().SetPressButton();
                 collision.gameObject.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 isRepairing = true;
+
+
+                myAudioPlayer.Play(); // Play sound effect.
+                player.GetComponent<Player_Animation>().SetPressButton(); // Trigger animation
+                freezeTimerStart = true; // Start short animation freeze.
             }
         }
 	}
@@ -101,9 +125,4 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
         }
     }
 
-
-    // Smooth falling for tree
-    void TreeFalls(){
-        treeRotPoint.rotation = Quaternion.Slerp(treeRotPoint.rotation, Quaternion.Euler(0, 0, -130), treeFallingSpeed * Time.deltaTime);
-    }
 }

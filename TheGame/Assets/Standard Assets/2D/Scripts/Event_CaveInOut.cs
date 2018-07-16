@@ -28,14 +28,15 @@ public class Event_CaveInOut : MonoBehaviour { // This script sends player into 
         if (timerStart)
         {
             portalTimer -= Time.deltaTime;
+
+            if (portalTimer <= 0)
+            {
+                cavePortal.position = portalPrevPos;
+                portalTimer = portalStayTime;
+                timerStart = false;
+            }
         }
 
-        if (portalTimer <= 0)
-        {
-            cavePortal.position = portalPrevPos;
-            portalTimer = portalStayTime;
-            timerStart = false;
-        }
 	}
 
 

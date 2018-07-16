@@ -18,16 +18,41 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
     public GameObject player;
 
     AudioSource myAudioPlayer;
+    Player_Animation playerAnimationControl;
+
+
+    // This timer is used to temporarily
+    // lock player control during
+    // animation
+    public float animFreezeTime;
+    float freezeTimer;
+    bool freezeTimerStart = false;
+
 
 	// Use this for initialization
 	void Start () {
-        myAudioPlayer = GetComponent<AudioSource>();	
+        myAudioPlayer = GetComponent<AudioSource>();
+        playerAnimationControl = player.GetComponent<Player_Animation>();
+
+        freezeTimer = animFreezeTime;
 	}
 	
 
 	// Update is called once per frame
 	void Update () {
-        
+
+        if (freezeTimerStart)
+        {
+            player.GetComponent<Player_Movement>().LockControl();
+
+            freezeTimer -= Time.deltaTime;
+            if (freezeTimer <= 0)
+            {
+                player.GetComponent<Player_Movement>().UnlockControl();
+                freezeTimer = animFreezeTime;
+                freezeTimerStart = false;
+            }
+        }
 	}
 
 
@@ -41,6 +66,7 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
             if (!isContainerOpen && !isPuzzleTriggered && isCoreInContainer){
                 myAudioPlayer.Play();
                 player.GetComponent<Player_Movement>().LockControl();
+
                 GameObject puzzle1Obj = Instantiate(puzzle1Prefab) as GameObject;
                 puzzle1Obj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
                 isPuzzleTriggered = true;
@@ -50,10 +76,14 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
             // If player interactis with containers after puzzle solved,
             // player obtains the new core.
             if (isContainerOpen && !isPuzzleTriggered && isCoreInContainer){
-                myAudioPlayer.Play();
                 Debug.Log("New core obtained");
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.CORE;
                 isCoreInContainer = false;
+
+                myAudioPlayer.Play();
+                playerAnimationControl.SetPressButton();
+                freezeTimerStart = true;
+                Debug.Log(freezeTimerStart);
             }
         }
     }

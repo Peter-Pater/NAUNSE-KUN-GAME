@@ -84,13 +84,11 @@ public class Player_Movement : MonoBehaviour
 
     public void LockControl(){
         isControlLocked = true;
-        Debug.Log("Player locked");
     }
 
 
     public void UnlockControl(){
         isControlLocked = false;
-        Debug.Log("Player unlocked");
     }
 
 }

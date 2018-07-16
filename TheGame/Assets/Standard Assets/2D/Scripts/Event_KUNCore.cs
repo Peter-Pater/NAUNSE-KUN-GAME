@@ -30,7 +30,16 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
     Transition trans;
     Player_Movement playerMove;
+    Player_Animation playerAnimationControl;
     Camera_Movement cameraMove;
+
+
+    // This timer is used to temporarily
+    // lock player control during
+    // animation
+    public float animFreezeTime;
+    float freezeTimer;
+    bool freezeTimerStart = false;
 
 
 	// Use this for initialization
@@ -39,12 +48,29 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
         trans = transObj.GetComponent<Transition>();
         playerMove = player.GetComponent<Player_Movement>();
+        playerAnimationControl = player.GetComponent<Player_Animation>();
         cameraMove = cameraObj.GetComponent<Camera_Movement>();
+
+        freezeTimer = animFreezeTime;
 	}
 	
 
 	// Update is called once per frame
 	void Update () {
+
+
+        if (freezeTimerStart)
+        {
+            playerMove.LockControl();
+
+            freezeTimer -= Time.deltaTime;
+            if (freezeTimer <= 0)
+            {
+                playerMove.UnlockControl();
+                freezeTimer = animFreezeTime;
+                freezeTimerStart = false;
+            }
+        }
 
         if (isCutsceneOn)
         {
@@ -68,7 +94,6 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 if ((trans.isTransiting && trans.isRelocateComplete) || (!trans.isTransiting && !trans.isRelocateComplete))
                 {
                     player.transform.parent = kunTrans;
-                    //kunTrans.position = Vector3.Lerp(kunTrans.position, kunTargetPos, kunMovingSpeed * Time.deltaTime);
                     float newHeight = Mathf.Lerp(kunTrans.position.y, kunTargetPos.y, kunMovingSpeed * Time.deltaTime);
                     kunTrans.position = new Vector3(kunTrans.position.x, newHeight, kunTrans.position.z);
                 }
@@ -95,17 +120,21 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
             // Put back the broken core on the ground
             // and the tool wall will open.
             if (coreState == ONTHEGROUND){
-                myAudioPlayer.Play();
                 coreState = PUTBACK;
                 toolWall.GetComponent<Event_ToolWall>().isOpen = true;
+
+                myAudioPlayer.Play();
+                playerAnimationControl.SetPick();
+                freezeTimerStart = true;
             }else if (coreState == PUTBACK && player.GetComponent<Player_Items>().whatsInHand == General_ItemList.CORE){
 
                 // Put on the new core,
                 // and starts cutscene.
-                myAudioPlayer.Play();
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 coreState = REPLACED;
-                player.GetComponent<Player_Movement>().LockControl();
+
+                myAudioPlayer.Play();
+                playerMove.LockControl();
                 isCutsceneOn = true;
             }
         }
