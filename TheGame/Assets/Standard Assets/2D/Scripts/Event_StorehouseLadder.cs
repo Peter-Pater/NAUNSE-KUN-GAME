@@ -28,7 +28,7 @@ public class Event_StorehouseLadder : MonoBehaviour { // This script makes playe
             // so that it won't fall for gravity.
             // Disable player control as well.
             player.GetComponent<Rigidbody2D>().gravityScale = 0;
-            player.GetComponent<Player_Movement>().enabled = false;
+            player.GetComponent<Player_Movement>().LockControl();
 
             // Smooth move the player with Lerp.
             Vector3 targetPos = Vector3.Lerp(player.transform.position, playerTargetPos, goingUpSpeed * Time.deltaTime);
@@ -43,7 +43,7 @@ public class Event_StorehouseLadder : MonoBehaviour { // This script makes playe
 
                 // "Free" the player.
                 player.GetComponent<Rigidbody2D>().gravityScale = 3;
-                player.GetComponent<Player_Movement>().enabled = true;
+                player.GetComponent<Player_Movement>().UnlockControl();
 
                 // Mark state.
                 isPlayerClimbing = false;

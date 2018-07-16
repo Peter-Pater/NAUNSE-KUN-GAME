@@ -20,7 +20,9 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
 
 	// Update is called once per frame
 	void Update () {
-		
+
+        UpdatePlayerAnimation();
+
         if (isSlidingDown){
 
             // Disable the collider on the ground
@@ -30,7 +32,7 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
 
             // Disable player control.
             // Disable gravity effect on player.
-            player.GetComponent<Player_Movement>().enabled = false;
+            player.GetComponent<Player_Movement>().LockControl();
             player.GetComponent<Rigidbody2D>().gravityScale = 0;
 
 
@@ -40,7 +42,7 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
 
             // Mark the end of sliding process.
             if (Vector3.Distance(player.transform.position, targetPos) < 0.1f){
-                player.GetComponent<Player_Movement>().enabled = true;
+                player.GetComponent<Player_Movement>().UnlockControl();
                 player.GetComponent<Rigidbody2D>().gravityScale = 3;
 
                 isSlidingDown = false;
@@ -56,6 +58,15 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
             if (!isSlidingDown){
                 isSlidingDown = true;
             }
+        }
+    }
+
+
+    void UpdatePlayerAnimation(){
+        if (isSlidingDown){
+            player.GetComponent<Player_Animation>().StartClimbingCane();
+        }else{
+            player.GetComponent<Player_Animation>().StopClimbingCane();
         }
     }
 }

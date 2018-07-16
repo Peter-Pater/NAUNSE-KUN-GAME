@@ -90,6 +90,7 @@ public class Puzzle_Storehouse: MonoBehaviour {
         {
             shEvent.isPuzzleSolved = true;
             shEvent.isPuzzleTriggered = false;
+            shEvent.UnlockPlayer();
             Destroy(this.gameObject);
             Destroy(GameObject.Find("cursor(Clone)"));
             return true;

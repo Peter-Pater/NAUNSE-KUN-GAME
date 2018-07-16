@@ -5,6 +5,7 @@ using UnityEngine;
 public class Event_DoorPad : MonoBehaviour { // This script opens the exit inside KUN.
 
     public GameObject kunExit; //Assign KUN exit game object to this variable in the inspector.
+    public GameObject player;
 
     bool triggered = false;
 
@@ -26,7 +27,7 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
     void Update()
     {
 
-        if (triggered == true)
+        if (triggered)
         {
             // When the door pad is triggered,
             // change its color.
@@ -54,9 +55,10 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
     {
         if (other.tag == "Player")
         {
-            if (Input.GetKey(KeyCode.Space)){
+            if (Input.GetKeyDown(KeyCode.Space)){
                 triggered = true;
                 GetComponent<AudioSource>().Play();
+                player.GetComponent<Player_Animation>().SetPressButton();
             }
         }
     }

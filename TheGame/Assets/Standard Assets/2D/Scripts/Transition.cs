@@ -39,7 +39,7 @@ public class Transition : MonoBehaviour { // The script transit player and camer
                 // Start transiting.
                 // Enable player movement.
                 // Lock camera.
-                player.GetComponent<Player_Movement>().enabled = false;
+                player.GetComponent<Player_Movement>().LockControl();
                 cameraObj.GetComponent<Camera_Movement>().LockCamera();
 
 
@@ -75,7 +75,7 @@ public class Transition : MonoBehaviour { // The script transit player and camer
                     // After camera view is back,
                     // reenable player movement.
                     // Transition complete.
-                    player.GetComponent<Player_Movement>().enabled = true;
+                    player.GetComponent<Player_Movement>().UnlockControl();
                     isTransiting = false;
                     isRelocateComplete = false;
                 }

@@ -73,6 +73,7 @@ public class Puzzle_BrokenMachine : MonoBehaviour { // This script is about the 
         if(isCorrect){
             bmEvent.isPuzzleSolved = true;
             bmEvent.isPuzzleTriggered = false;
+            bmEvent.UnlockPlayer();
 
             Destroy(this.gameObject);
         }

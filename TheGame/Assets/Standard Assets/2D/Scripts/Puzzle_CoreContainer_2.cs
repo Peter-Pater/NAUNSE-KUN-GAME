@@ -76,6 +76,7 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
         Match();
 	}
 
+
     void UpdateCursorPosition(int i, int j){
         //cursor.transform.position = staticObj[i].transform.position;
         if (counter > 0){
@@ -83,6 +84,7 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
         }
         staticObj[i].transform.localScale += new Vector3((float) 0.015, (float) 0.015, 1);
     }
+
 
     void Match(){
 
@@ -99,9 +101,7 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
             if (Mathf.Abs(x0 - x1) < d1 && Mathf.Abs(y0 - y1) < d1){
                 destroyed[current] = 1;
                 mergeTriggered = true;
-                //Destroy(spinningObj[current]);
                 spinningObj[current].GetComponent<Renderer>().enabled = false;
-                //spinningObj[current].GetComponent<Renderer>().material.color = new Color(1, 1, 1);
                 triggers[current].GetComponent<Renderer>().enabled = true;
                 failureCount = 0;
             }else{
@@ -122,12 +122,12 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
             if (Mathf.Abs(staticObj[current].transform.position.x - triggers[current].transform.position.x) > 0.05 || Mathf.Abs(staticObj[current].transform.position.y - triggers[current].transform.position.y) > 0.05){
                 triggers[current].transform.Translate(new Vector2(staticObj[current].transform.position.x - triggers[current].transform.position.x, staticObj[current].transform.position.y - triggers[current].transform.position.y) * Time.deltaTime * 5);
             }else{
-                //Destroy(triggers[current]);
                 triggers[current].GetComponent<Renderer>().enabled = false;
                 counter++;
                 if (counter >= 8){
                     ccEvent.isPuzzleTriggered = false;
                     ccEvent.isContainerOpen = true;
+                    ccEvent.UnlockPlayer();
                     mergeTriggered = false;
                     //Debug.Log("Activated!");
                     Destroy(this.gameObject);

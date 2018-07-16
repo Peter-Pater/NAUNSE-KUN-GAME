@@ -46,8 +46,6 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 	// Update is called once per frame
 	void Update () {
 
-        UpdatePlayerControlState();
-
         if (isCutsceneOn)
         {
             // Disable rigidbody constraints on position
@@ -81,6 +79,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 {
                     player.transform.parent = null;
                     player.GetComponent<Player_Constraints>().enabled = true;
+                    player.GetComponent<Player_Movement>().UnlockControl();
                     isCutsceneOn = false;
                 }
             }
@@ -106,19 +105,10 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 myAudioPlayer.Play();
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 coreState = REPLACED;
+                player.GetComponent<Player_Movement>().LockControl();
                 isCutsceneOn = true;
             }
         }
 	}
 
-
-    // Disable/Enable player control
-    // according to cutscene state.
-    void UpdatePlayerControlState(){
-        if (isCutsceneOn){
-            player.GetComponent<Player_Movement>().enabled = false;
-        }else{
-            player.GetComponent<Player_Movement>().enabled = true;
-        }
-    }
 }

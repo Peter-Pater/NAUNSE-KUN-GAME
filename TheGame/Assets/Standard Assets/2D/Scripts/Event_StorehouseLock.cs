@@ -23,7 +23,6 @@ public class Event_StorehouseLock : MonoBehaviour { // This script triggers the 
 
 	// Update is called once per frame
 	void Update () {
-        UpdatePlayerControlState();
 
         if (isPuzzleSolved){
             lockeDoor.GetComponent<Collider2D>().isTrigger = true;
@@ -44,6 +43,7 @@ public class Event_StorehouseLock : MonoBehaviour { // This script triggers the 
                     // If player interacts for the first time,
                     // instantiate the puzzle at the center of the camera.
                     // Mark the state.
+                    player.GetComponent<Player_Movement>().LockControl();
                     GameObject puzzleObj = Instantiate(puzzlePrefab) as GameObject;
                     puzzleObj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
                     isPuzzleTriggered = true;
@@ -54,13 +54,7 @@ public class Event_StorehouseLock : MonoBehaviour { // This script triggers the 
 	}
 
 
-    // Disable player control when puzzle is triggered
-    // and reenable it otherwise.
-    void UpdatePlayerControlState(){
-        if (isPuzzleTriggered){
-            player.GetComponent<Player_Movement>().enabled = false;
-        }else{
-            player.GetComponent<Player_Movement>().enabled = true;
-        }
+    public void UnlockPlayer(){
+        player.GetComponent<Player_Movement>().UnlockControl();
     }
 }

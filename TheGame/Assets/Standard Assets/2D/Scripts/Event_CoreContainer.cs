@@ -27,7 +27,7 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
 
 	// Update is called once per frame
 	void Update () {
-        UpdatePlayerControlState();
+        
 	}
 
 
@@ -40,6 +40,7 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
             // instantiate the puzzle.
             if (!isContainerOpen && !isPuzzleTriggered && isCoreInContainer){
                 myAudioPlayer.Play();
+                player.GetComponent<Player_Movement>().LockControl();
                 GameObject puzzle1Obj = Instantiate(puzzle1Prefab) as GameObject;
                 puzzle1Obj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
                 isPuzzleTriggered = true;
@@ -58,18 +59,10 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
     }
 
 
-    // Disable player control when puzzle is triggered
-    // and reenable it otherwise.
-    void UpdatePlayerControlState()
+    public void UnlockPlayer()
     {
-        if (isPuzzleTriggered)
-        {
-            player.GetComponent<Player_Movement>().enabled = false;
-        }
-        else
-        {
-            player.GetComponent<Player_Movement>().enabled = true;
-        }
+        player.GetComponent<Player_Movement>().UnlockControl();
+
     }
 
 

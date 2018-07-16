@@ -930,6 +930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kunExit: {fileID: 44196070}
+  player: {fileID: 2015325409}
 --- !u!82 &117644564
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1138,6 +1139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a00d870b6ed6e4db9a1a899a3c6cab9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 2015325409}
   kun: {fileID: 1953968853}
   launchingSpeed: 10
   minimalHeight: 124.9
@@ -2581,6 +2583,7 @@ MonoBehaviour:
   treeRotPoint: {fileID: 0}
   giantStone: {fileID: 1408769328}
   cameraObj: {fileID: 519420028}
+  player: {fileID: 2015325409}
 --- !u!61 &330202987
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12697,7 +12700,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: c644b0020e49441f78f14d136e2423b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19d98f8e301c74122a53a8c7c87b97b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12732,7 +12735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb48167599c1438199c3bf62a0ad6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSpeed: 400
+  xSpeed: 300
 --- !u!50 &2015325413
 Rigidbody2D:
   serializedVersion: 4

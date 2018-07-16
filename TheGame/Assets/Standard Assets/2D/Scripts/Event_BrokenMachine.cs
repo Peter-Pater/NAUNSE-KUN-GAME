@@ -12,21 +12,24 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
 
     public Transform cameraTrans;
     public GameObject player;
+    Player_Animation playerAnimationControl;
 
 
     bool isGearObtained = false;
     AudioSource myAudioPlayer;
 
 
+
 	// Use this for initialization
 	void Start () {
         myAudioPlayer = GetComponent<AudioSource>();
+        playerAnimationControl = player.GetComponent<Player_Animation>();
 	}
 	
 
 	// Update is called once per frame
 	void Update () {
-        UpdatePlayerControlState();
+       
 	}
 
 
@@ -42,6 +45,7 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
                     // instantiate the puzzle at the center of the camera.
                     // Mark the state.
                     myAudioPlayer.Play();
+                    player.GetComponent<Player_Movement>().LockControl();
                     GameObject puzzleObj = Instantiate(puzzlePrefab) as GameObject;
                     puzzleObj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
                     isPuzzleTriggered = true;
@@ -54,6 +58,7 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
                     // player obtains the GEAR.
                     // Mark the state.
                     myAudioPlayer.Play();
+                    playerAnimationControl.SetPick();
                     player.GetComponent<Player_Items>().whatsInHand = General_ItemList.GEAR;
                     Debug.Log("Gear obtained!");
                     isGearObtained = true;
@@ -63,13 +68,8 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
 	}
 
 
-    // Disable player control when puzzle is triggered
-    // and reenable it otherwise.
-    void UpdatePlayerControlState(){
-        if (isPuzzleTriggered){
-            player.GetComponent<Player_Movement>().enabled = false;
-        }else{
-            player.GetComponent<Player_Movement>().enabled = true;
-        }
+    public void UnlockPlayer(){
+        
+        player.GetComponent<Player_Movement>().UnlockControl();
     }
 }
