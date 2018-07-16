@@ -900,6 +900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kunExit: {fileID: 44196070}
+  player: {fileID: 2015325409}
 --- !u!82 &117644564
 AudioSource:
   m_ObjectHideFlags: 0

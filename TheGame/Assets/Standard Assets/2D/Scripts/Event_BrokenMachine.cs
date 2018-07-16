@@ -12,15 +12,18 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
 
     public Transform cameraTrans;
     public GameObject player;
+    Player_Animation playerAnimationControl;
 
 
     bool isGearObtained = false;
     AudioSource myAudioPlayer;
 
 
+
 	// Use this for initialization
 	void Start () {
         myAudioPlayer = GetComponent<AudioSource>();
+        playerAnimationControl = player.GetComponent<Player_Animation>();
 	}
 	
 
@@ -54,6 +57,7 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
                     // player obtains the GEAR.
                     // Mark the state.
                     myAudioPlayer.Play();
+                    playerAnimationControl.SetPick();
                     player.GetComponent<Player_Items>().whatsInHand = General_ItemList.GEAR;
                     Debug.Log("Gear obtained!");
                     isGearObtained = true;

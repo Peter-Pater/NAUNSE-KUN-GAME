@@ -38,4 +38,14 @@ public class Player_Animation : MonoBehaviour {
         myAnimator.SetBool("IsClimbingCane", false);
     }
 
+
+    public void SetPick(){
+        myAnimator.SetTrigger("SetPick");
+    }
+
+
+    public void SetPressingButton(){
+        myAnimator.SetTrigger("SetPressButton");
+    }
+
 }
