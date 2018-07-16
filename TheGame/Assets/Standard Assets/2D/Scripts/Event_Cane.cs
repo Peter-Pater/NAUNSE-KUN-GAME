@@ -32,7 +32,7 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
 
             // Disable player control.
             // Disable gravity effect on player.
-            player.GetComponent<Player_Movement>().enabled = false;
+            player.GetComponent<Player_Movement>().LockControl();
             player.GetComponent<Rigidbody2D>().gravityScale = 0;
 
 
@@ -42,7 +42,7 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
 
             // Mark the end of sliding process.
             if (Vector3.Distance(player.transform.position, targetPos) < 0.1f){
-                player.GetComponent<Player_Movement>().enabled = true;
+                player.GetComponent<Player_Movement>().UnlockControl();
                 player.GetComponent<Rigidbody2D>().gravityScale = 3;
 
                 isSlidingDown = false;
