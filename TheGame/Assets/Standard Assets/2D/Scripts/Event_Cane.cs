@@ -20,7 +20,9 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
 
 	// Update is called once per frame
 	void Update () {
-		
+
+        UpdatePlayerAnimation();
+
         if (isSlidingDown){
 
             // Disable the collider on the ground
@@ -56,6 +58,15 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
             if (!isSlidingDown){
                 isSlidingDown = true;
             }
+        }
+    }
+
+
+    void UpdatePlayerAnimation(){
+        if (isSlidingDown){
+            player.GetComponent<Player_Animation>().StartClimbingCane();
+        }else{
+            player.GetComponent<Player_Animation>().StopClimbingCane();
         }
     }
 }

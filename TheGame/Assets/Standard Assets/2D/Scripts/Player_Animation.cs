@@ -19,11 +19,23 @@ public class Player_Animation : MonoBehaviour {
 
     public void StartWalking(){
         myAnimator.SetBool("IsWalking", true);
+        myAnimator.SetBool("IsClimbingCane", false);
     }
 
 
     public void StopWalking(){
         myAnimator.SetBool("IsWalking", false);
+    }
+
+
+    public void StartClimbingCane(){
+        myAnimator.SetBool("IsWalking", false);
+        myAnimator.SetBool("IsClimbingCane", true);
+    }
+
+
+    public void StopClimbingCane(){
+        myAnimator.SetBool("IsClimbingCane", false);
     }
 
 }
