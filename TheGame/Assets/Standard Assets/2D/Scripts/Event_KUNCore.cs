@@ -57,7 +57,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
 	// Update is called once per frame
 	void Update () {
-
+        
 
         if (freezeTimerStart)
         {
@@ -77,6 +77,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
             // Disable rigidbody constraints on position
             // since player will be moving without
             // player control.
+            playerMove.LockControl();
             player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             player.GetComponent<Player_Constraints>().enabled = false;
 
@@ -134,7 +135,6 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 coreState = REPLACED;
 
                 myAudioPlayer.Play();
-                playerMove.LockControl();
                 isCutsceneOn = true;
             }
         }
