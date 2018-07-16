@@ -25,6 +25,7 @@ public class Puzzle_BrokenMachine : MonoBehaviour { // This script is about the 
     int[] correctAnswers;
 
     bool isCorrect = false;
+    float destoryDelay = 0.6f;
 
 
     GameObject brokenMachine;
@@ -61,9 +62,6 @@ public class Puzzle_BrokenMachine : MonoBehaviour { // This script is about the 
 	// Update is called once per frame
 	void Update () {
 
-        MoveCursor();
-        ChangeColor();
-
         isCorrect = CheckingAnswers();
 
 
@@ -71,11 +69,19 @@ public class Puzzle_BrokenMachine : MonoBehaviour { // This script is about the 
         // change puzzle states in broken machine
         // and destroy the puzzle obj.
         if(isCorrect){
-            bmEvent.isPuzzleSolved = true;
-            bmEvent.isPuzzleTriggered = false;
-            bmEvent.UnlockPlayer();
+            destoryDelay -= Time.deltaTime;
 
-            Destroy(this.gameObject);
+            if (destoryDelay <= 0)
+            {
+                bmEvent.isPuzzleSolved = true;
+                bmEvent.isPuzzleTriggered = false;
+                bmEvent.UnlockPlayer();
+
+                Destroy(this.gameObject);
+            }
+        }else{
+            MoveCursor();
+            ChangeColor();
         }
 
 	}

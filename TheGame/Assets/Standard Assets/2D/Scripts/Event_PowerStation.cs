@@ -5,7 +5,6 @@ using UnityEngine;
 public class Event_PowerStation : MonoBehaviour { // This script triggers events after repairing the power station
 
     // Repair state
-    bool isCrossfading = false;
     bool isRepairing = false;
     bool isRepaired = false;
     bool isStoneDropped = false;
@@ -54,23 +53,23 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
 	
 	// Update is called once per frame
 	void Update () {
-		
-        // Crossfading will make power station
-        // appears to be fixed.
-        if (isCrossfading){
+        
+        if (isRepairing){
 
-            if (brokenLayer.color.a >= 0.01f){
+            // Crossfade to repaired sprite
+            // when power station is reparied.
+            if (brokenLayer.color.a >= 0.01f)
+            {
                 brokenLayer.color -= new Color(0, 0, 0, crossFadeSpeed);
             }
 
-            if (repairedLayer.color.a <= 0.99f){
+            if (repairedLayer.color.a <= 0.99f)
+            {
                 repairedLayer.color += new Color(0, 0, 0, crossFadeSpeed);
             }
-        }
 
-        // Rotate the platform and move KUN head
-        // when the power station is repaired.
-        if (isRepairing){
+            // Rotate the platform and move KUN head
+            // when the power station is repaired.
             RotatePlatform();
             RotateAndMoveKUNHead();
 
@@ -116,7 +115,6 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
         if (collision.tag == "Player" && collision.gameObject.GetComponent<Player_Items>().whatsInHand == General_ItemList.GEAR){
             if (Input.GetKeyDown(KeyCode.Space) && !isRepaired){
                 collision.gameObject.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
-                isCrossfading = true;
                 isRepairing = true;
 
 

@@ -19,6 +19,13 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
     AudioSource myAudioPlayer;
 
 
+    public float crossfadeSpeed;
+
+    SpriteRenderer lockedLayer;
+    SpriteRenderer unlockedLayer;
+    SpriteRenderer noGearLayer;
+
+
     // This timer is used to temporarily
     // lock player control during
     // animation
@@ -32,13 +39,42 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
         myAudioPlayer = GetComponent<AudioSource>();
         playerAnimationControl = player.GetComponent<Player_Animation>();
 
+        lockedLayer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        unlockedLayer = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        noGearLayer = transform.GetChild(2).GetComponent<SpriteRenderer>();
+
         freezeTimer = animFreezeTime;
 	}
 	
 
 	// Update is called once per frame
 	void Update () {
+
+        if (isGearObtained){
+
+            // Crossfade to without gear sprite
+            // when gear is obtained by player.
+            if (unlockedLayer.color.a >= 0.01f){
+                unlockedLayer.color -= new Color(0, 0, 0, crossfadeSpeed);
+            }
+            if (noGearLayer.color.a <= 0.99f){
+                noGearLayer.color += new Color(0, 0, 0, crossfadeSpeed);
+            }
+        }else if(isPuzzleSolved){
+
+            // Crossfade to unlocked sprite
+            // when puzzle is solved.
+            if (lockedLayer.color.a >= 0.01f)
+            {
+                lockedLayer.color -= new Color(0, 0, 0, crossfadeSpeed);
+            }
+            if (unlockedLayer.color.a <= 0.99f)
+            {
+                unlockedLayer.color += new Color(0, 0, 0, crossfadeSpeed);
+            }
+        }
        
+
         if (freezeTimerStart){
             player.GetComponent<Player_Movement>().LockControl();
 
@@ -65,6 +101,8 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
                     // Mark the state.
                     myAudioPlayer.Play();
                     player.GetComponent<Player_Movement>().LockControl();
+
+
                     GameObject puzzleObj = Instantiate(puzzlePrefab) as GameObject;
                     puzzleObj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
                     isPuzzleTriggered = true;
