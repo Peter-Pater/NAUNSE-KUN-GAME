@@ -28,6 +28,7 @@ public class Event_TreeWithBody : MonoBehaviour { // This scripts gets player mo
             if (!isPickObtained)
             {
                 myAudioPlayer.Play();
+                player.GetComponent<Player_Animation>().SetShakeTree();
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.MOUNTAINEERINGPICK;
                 Debug.Log("Mountaineering pick obtained!");
                 isPickObtained = true;

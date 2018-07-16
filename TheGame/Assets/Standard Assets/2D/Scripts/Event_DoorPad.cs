@@ -58,7 +58,7 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
             if (Input.GetKeyDown(KeyCode.Space)){
                 triggered = true;
                 GetComponent<AudioSource>().Play();
-                player.GetComponent<Player_Animation>().SetPressingButton();
+                player.GetComponent<Player_Animation>().SetPressButton();
             }
         }
     }

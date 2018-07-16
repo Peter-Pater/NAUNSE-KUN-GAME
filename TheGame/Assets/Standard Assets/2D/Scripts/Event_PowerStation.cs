@@ -23,6 +23,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
 
     // Get reference for camera screen shake.
     public GameObject cameraObj;
+    public GameObject player;
 
     AudioSource myAudioPlayer;
 
@@ -71,6 +72,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
         if (collision.tag == "Player" && collision.gameObject.GetComponent<Player_Items>().whatsInHand == General_ItemList.GEAR){
             if (Input.GetKeyDown(KeyCode.Space) && !isRepaired){
                 myAudioPlayer.Play();
+                player.GetComponent<Player_Animation>().SetPressButton();
                 collision.gameObject.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 isRepairing = true;
             }

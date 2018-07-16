@@ -1109,6 +1109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a00d870b6ed6e4db9a1a899a3c6cab9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 2015325409}
   kun: {fileID: 1953968853}
   launchingSpeed: 10
   minimalHeight: 124.9
@@ -2552,6 +2553,7 @@ MonoBehaviour:
   treeRotPoint: {fileID: 0}
   giantStone: {fileID: 1408769328}
   cameraObj: {fileID: 519420028}
+  player: {fileID: 2015325409}
 --- !u!61 &330202987
 BoxCollider2D:
   m_ObjectHideFlags: 0

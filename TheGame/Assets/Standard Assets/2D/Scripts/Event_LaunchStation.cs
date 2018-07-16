@@ -9,6 +9,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
     bool isCutsceneOn = false;
 
 
+    public GameObject player;
     public GameObject kun;
     public float launchingSpeed;
     public float minimalHeight; // The minimal height KUN has to reach in order to launch.
@@ -25,7 +26,9 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 
 	// Update is called once per frame
 	void Update () {
-		
+
+        UpdatePlayerAnimation();
+
         if (isLaunching){
 
             // When launching,
@@ -65,6 +68,16 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
             myAudioPlayer.Play();
             isLaunching = true;
+        }
+    }
+
+
+    void UpdatePlayerAnimation(){
+
+        if (isLaunching){
+            player.GetComponent<Player_Animation>().StartTyping();
+        }else{
+            player.GetComponent<Player_Animation>().StopTyping();
         }
     }
 }
