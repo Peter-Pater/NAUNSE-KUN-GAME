@@ -9,7 +9,8 @@ public class General_ItemList : MonoBehaviour { // This is general item list of 
     public static int GEAR = 1;
     public static int MOUNTAINEERINGPICK = 2;
     public static int FLASHLIGHT = 3;
-    public static int CORE = 4;
+    public static int AXE = 4;
+    public static int CORE = 5;
 
 	// Use this for initialization
 	void Start () {
