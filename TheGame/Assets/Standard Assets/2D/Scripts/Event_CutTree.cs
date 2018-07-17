@@ -45,6 +45,9 @@ public class Event_CutTree : MonoBehaviour { // This script manages cutting tree
                 // Tree starts falling if player interacts with tree when axe is in hand. 
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 isTreeFalling = true;
+
+                // Enable a collider so that tree can lie on the ground.
+                treeRotatePoint.transform.GetChild(0).GetChild(0).GetComponent<Collider2D>().isTrigger = false;
             }
         }
     }

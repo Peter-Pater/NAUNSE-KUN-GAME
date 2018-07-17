@@ -6,9 +6,11 @@ public class Event_PushTree : MonoBehaviour { // This script manages pushing tre
 
     public GameObject player;
     public GameObject treeRotatePoint;
+    public GameObject airwallInTheWall;
     public bool isCutDown = false; // Keep track of whether the tree is cut down.
 
-    bool isPlayerPushing = false;
+    public bool isPlayerPushing = false;
+    public bool isPushFinished = false; // Keep track of whether the tree is pushed to destination.
 
     Rigidbody2D myRigidbody;
     Collider2D myCollider;
@@ -20,17 +22,26 @@ public class Event_PushTree : MonoBehaviour { // This script manages pushing tre
         myCollider = GetComponent<Collider2D>();
 	}
 	
+
 	// Update is called once per frame
 	void Update () {
 
         UpdateRigidbodyState();
 
+        if (isPushFinished){
+            isPlayerPushing = false;
+            myRigidbody.velocity = new Vector3(0, 0, 0);
+            myRigidbody.gravityScale = 0;
+        }
+
         if (isPlayerPushing){
+            airwallInTheWall.GetComponent<Collider2D>().isTrigger = true;
             myCollider.isTrigger = false;
             if (Input.GetKeyDown(KeyCode.RightArrow)){
                 isPlayerPushing = false;
             }
         }else{
+            airwallInTheWall.GetComponent<Collider2D>().isTrigger = false;
             myCollider.isTrigger = true;
         }
 	}
@@ -49,7 +60,7 @@ public class Event_PushTree : MonoBehaviour { // This script manages pushing tre
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
-            if (isCutDown && !isPlayerPushing){
+            if (isCutDown && !isPlayerPushing && !isPushFinished){
                 player.transform.position = new Vector3(transform.position.x + 4, player.transform.position.y, player.transform.position.z);
                 isPlayerPushing = true;
             }

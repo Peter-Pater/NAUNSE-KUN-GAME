@@ -9,6 +9,7 @@ TagManager:
   - Puzzle1Trigger
   - Puzzle3&4Trigger
   - Puzzle2Trigger
+  - SurvivorTrigger
   layers:
   - Default
   - TransparentFX
