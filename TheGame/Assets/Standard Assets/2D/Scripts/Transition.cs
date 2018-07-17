@@ -24,6 +24,12 @@ public class Transition : MonoBehaviour { // The script transit player and camer
     SpriteRenderer curtainRenderer;
 
 
+    // Get reference of two scene objs
+    // in order to switch bgm.
+    public GameObject currentSceneObj;
+    public GameObject targetSceneObj;
+
+
 	// Use this for initialization
 	void Start () {
         curtainRenderer = cameraObj.transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -60,6 +66,8 @@ public class Transition : MonoBehaviour { // The script transit player and camer
                     cameraObj.GetComponent<Camera_Movement>().currentScene = targetScene;
                     cameraObj.GetComponent<Camera_Movement>().UnlockCamera();
 
+                    targetSceneObj.GetComponent<Scene_BGMManage>().PlayeBGM();
+
                     isRelocateComplete = true;
                 }
 
@@ -88,6 +96,7 @@ public class Transition : MonoBehaviour { // The script transit player and camer
 	{
         if (collision.tag == "Player"){
             player.GetComponent<Player_Movement>().Standstill();
+            currentSceneObj.GetComponent<Scene_BGMManage>().StopBGM();
             isTransiting = true;
         }
 	}
