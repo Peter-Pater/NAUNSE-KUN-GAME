@@ -87,7 +87,6 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 
 	void UpdateSceneInfo(){
         Scene_Info targetInfo = currentSceneObj.GetComponent<Scene_Info>();
-
 		leftBoarder = targetInfo.leftBoarder;
 		rightBoarder = targetInfo.rightBoarder;
 		upBoarder = targetInfo.upBoarder;
