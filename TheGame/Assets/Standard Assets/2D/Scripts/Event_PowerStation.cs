@@ -142,7 +142,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
     // Relocate giant stone so that it drops.
     void DropStone(){
         if (!isStoneDropped){
-            giantStone.position = new Vector3(32.89f, 9.4f, giantStone.position.z);
+            giantStone.position = new Vector3(3.93f, 5f, giantStone.position.z);
             isStoneDropped = true;
         }
     }

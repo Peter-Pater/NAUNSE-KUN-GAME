@@ -37,7 +37,7 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
             player.GetComponent<Player_Movement>().LockControl();
 
             // Smooth move the player with Lerp.
-            Vector3 targetPos = Vector3.Lerp(player.transform.position, new Vector3(32.8f, 6.23f, player.transform.position.z), playerClimbingSpeed * Time.deltaTime);
+            Vector3 targetPos = Vector3.Lerp(player.transform.position, new Vector3(3.93f, 6.61f, player.transform.position.z), playerClimbingSpeed * Time.deltaTime);
             player.transform.position = targetPos;
         }
 
@@ -46,7 +46,7 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
         // solidify the top of the stone so that player can stand on the stone.
         // Restore player gravity scale and control.
         // Mark the states.
-        if (Mathf.Abs(player.transform.position.y - 6.23f) <= 0.5f){
+        if (Mathf.Abs(player.transform.position.y - 6.61f) <= 0.5f){
             //isClimbFinished = true;
 
             stoneTop.GetComponent<Collider2D>().isTrigger = false;
