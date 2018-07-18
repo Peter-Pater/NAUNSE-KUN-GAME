@@ -2,13 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Animation : MonoBehaviour {
+public class Player_Animation : MonoBehaviour { // This script controls animation of all layers of player sprites.
 
-    Animator myAnimator;
+    // All animation layers are simultaneously triggered. 
+    Animator normalAnimator;
+    Animator gearAnimator;
+    Animator pickAnimator;
+    Animator flashLightAnimator;
+    Animator axeAnimator;
+    Animator newCoreAnimator;
+
 
 	// Use this for initialization
 	void Start () {
-        myAnimator = GetComponent<Animator>();
+        normalAnimator = transform.GetChild(1).GetComponent<Animator>();
+        gearAnimator = transform.GetChild(2).GetComponent<Animator>();
+        pickAnimator = transform.GetChild(3).GetComponent<Animator>();
+        flashLightAnimator = transform.GetChild(4).GetComponent<Animator>();
+        axeAnimator = transform.GetChild(5).GetComponent<Animator>();
+        newCoreAnimator = transform.GetChild(6).GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -18,53 +30,77 @@ public class Player_Animation : MonoBehaviour {
 
 
     public void StartWalking(){
-        myAnimator.SetBool("IsWalking", true);
-        myAnimator.SetBool("IsClimbingCane", false);
-        myAnimator.SetBool("IsTyping", false);
+        normalAnimator.SetBool("IsWalking", true);
+        normalAnimator.SetBool("IsClimbingCane", false);
+        normalAnimator.SetBool("IsTyping", false);
+
+        gearAnimator.SetBool("IsWalking", true);
+        gearAnimator.SetBool("IsClimbingCane", false);
+        gearAnimator.SetBool("IsTyping", false);
     }
 
 
     public void StopWalking(){
-        myAnimator.SetBool("IsWalking", false);
+        normalAnimator.SetBool("IsWalking", false);
+
+        gearAnimator.SetBool("IsWalking", false);
     }
 
 
     public void StartClimbingCane(){
-        myAnimator.SetBool("IsWalking", false);
-        myAnimator.SetBool("IsClimbingCane", true);
-        myAnimator.SetBool("IsTyping", false);
+        normalAnimator.SetBool("IsWalking", false);
+        normalAnimator.SetBool("IsClimbingCane", true);
+        normalAnimator.SetBool("IsTyping", false);
+
+        gearAnimator.SetBool("IsWalking", false);
+        gearAnimator.SetBool("IsClimbingCane", true);
+        gearAnimator.SetBool("IsTyping", false);
     }
 
 
     public void StopClimbingCane(){
-        myAnimator.SetBool("IsClimbingCane", false);
+        normalAnimator.SetBool("IsClimbingCane", false);
+
+        gearAnimator.SetBool("IsClimbingCane", false);
     }
 
 
     public void StartTyping(){
-        myAnimator.SetBool("IsWalking", false);
-        myAnimator.SetBool("IsClimbingCane", false);
-        myAnimator.SetBool("IsTyping", true);
+        normalAnimator.SetBool("IsWalking", false);
+        normalAnimator.SetBool("IsClimbingCane", false);
+        normalAnimator.SetBool("IsTyping", true);
+
+        gearAnimator.SetBool("IsWalking", false);
+        gearAnimator.SetBool("IsClimbingCane", false);
+        gearAnimator.SetBool("IsTyping", true);
     }
 
 
     public void StopTyping(){
-        myAnimator.SetBool("IsTyping", false);
+        normalAnimator.SetBool("IsTyping", false);
+
+        gearAnimator.SetBool("IsTyping", false);
     }
 
 
     public void SetPick(){
-        myAnimator.SetTrigger("SetPick");
+        normalAnimator.SetTrigger("SetPick");
+
+        gearAnimator.SetTrigger("SetPick");
     }
 
 
     public void SetPressButton(){
-        myAnimator.SetTrigger("SetPressButton");
+        normalAnimator.SetTrigger("SetPressButton");
+
+        gearAnimator.SetTrigger("SetPressButton");
     }
 
 
     public void SetShakeTree(){
-        myAnimator.SetTrigger("SetShakeTree");
+        normalAnimator.SetTrigger("SetShakeTree");
+
+        gearAnimator.SetTrigger("SetShakeTress");
     }
 
 }

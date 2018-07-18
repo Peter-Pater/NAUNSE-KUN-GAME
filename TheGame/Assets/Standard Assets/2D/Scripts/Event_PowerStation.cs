@@ -8,6 +8,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
     bool isRepairing = false;
     bool isRepaired = false;
     bool isStoneDropped = false;
+    bool isCrossFading = false;
 
     // Speed that each event happens at
     public float platformMovingSpeed;
@@ -52,21 +53,24 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
 	
 	// Update is called once per frame
 	void Update () {
-        
-        if (isRepairing){
 
+        if (isCrossFading){
+            
             // Crossfade to repaired sprite
-            // when power station is reparied.
+            // when power station is reparing.
             if (brokenLayer.color.a >= 0.01f)
             {
-                brokenLayer.color -= new Color(0, 0, 0, crossFadeSpeed);
+                brokenLayer.color -= new Color(0, 0, 0, crossFadeSpeed * Time.deltaTime);
             }
 
             if (repairedLayer.color.a <= 0.99f)
             {
-                repairedLayer.color += new Color(0, 0, 0, crossFadeSpeed);
+                repairedLayer.color += new Color(0, 0, 0, crossFadeSpeed * Time.deltaTime);
             }
+        }
 
+        if (isRepairing){
+            
             // Rotate the platform and move KUN head
             // when the power station is repaired.
             RotatePlatform();
@@ -115,6 +119,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
             if (Input.GetKeyDown(KeyCode.Space) && !isRepaired){
                 collision.gameObject.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 isRepairing = true;
+                isCrossFading = true;
 
 
                 myAudioPlayer.Play(); // Play sound effect.

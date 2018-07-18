@@ -55,10 +55,10 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
             // Crossfade to without gear sprite
             // when gear is obtained by player.
             if (unlockedLayer.color.a >= 0.01f){
-                unlockedLayer.color -= new Color(0, 0, 0, crossfadeSpeed);
+                unlockedLayer.color -= new Color(0, 0, 0, crossfadeSpeed * Time.deltaTime);
             }
             if (noGearLayer.color.a <= 0.99f){
-                noGearLayer.color += new Color(0, 0, 0, crossfadeSpeed);
+                noGearLayer.color += new Color(0, 0, 0, crossfadeSpeed * Time.deltaTime);
             }
         }else if(isPuzzleSolved){
 
@@ -66,11 +66,11 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
             // when puzzle is solved.
             if (lockedLayer.color.a >= 0.01f)
             {
-                lockedLayer.color -= new Color(0, 0, 0, crossfadeSpeed);
+                lockedLayer.color -= new Color(0, 0, 0, crossfadeSpeed * Time.deltaTime);
             }
             if (unlockedLayer.color.a <= 0.99f)
             {
-                unlockedLayer.color += new Color(0, 0, 0, crossfadeSpeed);
+                unlockedLayer.color += new Color(0, 0, 0, crossfadeSpeed * Time.deltaTime);
             }
         }
        
