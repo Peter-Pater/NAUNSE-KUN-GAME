@@ -9,10 +9,12 @@ public class Player_Movement : MonoBehaviour
 
     public float xSpeed = 0f; // How fast player moves. Assigned in the inspector.
 
-    //Transform myLightTrans;
+
     Rigidbody2D myRigidbody;
     GameObject myLight;
     Player_Animation myAnimationControl;
+    Player_AudioManage myAudioManage;
+
 
 
 	private void Start()
@@ -20,6 +22,7 @@ public class Player_Movement : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         myLight = transform.GetChild(0).gameObject;
         myAnimationControl = GetComponent<Player_Animation>();
+        myAudioManage = GetComponent<Player_AudioManage>();
 	}
 
 
@@ -52,6 +55,7 @@ public class Player_Movement : MonoBehaviour
         myRigidbody.velocity = new Vector2(-xSpeed * Time.deltaTime, myRigidbody.velocity.y);
         FlipLeft(); // Flip character to left.
         myAnimationControl.StartWalking(); // Play walking animation.
+        myAudioManage.PlayFootStep(); // Play walking sound.
     }
 
 
@@ -59,12 +63,14 @@ public class Player_Movement : MonoBehaviour
         myRigidbody.velocity = new Vector2(xSpeed * Time.deltaTime, myRigidbody.velocity.y);
         FlipRight();
         myAnimationControl.StartWalking();
+        myAudioManage.PlayFootStep();
     }
 
 
     public void Standstill(){
         myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
-        myAnimationControl.StopWalking();
+        myAnimationControl.StopWalking(); // Stop walking animation.
+        myAudioManage.StopFootStep(); // Stop walking sound.
     }
 
 
