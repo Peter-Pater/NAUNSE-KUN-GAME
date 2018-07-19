@@ -66,7 +66,6 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
             {
                 if (!isPlayerClimbing)
                 {
-                    myAudioPlayer.Play(); // Play a climbing sound.
                     player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0); // Stop current motion of player.
                     isPlayerClimbing = true; // Start climbing.
                 }

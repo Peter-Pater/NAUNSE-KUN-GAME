@@ -8,9 +8,10 @@ public class Event_HighWall : MonoBehaviour { // This script makes player climb 
     bool isClimbing = false;
     bool isClimbingComplete = false;
 
+    AudioSource myAudioPlayer;
+
 
     public float playerClimbingSpeed; // Assigned in the inspector
-
     public GameObject airwallToBuild;
 
 
@@ -22,6 +23,7 @@ public class Event_HighWall : MonoBehaviour { // This script makes player climb 
 	// Use this for initialization
 	void Start () {
         playerItem = player.GetComponent<Player_Items>();
+        myAudioPlayer = GetComponent<AudioSource>();
 	}
 	
 
@@ -73,6 +75,7 @@ public class Event_HighWall : MonoBehaviour { // This script makes player climb 
                     playerItem.whatsInHand = General_ItemList.NONE;
                     //player.GetComponent<Player_Animation>().SetClimbHighWall();
                     player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+                    myAudioPlayer.Play();
                     isClimbing = true;
                 }
             }

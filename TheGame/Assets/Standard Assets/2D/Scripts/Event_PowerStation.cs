@@ -148,6 +148,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
     void DropStone(){
         if (!isStoneDropped){
             giantStone.position = new Vector3(3.93f, 5f, giantStone.position.z);
+            giantStone.GetComponent<AudioSource>().Play();
             isStoneDropped = true;
         }
     }
