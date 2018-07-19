@@ -61,7 +61,7 @@ public class Event_ToolWall : MonoBehaviour { // This script lets player obtain 
 
 
                 myAudioPlayer.Play();
-                playerAnimationControl.SetPickAxe();
+                playerAnimationControl.SetPickFlashLight();
                 freezeTimerStart = true;
             }
         }

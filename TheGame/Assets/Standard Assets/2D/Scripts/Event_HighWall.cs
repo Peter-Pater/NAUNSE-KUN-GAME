@@ -37,13 +37,13 @@ public class Event_HighWall : MonoBehaviour { // This script makes player climb 
             player.GetComponent<Player_Movement>().LockControl();
 
             // Smooth climbing
-            Vector3 targetPos = Vector3.Lerp(player.transform.position, new Vector3(53.81f, 20.29f, player.transform.position.z), playerClimbingSpeed * Time.deltaTime);
+            Vector3 targetPos = Vector3.Lerp(player.transform.position, new Vector3(54.23f, 20.7f, player.transform.position.z), playerClimbingSpeed * Time.deltaTime);
             player.transform.position = targetPos;
         }
 
 
         // When finishing climbing,
-        if (Mathf.Abs(player.transform.position.x - 53.81f) <= 0.5f && Mathf.Abs(player.transform.position.y - 20.29f) <= 0.5f)
+        if (Mathf.Abs(player.transform.position.x - 54.23f) <= 0.5f && Mathf.Abs(player.transform.position.y - 20.7f) <= 0.5f)
         {
             
             // Build an airwall so that player can't get down this high wall.
