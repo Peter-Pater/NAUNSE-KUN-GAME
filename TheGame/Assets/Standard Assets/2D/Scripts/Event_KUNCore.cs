@@ -125,7 +125,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 toolWall.GetComponent<Event_ToolWall>().isOpen = true;
 
                 myAudioPlayer.Play();
-                //playerAnimationControl.SetPick();
+                playerAnimationControl.SetPick();
                 freezeTimerStart = true;
             }else if (coreState == PUTBACK && player.GetComponent<Player_Items>().whatsInHand == General_ItemList.CORE){
 

@@ -54,6 +54,11 @@ public class Player_Animation : MonoBehaviour { // This script controls animatio
     }
 
 
+    public void SetPick(){
+        myAnimator.SetTrigger("SetPick");
+    }
+
+
     public void SetPressButton(){
         myAnimator.SetTrigger("SetPressButton");
     }
