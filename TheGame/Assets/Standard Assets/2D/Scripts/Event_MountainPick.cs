@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Event_TreeWithBody : MonoBehaviour { // This script makes player shake mountain pick off the tree.
-    
+public class Event_MountainPick : MonoBehaviour { // This script manages player obtaining mountain pick.
+
     public GameObject player;
-    public GameObject mountainPick;
 
-    bool isPickDropped = false;
-
+    bool isPickObtained = false;
+    SpriteRenderer mySpriteRenderer;
     AudioSource myAudioPlayer;
 
 
@@ -22,13 +21,23 @@ public class Event_TreeWithBody : MonoBehaviour { // This script makes player sh
 
 	// Use this for initialization
 	void Start () {
+        mySpriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
         myAudioPlayer = GetComponent<AudioSource>();
+
         freezeTimer = animFreezeTime;
 	}
 	
+
 	// Update is called once per frame
 	void Update () {
 		
+        if (isPickObtained){
+            if (mySpriteRenderer.color.a >= 0.01f){
+                mySpriteRenderer.color -= new Color(0, 0, 0, 0.01f);
+            }
+        }
+
+
         if (freezeTimerStart)
         {
             player.GetComponent<Player_Movement>().LockControl();
@@ -44,20 +53,17 @@ public class Event_TreeWithBody : MonoBehaviour { // This script makes player sh
 	}
 
 
-    // Player obtains the mountaineering pick when interacting with this tree.
-	private void OnTriggerStay2D(Collider2D collision)
-	{
+    private void OnTriggerStay2D(Collider2D collision)
+    {
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
-            if (!isPickDropped)
-            {
-                mountainPick.GetComponent<Rigidbody2D>().gravityScale = 1;
-                isPickDropped = true;
-
+            if (!isPickObtained){
+                player.GetComponent<Player_Items>().whatsInHand = General_ItemList.MOUNTAINEERINGPICK;
+                player.GetComponent<Player_Animation>().SetPickPick();
+                isPickObtained = true;
 
                 myAudioPlayer.Play();
-                player.GetComponent<Player_Animation>().SetShakeTree();
                 freezeTimerStart = true;
             }
         }
-	}
+    }
 }
