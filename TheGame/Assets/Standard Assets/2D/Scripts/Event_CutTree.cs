@@ -9,6 +9,7 @@ public class Event_CutTree : MonoBehaviour { // This script manages cutting tree
 
 
     GameObject tree;
+    Player_Animation playerAnimationControl;
     bool isTreeFalling = false;
 
 
@@ -16,6 +17,7 @@ public class Event_CutTree : MonoBehaviour { // This script manages cutting tree
     void Start()
     {
         tree = treeRotatePoint.transform.GetChild(0).gameObject;
+        playerAnimationControl = player.GetComponent<Player_Animation>();
     }
 
     void Update()
@@ -46,6 +48,8 @@ public class Event_CutTree : MonoBehaviour { // This script manages cutting tree
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 isTreeFalling = true;
                 tree.GetComponent<AudioSource>().Play(); // Play sound effect.
+                playerAnimationControl.SetCutTree();
+
 
                 // Enable a collider so that tree can lie on the ground.
                 treeRotatePoint.transform.GetChild(0).GetChild(0).GetComponent<Collider2D>().isTrigger = false;

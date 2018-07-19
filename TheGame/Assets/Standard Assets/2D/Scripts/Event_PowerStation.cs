@@ -124,7 +124,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
 
                 myAudioPlayer.Play(); // Play sound effect.
                 platformRotPoint.GetChild(0).GetComponent<AudioSource>().Play();
-                player.GetComponent<Player_Animation>().SetPick(); // Trigger animation
+                player.GetComponent<Player_Animation>().SetReleaseGear(); // Trigger animation
                 freezeTimerStart = true; // Start short animation freeze.
             }
         }

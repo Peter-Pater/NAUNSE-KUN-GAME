@@ -81,7 +81,7 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
                 isCoreInContainer = false;
 
                 myAudioPlayer.Play();
-                playerAnimationControl.SetPressButton();
+                playerAnimationControl.SetPickCore();
                 freezeTimerStart = true;
                 Debug.Log(freezeTimerStart);
             }

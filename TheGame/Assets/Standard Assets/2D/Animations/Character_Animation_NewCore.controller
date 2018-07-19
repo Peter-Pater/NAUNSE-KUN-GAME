@@ -13,37 +13,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsClimbingCane
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsTyping
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: SetPick
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: SetPressButton
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: SetShakeTree
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -599,7 +599,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8f8347afdb10b436586bbfa284304dbe, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9b971f402b779401d959c7756effd157, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -657,7 +657,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a88bac70605b54791bcb3a008e84a106, type: 2}
+  m_Motion: {fileID: 7400000, guid: eacf0335e2a0a4ec8817f5aa345b3f58, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -683,7 +683,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d89ab800d2298435fbe0ab650cde8fac, type: 2}
+  m_Motion: {fileID: 7400000, guid: 38a296945787c44bc828dff07eeed00d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -828,34 +828,34 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102214776150845686}
-    m_Position: {x: 588.5541, y: -391.70605, z: 0}
+    m_Position: {x: 276, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102380938090002218}
-    m_Position: {x: 588.5541, y: -499.70605, z: 0}
+    m_Position: {x: 276, y: 12, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102268335234521938}
-    m_Position: {x: 588.5541, y: -271.70605, z: 0}
+    m_Position: {x: 276, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102804511325457188}
-    m_Position: {x: 828.5541, y: -499.70605, z: 0}
+    m_Position: {x: 516, y: 12, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102500010203377428}
-    m_Position: {x: 828.5541, y: -391.70605, z: 0}
+    m_Position: {x: 516, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102652896326947968}
-    m_Position: {x: 828.5541, y: -271.70605, z: 0}
+    m_Position: {x: 516, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102819751005079378}
-    m_Position: {x: 336.55405, y: -271.70605, z: 0}
+    m_Position: {x: 24, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102655530261712920}
-    m_Position: {x: 371.55405, y: -206.70605, z: 0}
+    m_Position: {x: 60, y: 312, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102988620607536094}
-    m_Position: {x: 406.55405, y: -141.70605, z: 0}
+    m_Position: {x: 96, y: 372, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102053083217075346}
-    m_Position: {x: 441.55405, y: -76.706055, z: 0}
+    m_Position: {x: 132, y: 444, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
