@@ -110,17 +110,19 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
                 }
                 else if (!isPuzzleTriggered && isPuzzleSolved && !isGearObtained)
                 {
+                    if (unlockedLayer.color.a >= 0.99f)
+                    {
+                        // When player interacts after solving the puzzle,
+                        // obtain gear.
+                        player.GetComponent<Player_Items>().whatsInHand = General_ItemList.GEAR;
+                        Debug.Log("Gear obtained!");
+                        isGearObtained = true;
 
-                    // When player interacts after solving the puzzle,
-                    // obtain gear.
-                    player.GetComponent<Player_Items>().whatsInHand = General_ItemList.GEAR;
-                    Debug.Log("Gear obtained!");
-                    isGearObtained = true;
 
-
-                    myAudioPlayer.Play(); // Play sound effect.
-                    playerAnimationControl.SetPickGear(); // Trigger animation.
-                    freezeTimerStart = true; // Start short animation freeze.
+                        myAudioPlayer.Play(); // Play sound effect.
+                        playerAnimationControl.SetPickGear(); // Trigger animation.
+                        freezeTimerStart = true; // Start short animation freeze.
+                    }
 
                 }
             }
@@ -129,7 +131,6 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
 
 
     public void UnlockPlayer(){
-        
         player.GetComponent<Player_Movement>().UnlockControl();
     }
 }
