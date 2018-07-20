@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sea_Motion : MonoBehaviour {
+public class Environment_SeaMotion : MonoBehaviour {
 
     public Vector3 pos1;
     public Vector3 pos2;
