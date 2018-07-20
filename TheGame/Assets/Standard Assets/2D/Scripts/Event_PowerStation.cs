@@ -140,7 +140,7 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
     // Smooth movement for KUN
     void RotateAndMoveKUNHead(){
         kunHead.rotation = Quaternion.Slerp(kunHead.rotation, Quaternion.Euler(0, 0, 0), kunMovingSpeed * Time.deltaTime);
-        kunHead.position = Vector3.Lerp(kunHead.position, new Vector3(123.2f, 4.3f, kunHead.position.z), kunMovingSpeed * Time.deltaTime);
+        kunHead.position = Vector3.Lerp(kunHead.position, new Vector3(125.2f, 1.6f, kunHead.position.z), kunMovingSpeed * Time.deltaTime);
     }
 
 
