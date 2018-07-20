@@ -35,10 +35,17 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
             // Disable player control as well.
             player.GetComponent<Rigidbody2D>().gravityScale = 0;
             player.GetComponent<Player_Movement>().LockControl();
+            player.GetComponent<Player_Animation>().StartClimbing();
 
             // Smooth move the player with Lerp.
             Vector3 targetPos = Vector3.Lerp(player.transform.position, new Vector3(3.93f, 6.61f, player.transform.position.z), playerClimbingSpeed * Time.deltaTime);
             player.transform.position = targetPos;
+        }
+
+
+        // Stop climbing animation earlier than reaching the destination.
+        if (Mathf.Abs(player.transform.position.y - 6.61f) <= 1f){
+            player.GetComponent<Player_Animation>().StopClimbing();
         }
 
 
@@ -50,7 +57,6 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
             //isClimbFinished = true;
 
             stoneTop.GetComponent<Collider2D>().isTrigger = false;
-
             player.GetComponent<Rigidbody2D>().gravityScale = 3;
             player.GetComponent<Player_Movement>().UnlockControl();
 
