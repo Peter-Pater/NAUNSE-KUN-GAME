@@ -10,8 +10,7 @@ public class Transition : MonoBehaviour { // The script transit player and camer
 
     // Scene and positions that Camera and player are supposed to be moved to.
     // Assigned in the inspector.
-    public Vector3 playerTargetPos;
-    public Vector3 cameraTargetPos;
+    public GameObject targetPosObj;
     public int targetScene;
 
 
@@ -58,8 +57,8 @@ public class Transition : MonoBehaviour { // The script transit player and camer
 
                     // After camera view faded to black,
                     // relocate player and camera to the new position.
-                    player.transform.position = playerTargetPos;
-                    cameraObj.transform.position = cameraTargetPos;
+                    player.transform.position = targetPosObj.transform.position;
+                    cameraObj.transform.position = new Vector3(targetPosObj.transform.position.x, targetPosObj.transform.position.y, -10);
 
                     // Change the current scene.
                     // Unlock camera so that it follows player again.
