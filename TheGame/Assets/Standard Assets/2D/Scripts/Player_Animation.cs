@@ -22,6 +22,7 @@ public class Player_Animation : MonoBehaviour { // This script controls animatio
         myAnimator.SetBool("IsWalking", true);
         myAnimator.SetBool("IsClimbing", false);
         myAnimator.SetBool("IsClimbingCane", false);
+        myAnimator.SetBool("IsClimbingWithPick", false);
         myAnimator.SetBool("IsTyping", false);
     }
 
@@ -35,6 +36,7 @@ public class Player_Animation : MonoBehaviour { // This script controls animatio
         myAnimator.SetBool("IsWalking", false);
         myAnimator.SetBool("IsClimbing", true);
         myAnimator.SetBool("IsClimbingCane", false);
+        myAnimator.SetBool("IsClimbingWithPick", false);
         myAnimator.SetBool("IsTyping", false);
     }
 
@@ -48,6 +50,7 @@ public class Player_Animation : MonoBehaviour { // This script controls animatio
         myAnimator.SetBool("IsWalking", false);
         myAnimator.SetBool("IsClimbing", false);
         myAnimator.SetBool("IsClimbingCane", true);
+        myAnimator.SetBool("IsClimbingWithPick", false);
         myAnimator.SetBool("IsTyping", false);
     }
 
@@ -61,6 +64,7 @@ public class Player_Animation : MonoBehaviour { // This script controls animatio
         myAnimator.SetBool("IsWalking", false);
         myAnimator.SetBool("IsClimbing", false);
         myAnimator.SetBool("IsClimbingCane", false);
+        myAnimator.SetBool("IsClimbingWithPick", false);
         myAnimator.SetBool("IsTyping", true);
     }
 

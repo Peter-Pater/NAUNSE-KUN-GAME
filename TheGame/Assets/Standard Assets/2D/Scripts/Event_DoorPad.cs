@@ -43,7 +43,6 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
             // When the door pad is triggered,
             // change its color.
             // Move up the exit door.
-            mySpriteRenderer.color = Color.green;
             exitEventScript.moveUp();
 
             // call move down
@@ -54,7 +53,6 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
 
                 // When the exit door finished moving,
                 // change the color back.
-                mySpriteRenderer.color = Color.white;
                 triggered = false;
             }
         }

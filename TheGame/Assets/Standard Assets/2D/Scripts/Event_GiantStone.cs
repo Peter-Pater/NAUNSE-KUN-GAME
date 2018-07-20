@@ -44,7 +44,7 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
 
 
         // Stop climbing animation earlier than reaching the destination.
-        if (Mathf.Abs(player.transform.position.y - 6.61f) <= 1f){
+        if (Mathf.Abs(player.transform.position.y - 6.61f) <= 1.3f){
             player.GetComponent<Player_Animation>().StopClimbing();
         }
 
@@ -74,6 +74,8 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
                 {
                     player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0); // Stop current motion of player.
                     isPlayerClimbing = true; // Start climbing.
+
+                    myAudioPlayer.Play();
                 }
             }
         }

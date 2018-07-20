@@ -15,6 +15,9 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
     Player_Animation playerAnimationControl;
 
 
+    GameObject puzzleObj;
+
+
     bool isGearObtained = false;
     AudioSource myAudioPlayer;
 
@@ -49,6 +52,11 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
 
 	// Update is called once per frame
 	void Update () {
+
+        if (puzzleObj != null){
+            puzzleObj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
+        }
+
 
         if (isGearObtained){
 
@@ -103,7 +111,7 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
                     player.GetComponent<Player_Movement>().LockControl();
 
 
-                    GameObject puzzleObj = Instantiate(puzzlePrefab) as GameObject;
+                    puzzleObj = Instantiate(puzzlePrefab) as GameObject;
                     puzzleObj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
                     isPuzzleTriggered = true;
 
