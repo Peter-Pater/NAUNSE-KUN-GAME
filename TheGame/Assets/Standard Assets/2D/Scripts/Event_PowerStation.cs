@@ -133,14 +133,14 @@ public class Event_PowerStation : MonoBehaviour { // This script triggers events
 
     // Smooth rotation for platform
     void RotatePlatform(){
-        platformRotPoint.rotation = Quaternion.Slerp(platformRotPoint.rotation, Quaternion.Euler(0, 0, 16), platformMovingSpeed * Time.deltaTime);
+        platformRotPoint.rotation = Quaternion.Slerp(platformRotPoint.rotation, Quaternion.Euler(0, 0, 15f), platformMovingSpeed * Time.deltaTime);
     }
 
 
     // Smooth movement for KUN
     void RotateAndMoveKUNHead(){
         kunHead.rotation = Quaternion.Slerp(kunHead.rotation, Quaternion.Euler(0, 0, 0), kunMovingSpeed * Time.deltaTime);
-        kunHead.position = Vector3.Lerp(kunHead.position, new Vector3(125.2f, 1.6f, kunHead.position.z), kunMovingSpeed * Time.deltaTime);
+        kunHead.position = Vector3.Lerp(kunHead.position, new Vector3(126f, 1.6f, kunHead.position.z), kunMovingSpeed * Time.deltaTime);
     }
 
 
