@@ -10,6 +10,10 @@ public class Player_Movement : MonoBehaviour
     public float xSpeed = 0f; // How fast player moves. Assigned in the inspector.
 
 
+    public GameObject cameraObj;
+    Camera_Movement camMove;
+
+
     Rigidbody2D myRigidbody;
     GameObject myLight;
     Player_Animation myAnimationControl;
@@ -19,6 +23,8 @@ public class Player_Movement : MonoBehaviour
 
 	private void Start()
     {
+        camMove = cameraObj.GetComponent<Camera_Movement>();
+
         myRigidbody = GetComponent<Rigidbody2D>();
         myLight = transform.GetChild(0).gameObject;
         myAnimationControl = GetComponent<Player_Animation>();
@@ -78,6 +84,8 @@ public class Player_Movement : MonoBehaviour
     {
         transform.eulerAngles = new Vector3(transform.rotation.x, 0, transform.rotation.z);
         myLight.transform.localPosition = new Vector3(myLight.transform.localPosition.x, myLight.transform.localPosition.y, -1.2f);
+
+        camMove.offset = camMove.offsetLeft;
     }
 
 
@@ -85,6 +93,8 @@ public class Player_Movement : MonoBehaviour
     {
         transform.eulerAngles = new Vector3(transform.rotation.x, 180, transform.rotation.z);
         myLight.transform.localPosition = new Vector3(myLight.transform.localPosition.x, myLight.transform.localPosition.y, 1.2f);
+
+        camMove.offset = camMove.offsetRight;
     }
 
 

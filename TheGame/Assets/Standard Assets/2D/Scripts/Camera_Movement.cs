@@ -30,7 +30,9 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
     public Camera cam;
 
 	public Transform playerTrans;
-	public Vector3 offset; // the offset between player and the camera center
+	public Vector3 offsetLeft; // the offset between player and the camera center
+    public Vector3 offsetRight;
+    public Vector3 offset;
 	public float smoothSpeed; // how fast the camera moves
 
 
@@ -44,6 +46,8 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 	void Start () {
 
         cam = GetComponent<Camera>();
+
+        offset = offsetLeft;
 
         // Put camera at the starting position.
         transform.position = new Vector3(198.3f, 2f, -10);
