@@ -7,12 +7,10 @@ public class Event_SurvivorJump : MonoBehaviour { // This script manages event o
 	public GameObject treeBody;
 	public GameObject survivor;
 
-    Rigidbody2D survivorRigidbody;
-
 
 	// Use this for initialization
 	void Start () {
-        survivorRigidbody = survivor.GetComponent<Rigidbody2D>();
+       
 	}
 	
 	// Update is called once per frame
@@ -28,6 +26,6 @@ public class Event_SurvivorJump : MonoBehaviour { // This script manages event o
 	}
 	
 	void SurvivorJump(){
-        survivorRigidbody.AddForce(new Vector2(10, 10), ForceMode2D.Impulse);
+        survivor.GetComponent<Animator>().SetTrigger("SetJump");
 	}
 }
