@@ -9,6 +9,7 @@ public class Event_ToolWall : MonoBehaviour { // This script lets player obtain 
     // Whether the tool wall is open or not.
     public bool isOpen = false;
     bool isLightObtained = false;
+    SpriteRenderer flashLightLayer;
 
 
     AudioSource myAudioPlayer;
@@ -25,15 +26,27 @@ public class Event_ToolWall : MonoBehaviour { // This script lets player obtain 
 
 	// Use this for initialization
 	void Start () {
+        flashLightLayer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+
         myAudioPlayer = GetComponent<AudioSource>();
         playerAnimationControl = player.GetComponent<Player_Animation>();
 
         freezeTimer = animFreezeTime;
 	}
 	
+
 	// Update is called once per frame
 	void Update () {
 		
+        // Light on the wall dispears
+        // upon player obtaining flash light.
+        if (isLightObtained){
+            if (flashLightLayer.color.a >= 0.01f){
+                flashLightLayer.color -= new Color(0, 0, 0, 0.7f * Time.deltaTime);
+            }
+        }
+
+
         if (freezeTimerStart)
         {
             player.GetComponent<Player_Movement>().LockControl();

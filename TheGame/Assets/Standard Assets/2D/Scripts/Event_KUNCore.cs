@@ -15,8 +15,16 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
     bool isCutsceneOn = false;
 
 
+    // These three sprites will fade in/out during this event.
+    SpriteRenderer brokenCoreGround; // Broken core sprite on the ground.
+    SpriteRenderer brokenCoreLayer; // Broken core sprite on the wall.
+    SpriteRenderer newCoreLayer; // New core sprite on the wall.
+
     public GameObject toolWall;
     public GameObject player;
+    Transform glassTrans;
+    float glassTargetHeight;
+
 
     AudioSource myAudioPlayer;
 
@@ -44,7 +52,16 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
 	// Use this for initialization
 	void Start () {
+
+        brokenCoreGround = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        newCoreLayer = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        brokenCoreLayer = transform.GetChild(2).GetComponent<SpriteRenderer>();
+
+
+        glassTrans = toolWall.transform.GetChild(1);
+        glassTargetHeight = glassTrans.position.y + 1.5f;
         myAudioPlayer = GetComponent<AudioSource>();
+
 
         trans = transObj.GetComponent<Transition>();
         playerMove = player.GetComponent<Player_Movement>();
@@ -57,6 +74,36 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
 	// Update is called once per frame
 	void Update () {
+
+        // If broken core is put back,
+        // broken core on ground disappears
+        // and appears on the wall.
+        if (coreState == PUTBACK){
+            if (brokenCoreGround.color.a >= 0.01f){
+                brokenCoreGround.color -= new Color(0, 0, 0, 0.7f * Time.deltaTime);
+            }
+            if (brokenCoreLayer.color.a <= 0.99f){
+                brokenCoreLayer.color += new Color(0, 0, 0, 0.7f * Time.deltaTime);
+            }
+
+            // Raise the glass too when broken core is put back.
+            if (glassTrans.position.y < glassTargetHeight){
+                glassTrans.position += 0.7f * Time.deltaTime * Vector3.up;
+            }
+        }else if (coreState == REPLACED){
+
+            // If core is replaced with new core,
+            // broken core on wall disappears
+            // and the new one appears.
+            if (brokenCoreLayer.color.a >= 0.01f)
+            {
+                brokenCoreLayer.color -= new Color(0, 0, 0, 0.7f * Time.deltaTime);
+            }
+            if (newCoreLayer.color.a <= 0.99f)
+            {
+                newCoreLayer.color += new Color(0, 0, 0, 0.7f * Time.deltaTime);
+            }
+        }
         
 
         if (freezeTimerStart)
