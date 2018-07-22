@@ -14,6 +14,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
     bool isCutsceneOn = false; // Keep track of whether or not the cutscene is triggered.
     bool isWaitingForCutscene = false;
     bool isScreenShaked = false;
+    bool isTransfromed = false;
     public float waitingForCutsceneTime;
 
 
@@ -37,6 +38,12 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
     public GameObject transObj;
     public float kunTargetHeight;
     public float kunMovingSpeed;
+
+
+    // Size and pos for camera during rising cutscene.
+    Vector3 cutsceneCameraPos;
+    public float cutsceneCameraViewSize;
+
 
     Transition trans;
     Player_Movement playerMove;
@@ -151,7 +158,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 // Start screen shake when rising.
                 if (!isScreenShaked)
                 {
-                    cameraObj.GetComponent<Camera_ScreenShake>().StartShake(16.5f, 0.04f, 0.04f);
+                    cameraObj.GetComponent<Camera_ScreenShake>().StartShake(16.5f, 0.05f, 0.05f);
                     isScreenShaked = true;
                 }
 
@@ -159,27 +166,33 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 playerMove.Standstill();
 
 
+                // Update cutscene camera pos based on player position.
+                cutsceneCameraPos = player.transform.position + new Vector3(-1.2f, -11.1f, 0);
+                cutsceneCameraPos = new Vector3(cutsceneCameraPos.x, cutsceneCameraPos.y, -10);
+
+
                 // After player left core room,
-                // KUN starts to lift.
+                // KUN starts to rise.
                 if ((trans.isTransiting && trans.isRelocateComplete) || (!trans.isTransiting && !trans.isRelocateComplete))
                 {
-                    player.transform.parent = kunTrans;
-                    //float newHeight = Mathf.Lerp(kunTrans.position.y, kunTargetPos.y, kunMovingSpeed * Time.deltaTime);
-                    //kunTrans.position = new Vector3(kunTrans.position.x, newHeight, kunTrans.position.z);
-                    if (kunTrans.position.y < kunTargetHeight){
-                        kunTrans.position += kunMovingSpeed * Time.deltaTime * Vector3.up;
-                    }
+                    cameraObj.GetComponent<Camera_CustomizeView>().CustomizeView(cutsceneCameraViewSize, cutsceneCameraPos);
+                    KUNRise();
                 }
+
+
+                // After rising to certian height,
+                // KUN transforms into "PENG".
+                if (kunTrans.position.y >= 25f)
+                {
+                    KUNTransform();
+                }
+
 
                 // When KUN reaches the end,
                 // stop cutscene.
                 if (kunTrans.position.y >= kunTargetHeight)
                 {
-                    
-                    player.transform.parent = null;
-                    player.GetComponent<Player_Constraints>().enabled = true;
-                    player.GetComponent<Player_Movement>().UnlockControl();
-                    isCutsceneOn = false;
+                    StopCutscene();
                 }
             }
         }
@@ -217,5 +230,34 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
             }
         }
 	}
+
+
+    void KUNRise(){
+        player.transform.parent = kunTrans;
+
+        if (kunTrans.position.y < kunTargetHeight)
+        {
+            kunTrans.position += kunMovingSpeed * Time.deltaTime * Vector3.up;
+        }
+    }
+
+
+    void KUNTransform(){
+        
+        if (!isTransfromed){
+            kunTrans.GetComponent<Animator>().SetTrigger("SetTransform");
+            isTransfromed = true;
+        }
+    }
+
+
+    void StopCutscene(){
+        cameraObj.GetComponent<Camera_CustomizeView>().BackToNormal();
+
+        player.transform.parent = null;
+        player.GetComponent<Player_Constraints>().enabled = true;
+        player.GetComponent<Player_Movement>().UnlockControl();
+        isCutsceneOn = false;
+    }
 
 }

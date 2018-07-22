@@ -65,7 +65,7 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 
         if (!isLocked)
         {
-            cam.orthographicSize = viewSize;
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, viewSize, smoothSpeed * Time.deltaTime);
 
             Vector3 desiredPos = GetDesiredPos(); // get the desired position that camera should move to
 

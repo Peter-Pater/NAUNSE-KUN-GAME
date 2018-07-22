@@ -9,14 +9,19 @@ public class Camera_CustomizeView : MonoBehaviour { // This script triggers cust
     float originalSize;
     Vector3 targetPos;
 
+
+    SpriteRenderer cameraFrame;
+
+
     bool isCustomizing = false;
-    bool isUnlocking = false;
     Camera_Movement myMovement;
     Camera cam;
 
 
 	// Use this for initialization
 	void Start () {
+        cameraFrame = transform.GetChild(1).GetComponent<SpriteRenderer>();
+
         myMovement = GetComponent<Camera_Movement>();
         cam = GetComponent<Camera>();
 	}
@@ -31,15 +36,22 @@ public class Camera_CustomizeView : MonoBehaviour { // This script triggers cust
         if (isCustomizing){
             myMovement.LockCamera();
 
+            // Frame fades out.
+            if (cameraFrame.color.a >= 0.01f){
+                cameraFrame.color -= new Color(0, 0, 0, 0.7f * Time.deltaTime);
+            }
+
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetSize, moveSpeed * Time.deltaTime);
             transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
-        }else if (isUnlocking){
-            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, originalSize, moveSpeed * Time.deltaTime);
+        }else {
+            myMovement.UnlockCamera();
 
-            if (Mathf.Abs(cam.orthographicSize - originalSize) <= 0.05f){
-                myMovement.UnlockCamera();
-                isUnlocking = false;
+            // Frame fades back in.
+            if (cameraFrame.color.a <= 0.99f)
+            {
+                cameraFrame.color += new Color(0, 0, 0, 1.2f * Time.deltaTime);
             }
+
         }
 	}
 
@@ -53,6 +65,5 @@ public class Camera_CustomizeView : MonoBehaviour { // This script triggers cust
 
     public void BackToNormal(){
         isCustomizing = false;
-        isUnlocking = true;
     }
 }
