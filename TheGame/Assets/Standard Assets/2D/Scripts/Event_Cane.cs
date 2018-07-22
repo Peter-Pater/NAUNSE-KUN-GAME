@@ -5,7 +5,8 @@ using UnityEngine;
 public class Event_Cane : MonoBehaviour { // This script triggers player sliding down the cane.
 
     public GameObject player;
-    public GameObject groundToDestroy;
+
+    public Vector3 startPos;
     public Vector3 targetPos;
     public float moveSpeed;
 
@@ -25,11 +26,6 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
 
         if (isSlidingDown){
 
-            // Disable the collider on the ground
-            // so that player can slide down.
-            groundToDestroy.GetComponent<Collider2D>().isTrigger = true;
-
-
             // Disable player control.
             // Disable gravity effect on player.
             player.GetComponent<Player_Movement>().LockControl();
@@ -41,7 +37,7 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
 
 
             // Mark the end of sliding process.
-            if (Vector3.Distance(player.transform.position, targetPos) < 0.1f){
+            if (Vector3.Distance(player.transform.position, targetPos) < 0.5f){
                 player.GetComponent<Player_Movement>().UnlockControl();
                 player.GetComponent<Rigidbody2D>().gravityScale = 3;
 
@@ -56,6 +52,8 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
 
             if (!isSlidingDown){
+                player.transform.position = startPos;
+                player.GetComponent<Player_Movement>().FlipLeft();
                 isSlidingDown = true;
             }
         }

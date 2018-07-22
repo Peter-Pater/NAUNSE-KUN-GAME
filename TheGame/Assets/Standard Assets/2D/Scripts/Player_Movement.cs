@@ -80,7 +80,7 @@ public class Player_Movement : MonoBehaviour
     }
 
 
-    void FlipLeft()
+    public void FlipLeft()
     {
         transform.eulerAngles = new Vector3(transform.rotation.x, 0, transform.rotation.z);
         myLight.transform.localPosition = new Vector3(myLight.transform.localPosition.x, myLight.transform.localPosition.y, -1.2f);
@@ -89,7 +89,7 @@ public class Player_Movement : MonoBehaviour
     }
 
 
-    void FlipRight()
+    public void FlipRight()
     {
         transform.eulerAngles = new Vector3(transform.rotation.x, 180, transform.rotation.z);
         myLight.transform.localPosition = new Vector3(myLight.transform.localPosition.x, myLight.transform.localPosition.y, 1.2f);

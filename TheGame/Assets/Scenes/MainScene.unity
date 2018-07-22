@@ -11267,8 +11267,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 936762190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 79.8, y: 37.7, z: 0.5078056}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_LocalPosition: {x: 80.9, y: 39.9, z: 0.5078056}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1392174447}
   m_RootOrder: 14
@@ -19240,7 +19240,7 @@ GameObject:
   - component: {fileID: 1840676899}
   - component: {fileID: 1840676898}
   m_Layer: 0
-  m_Name: Cane
+  m_Name: Cane Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19252,13 +19252,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1840676896}
-  m_LocalRotation: {x: -0, y: -0, z: 0.0067352434, w: 0.99997735}
-  m_LocalPosition: {x: 70, y: 52.2, z: 0.5078056}
-  m_LocalScale: {x: 1.8739041, y: 29.663279, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 71.2, y: 66.95, z: 0.5078056}
+  m_LocalScale: {x: 6.381352, y: 4.085696, z: 1}
   m_Children: []
   m_Father: {fileID: 6584485}
   m_RootOrder: 26
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.772}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1840676898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19271,9 +19271,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2015325409}
-  groundToDestroy: {fileID: 1227168892}
-  targetPos: {x: 72.46, y: 27.06, z: 0}
-  moveSpeed: 1
+  startPos: {x: 73.61, y: 66, z: 0}
+  targetPos: {x: 78.7, y: 25.66, z: 0}
+  moveSpeed: 0.3
 --- !u!61 &1840676899
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19335,7 +19335,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1fc22bd4704474ed98c3df4277f2ec1b, type: 3}
-  m_Color: {r: 0, g: 0.5660378, b: 0.107646264, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -20856,7 +20856,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2015325409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.1, y: 72, z: 0}
+  m_LocalPosition: {x: 65, y: 68.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1822378855}
