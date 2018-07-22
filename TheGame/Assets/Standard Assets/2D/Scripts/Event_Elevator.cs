@@ -15,7 +15,7 @@ public class Event_Elevator : MonoBehaviour { // This script lifts the elevator.
 
 
     public GameObject player;
-    public Vector3 targetPos;
+    public float targetHeight;
     GameObject rightWall;
 
 
@@ -31,10 +31,12 @@ public class Event_Elevator : MonoBehaviour { // This script lifts the elevator.
         UpdateRightWall();
 
         if (isLifting && currentState == DOWN){
-            transform.position = Vector3.Lerp(transform.position, targetPos, liftingSpeed * Time.deltaTime);
+            if (transform.position.y < targetHeight){
+                transform.position += liftingSpeed * Time.deltaTime * Vector3.up;
+            }
 
             // Mark states when finished lifting.
-            if (Mathf.Abs(transform.position.y - targetPos.y) < 0.5f){
+            else{
                 isLifting = false;
                 currentState = UP;
             }
