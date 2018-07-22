@@ -12,6 +12,7 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
     public bool isPuzzleTriggered = false;
     public bool isContainerOpen = false;
     public bool isCoreInContainer = true;
+    public bool puzzle2Restart = false;
 
 
     public Transform cameraTrans;
@@ -40,6 +41,11 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
 
 	// Update is called once per frame
 	void Update () {
+
+        if (puzzle2Restart){
+            puzzle2Restart = false;
+            TriggerPuzzle2();
+        }
 
         if (freezeTimerStart)
         {
@@ -76,7 +82,6 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
             // If player interactis with containers after puzzle solved,
             // player obtains the new core.
             if (isContainerOpen && !isPuzzleTriggered && isCoreInContainer){
-                Debug.Log("New core obtained");
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.CORE;
                 isCoreInContainer = false;
 
