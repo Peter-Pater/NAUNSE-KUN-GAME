@@ -22,6 +22,11 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
     Player_Animation playerAnimationControl;
 
 
+    SpriteRenderer coreSprite;
+    SpriteRenderer closedLayer;
+    SpriteRenderer openLayer;
+
+
     // This timer is used to temporarily
     // lock player control during
     // animation
@@ -35,12 +40,42 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
         myAudioPlayer = GetComponent<AudioSource>();
         playerAnimationControl = player.GetComponent<Player_Animation>();
 
+        coreSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        closedLayer = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        openLayer = transform.GetChild(2).GetComponent<SpriteRenderer>();
+
+
         freezeTimer = animFreezeTime;
 	}
 	
 
 	// Update is called once per frame
 	void Update () {
+
+        if (isContainerOpen)
+        {
+
+            // Crossfade to open sprite
+            // when container is open.
+            if (closedLayer.color.a >= 0.01f)
+            {
+                closedLayer.color -= new Color(0, 0, 0, 0.7f * Time.deltaTime);
+            }
+
+            if (openLayer.color.a <= 0.99f)
+            {
+                openLayer.color += new Color(0, 0, 0, 0.7f * Time.deltaTime);
+            }
+        }
+
+
+        if (!isCoreInContainer){
+
+            if (coreSprite.color.a >= 0.01f){
+                coreSprite.color -= new Color(0, 0, 0, 0.7f * Time.deltaTime);
+            }
+        }
+
 
         if (puzzle2Restart){
             puzzle2Restart = false;
@@ -88,7 +123,6 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
                 myAudioPlayer.Play();
                 playerAnimationControl.SetPickCore();
                 freezeTimerStart = true;
-                Debug.Log(freezeTimerStart);
             }
         }
     }

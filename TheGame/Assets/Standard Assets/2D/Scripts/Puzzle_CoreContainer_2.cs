@@ -57,7 +57,6 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
 
         for (int i = 0; i < 8; i++){
             staticObj[i] = core.transform.GetChild(i).gameObject;
-            Debug.Log(core.transform.GetChild(i).gameObject.name);
         }
 
 
@@ -134,7 +133,7 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
 
         if (mergeTriggered){
 
-            if (Mathf.Abs(staticObj[current].transform.position.x - triggers[current].transform.position.x) > 0.1 || Mathf.Abs(staticObj[current].transform.position.y - triggers[current].transform.position.y) > 0.1){
+            if (Mathf.Abs(staticObj[current].transform.position.x - triggers[current].transform.position.x) > 0.1f || Mathf.Abs(staticObj[current].transform.position.y - triggers[current].transform.position.y) > 0.1f){
                 triggers[current].transform.position = Vector3.MoveTowards(triggers[current].transform.position, staticObj[current].transform.position, 15 * Time.deltaTime);
             }else{
                 triggers[current].GetComponent<Renderer>().enabled = false;
