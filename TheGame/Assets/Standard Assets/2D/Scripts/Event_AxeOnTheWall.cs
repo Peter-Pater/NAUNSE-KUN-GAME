@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class Event_AxeOnTheWall : MonoBehaviour { // This script makes player obtain axe.
 
+
     public GameObject player;
     Player_Animation playerAnimationControl;
 
+    SpriteRenderer mySpriteRenderer;
     bool isAxeObtained = false;
+
 
 	// Use this for initialization
 	void Start () {
         playerAnimationControl = player.GetComponent<Player_Animation>();
+
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+        if (isAxeObtained){
+            if (mySpriteRenderer.color.a >= 0.01f)
+            {
+                mySpriteRenderer.color -= new Color(0, 0, 0, 0.7f * Time.deltaTime);
+            }
+        }
 	}
 
 
@@ -27,7 +38,8 @@ public class Event_AxeOnTheWall : MonoBehaviour { // This script makes player ob
             {
                 playerAnimationControl.SetPickAxe();
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.AXE;
-                Debug.Log("Axe obtained!");
+
+                GetComponent<AudioSource>().Play();
                 isAxeObtained = true;
             }
         }

@@ -25,7 +25,7 @@ public class Puzzle_BrokenMachine : MonoBehaviour { // This script is about the 
     int[] correctAnswers;
 
     bool isCorrect = false;
-    float destoryDelay = 0.6f;
+    float destroyDelay = 0.6f;
 
 
     GameObject brokenMachine;
@@ -69,9 +69,9 @@ public class Puzzle_BrokenMachine : MonoBehaviour { // This script is about the 
         // change puzzle states in broken machine
         // and destroy the puzzle obj.
         if(isCorrect){
-            destoryDelay -= Time.deltaTime;
+            destroyDelay -= Time.deltaTime;
 
-            if (destoryDelay <= 0)
+            if (destroyDelay <= 0)
             {
                 bmEvent.isPuzzleSolved = true;
                 bmEvent.isPuzzleTriggered = false;

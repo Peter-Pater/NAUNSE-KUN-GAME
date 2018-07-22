@@ -9,15 +9,18 @@ public class Event_StorehouseLock : MonoBehaviour { // This script triggers the 
     public bool isPuzzleTriggered = false;
     public bool isPuzzleSolved = false;
     public GameObject puzzlePrefab;
+    public Transform transToSecondFloor;
+
 
     public Transform cameraTrans;
     public GameObject player;
-	public GameObject lockeDoor;
+	public GameObject lockedDoor;
+    SpriteRenderer lockedDoorRenderer;
 
 
 	// Use this for initialization
 	void Start () {
-		
+        lockedDoorRenderer = lockedDoor.GetComponent<SpriteRenderer>();
 	}
 
 
@@ -25,9 +28,14 @@ public class Event_StorehouseLock : MonoBehaviour { // This script triggers the 
 	void Update () {
 
         if (isPuzzleSolved){
-            lockeDoor.GetComponent<Collider2D>().isTrigger = true;
+            lockedDoor.GetComponent<Collider2D>().isTrigger = true;
+            transToSecondFloor.position = transform.position;
+
+            if (lockedDoorRenderer.color.a >= 0.01f){
+                lockedDoorRenderer.color -= new Color(0, 0, 0, 0.9f * Time.deltaTime);
+            }
         }else{
-            lockeDoor.GetComponent<Collider2D>().isTrigger = false;
+            lockedDoor.GetComponent<Collider2D>().isTrigger = false;
         }
 	}
 

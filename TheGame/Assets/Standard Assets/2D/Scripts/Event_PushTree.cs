@@ -32,7 +32,7 @@ public class Event_PushTree : MonoBehaviour { // This script manages pushing tre
             isPlayerPushing = false;
             player.GetComponent<Player_Animation>().StopPushingTree();
             myRigidbody.velocity = new Vector3(0, 0, 0);
-            myRigidbody.gravityScale = 0;
+            //myRigidbody.gravityScale = 0;
         }
 
         if (isPlayerPushing){

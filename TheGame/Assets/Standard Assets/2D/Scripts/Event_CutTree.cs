@@ -72,6 +72,7 @@ public class Event_CutTree : MonoBehaviour { // This script manages cutting tree
                 isTreeFalling = true;
 
 
+                player.GetComponent<Player_Movement>().Standstill();
                 tree.GetComponent<AudioSource>().Play(); // Play sound effect.
                 playerAnimationControl.SetCutTree(); // Play cutting tree animation.
                 freezeTimerStart = true;

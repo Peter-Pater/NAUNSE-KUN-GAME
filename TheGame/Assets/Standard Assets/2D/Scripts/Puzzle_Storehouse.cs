@@ -26,7 +26,8 @@ public class Puzzle_Storehouse: MonoBehaviour {
 	GameObject currentButtonObj;
 	public GameObject[] buttons;
 
-
+    bool isCorrect = false;
+    float destroyDelay = 0.6f;
     Event_StorehouseLock shEvent;
 
 
@@ -39,7 +40,20 @@ public class Puzzle_Storehouse: MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		MoveCursor();
-		
+
+        if (isCorrect)
+        {
+            destroyDelay -= Time.deltaTime;
+
+            if (destroyDelay <= 0)
+            {
+                shEvent.isPuzzleSolved = true;
+                shEvent.isPuzzleTriggered = false;
+                shEvent.UnlockPlayer();
+                Destroy(this.gameObject);
+                Destroy(GameObject.Find("cursor(Clone)"));
+            }
+        }
 	}
 	
     void MoveCursor(){
@@ -88,15 +102,12 @@ public class Puzzle_Storehouse: MonoBehaviour {
 
         if (upper == 1 && left == 1 && right == 1)
         {
-            shEvent.isPuzzleSolved = true;
-            shEvent.isPuzzleTriggered = false;
-            shEvent.UnlockPlayer();
-            Destroy(this.gameObject);
-            Destroy(GameObject.Find("cursor(Clone)"));
+            isCorrect = true;
             return true;
         }
         else
         {
+            isCorrect = false;
             return false;
         }
 	}
