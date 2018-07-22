@@ -27,6 +27,7 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 	float downBoarder;
 	float cameraWidth;
 	float cameraHeight;
+    public float viewSize;
     public Camera cam;
 
 	public Transform playerTrans;
@@ -64,6 +65,8 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 
         if (!isLocked)
         {
+            cam.orthographicSize = viewSize;
+
             Vector3 desiredPos = GetDesiredPos(); // get the desired position that camera should move to
 
             // This Lerp function is used to smoothen camera move movement. 
@@ -100,7 +103,7 @@ public class Camera_Movement : MonoBehaviour { // This scripts moves the camera
 		downBoarder = targetInfo.downBoarder;
 		cameraWidth = targetInfo.cameraWidth;
 		cameraHeight = targetInfo.cameraHeight;
-        cam.orthographicSize = targetInfo.cameraViewSize;
+        viewSize = targetInfo.cameraViewSize;
 	}
 
 
