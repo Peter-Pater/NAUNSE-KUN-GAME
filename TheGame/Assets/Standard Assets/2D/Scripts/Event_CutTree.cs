@@ -14,10 +14,20 @@ public class Event_CutTree : MonoBehaviour { // This script manages cutting tree
 
 
 
+    // This timer is used to temporarily
+    // lock player control during
+    // animation
+    public float animFreezeTime;
+    float freezeTimer;
+    bool freezeTimerStart = false;
+
+
     void Start()
     {
         tree = treeRotatePoint.transform.GetChild(0).gameObject;
         playerAnimationControl = player.GetComponent<Player_Animation>();
+
+        freezeTimer = animFreezeTime;
     }
 
     void Update()
@@ -25,6 +35,19 @@ public class Event_CutTree : MonoBehaviour { // This script manages cutting tree
         if (isTreeFalling)
         {
             TreeFalls();
+        }
+
+        if (freezeTimerStart)
+        {
+            player.GetComponent<Player_Movement>().LockControl();
+
+            freezeTimer -= Time.deltaTime;
+            if (freezeTimer <= 0)
+            {
+                player.GetComponent<Player_Movement>().UnlockControl();
+                freezeTimer = animFreezeTime;
+                freezeTimerStart = false;
+            }
         }
     }
 
@@ -47,8 +70,11 @@ public class Event_CutTree : MonoBehaviour { // This script manages cutting tree
                 // Tree starts falling if player interacts with tree when axe is in hand. 
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 isTreeFalling = true;
+
+
                 tree.GetComponent<AudioSource>().Play(); // Play sound effect.
-                playerAnimationControl.SetCutTree();
+                playerAnimationControl.SetCutTree(); // Play cutting tree animation.
+                freezeTimerStart = true;
 
 
                 // Enable a collider so that tree can lie on the ground.
