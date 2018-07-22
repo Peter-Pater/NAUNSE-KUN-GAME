@@ -11,8 +11,10 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
     int coreState = 0;
 
 
-    // Keep track of whether or not the cutscene is triggered.
-    bool isCutsceneOn = false;
+    bool isCutsceneOn = false; // Keep track of whether or not the cutscene is triggered.
+    bool isWaitingForCutscene = false;
+    bool isScreenShaked = false;
+    public float waitingForCutsceneTime;
 
 
     // These three sprites will fade in/out during this event.
@@ -33,7 +35,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
     public GameObject cameraObj;
     public Transform kunTrans;
     public GameObject transObj;
-    public Vector3 kunTargetPos;
+    public float kunTargetHeight;
     public float kunMovingSpeed;
 
     Transition trans;
@@ -119,6 +121,16 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
             }
         }
 
+
+        // Wait for some time before triggering cutscene.
+        if (isWaitingForCutscene){
+            waitingForCutsceneTime -= Time.deltaTime;
+
+            if (waitingForCutsceneTime <= 0){
+                isCutsceneOn = true;
+            }
+        }
+
         if (isCutsceneOn)
         {
             // Disable rigidbody constraints on position
@@ -136,20 +148,34 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
             }
             else if (cameraMove.currentScene == General_SceneList.OUTSIDEKUN)
             {
+                // Start screen shake when rising.
+                if (!isScreenShaked)
+                {
+                    cameraObj.GetComponent<Camera_ScreenShake>().StartShake(16.5f, 0.04f, 0.04f);
+                    isScreenShaked = true;
+                }
+
+                // Player stands still after went outside.
+                playerMove.Standstill();
+
 
                 // After player left core room,
                 // KUN starts to lift.
                 if ((trans.isTransiting && trans.isRelocateComplete) || (!trans.isTransiting && !trans.isRelocateComplete))
                 {
                     player.transform.parent = kunTrans;
-                    float newHeight = Mathf.Lerp(kunTrans.position.y, kunTargetPos.y, kunMovingSpeed * Time.deltaTime);
-                    kunTrans.position = new Vector3(kunTrans.position.x, newHeight, kunTrans.position.z);
+                    //float newHeight = Mathf.Lerp(kunTrans.position.y, kunTargetPos.y, kunMovingSpeed * Time.deltaTime);
+                    //kunTrans.position = new Vector3(kunTrans.position.x, newHeight, kunTrans.position.z);
+                    if (kunTrans.position.y < kunTargetHeight){
+                        kunTrans.position += kunMovingSpeed * Time.deltaTime * Vector3.up;
+                    }
                 }
 
                 // When KUN reaches the end,
                 // stop cutscene.
-                if (Mathf.Abs(kunTrans.position.y - kunTargetPos.y) < 1f)
+                if (kunTrans.position.y >= kunTargetHeight)
                 {
+                    
                     player.transform.parent = null;
                     player.GetComponent<Player_Constraints>().enabled = true;
                     player.GetComponent<Player_Movement>().UnlockControl();
@@ -181,9 +207,13 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 coreState = REPLACED;
 
+                // Trigger sound effects and animation;
                 myAudioPlayer.Play();
                 playerAnimationControl.SetReleaseCore();
-                isCutsceneOn = true;
+
+
+                playerMove.Standstill();
+                isWaitingForCutscene = true;
             }
         }
 	}

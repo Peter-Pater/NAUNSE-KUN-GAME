@@ -10,7 +10,7 @@ public class Player_Items : MonoBehaviour { // This script keep track of player'
 
 	// Use this for initialization
 	void Start () {
-        whatsInHand = General_ItemList.AXE; // Initialize the item with nothing.
+        whatsInHand = General_ItemList.CORE; // Initialize the item with nothing.
 	}
 	
 
