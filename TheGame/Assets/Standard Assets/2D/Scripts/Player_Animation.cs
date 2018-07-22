@@ -44,6 +44,18 @@ public class Player_Animation : MonoBehaviour { // This script controls animatio
     }
 
 
+    public void StartPushingTree(){
+        myAnimator.SetBool("IsPushingTree", true);
+    }
+
+
+    public void StopPushingTree(){
+        myAnimator.SetBool("IsPushingTree", false);
+        myAnimator.SetBool("IsWalking", true);
+        
+    }
+
+
     public void StartClimbingCane(){
         myAnimator.SetBool("IsWalking", false);
         myAnimator.SetBool("IsClimbing", false);

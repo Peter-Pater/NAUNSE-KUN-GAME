@@ -31,7 +31,7 @@ public class Event_CutTree : MonoBehaviour { // This script manages cutting tree
     void TreeFalls()
     {
         if (treeRotatePoint.transform.rotation.z > 0f){
-            treeRotatePoint.transform.eulerAngles -= new Vector3(0, 0, 1f);
+            treeRotatePoint.transform.eulerAngles -= new Vector3(0, 0, 1.5f);
         }else{
             isTreeFalling = false;
             tree.GetComponent<Event_PushTree>().isCutDown = true;

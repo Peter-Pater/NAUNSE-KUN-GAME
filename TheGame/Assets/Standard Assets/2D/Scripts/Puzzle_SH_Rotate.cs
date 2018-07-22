@@ -7,7 +7,7 @@ using UnityEngine;
 public class Puzzle_SH_Rotate : MonoBehaviour {
 	public int[] values;
 	public float speed;
-	float realRotation;
+	public float realRotation;
   
 	// Use this for initialization
 	void Start () {
