@@ -38,6 +38,8 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 
     public float sittingPos;
 
+    public SpriteRenderer lightRenderer; // The light column.
+
     SpriteRenderer textOnScreen;
     AudioSource myAudioPlayer;
 
@@ -56,6 +58,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 
         UpdatePlayerAnimation();
         UpdateTextOnMonitor();
+        UpdateLightColumn();
 
 
         if (isLaunching){
@@ -84,6 +87,9 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
             // If player walked away before KUN reaches the minimal height,
             // stop launching.
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)){
+                // Normalize camera view.
+                cameraObj.GetComponent<Camera_CustomizeView>().BackToNormal();
+
                 isLaunching = false;
             }
 
@@ -107,15 +113,14 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
                 {
                     kun.transform.position += Vector3.down * launchingSpeed * Time.deltaTime;
                 }
-            }else if (launchingPhase == PHASE2){
+            }
+            else if (launchingPhase == PHASE2)
+            {
 
                 // If in phase 2,
                 // reset launching timer.
                 phase2Timer = phase2LaunchingTime;
             }
-
-            // Normalize camera view.
-            cameraObj.GetComponent<Camera_CustomizeView>().BackToNormal();
         }
 	}
 
@@ -151,6 +156,15 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
     }
 
 
+    void UpdateLightColumn(){
+        if (isLaunching || isCutsceneOn && !isEndingTriggered){
+            lightRenderer.enabled = true;
+        }else{
+            lightRenderer.enabled = false;
+        }
+    }
+
+
     void UpdatePhaseState(){
         
         // Goes to phase 2 upon reaching phase 2 height.
@@ -179,7 +193,6 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
         // When cutscene is triggered,
         // KUN flies away.
         kun.transform.position += Vector3.up * launchingSpeed * Time.deltaTime;
-        launchingSpeed += 0.1f;
 
         // When KUN flies up to certain height,
         // trigger ending cutscene.
@@ -191,10 +204,6 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 
         if (!isEndingTriggered)
         {
-            // During the first half of the cutscene,
-            // camera view increases as KUN flies further away.
-            //cameraObj.GetComponent<Camera_CustomizeView>().CustomizeView(launchingViewSize, launchingCameraPos);
-            //launchingViewSize += 0.015f;
 
             // Customize camera view to flyaway view.
             cameraObj.GetComponent<Camera_CustomizeView>().CustomizeView(flyAwayViewSize, flyAwayCameraPos);

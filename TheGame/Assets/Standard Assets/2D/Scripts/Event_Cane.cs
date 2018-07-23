@@ -51,7 +51,7 @@ public class Event_Cane : MonoBehaviour { // This script triggers player sliding
     {
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
 
-            if (!isSlidingDown){
+            if (!isSlidingDown && player.GetComponent<Player_Items>().whatsInHand == General_ItemList.CORE){
                 player.transform.position = startPos;
                 player.GetComponent<Player_Movement>().FlipLeft();
                 isSlidingDown = true;

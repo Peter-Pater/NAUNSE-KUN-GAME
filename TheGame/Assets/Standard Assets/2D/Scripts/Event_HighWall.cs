@@ -39,7 +39,8 @@ public class Event_HighWall : MonoBehaviour { // This script makes player climb 
             player.GetComponent<Player_Movement>().LockControl();
 
             // Smooth climbing
-            Vector3 targetPos = Vector3.Lerp(player.transform.position, new Vector3(54.23f, 20.7f, player.transform.position.z), playerClimbingSpeed * Time.deltaTime);
+            //Vector3 targetPos = Vector3.Lerp(player.transform.position, new Vector3(54.23f, 20.7f, player.transform.position.z), playerClimbingSpeed * Time.deltaTime);
+            Vector3 targetPos = Vector3.MoveTowards(player.transform.position, new Vector3(54.23f, 20.7f, player.transform.position.z), playerClimbingSpeed * Time.deltaTime);
             player.transform.position = targetPos;
         }
 
@@ -47,6 +48,7 @@ public class Event_HighWall : MonoBehaviour { // This script makes player climb 
         // When finishing climbing,
         if (Mathf.Abs(player.transform.position.x - 54.23f) <= 0.5f && Mathf.Abs(player.transform.position.y - 20.7f) <= 0.5f)
         {
+            myAudioPlayer.Stop();
             
             // Build an airwall so that player can't get down this high wall.
             airwallToBuild.GetComponent<Collider2D>().isTrigger = false;
@@ -75,6 +77,7 @@ public class Event_HighWall : MonoBehaviour { // This script makes player climb 
                     playerItem.whatsInHand = General_ItemList.NONE;
                     player.GetComponent<Player_Animation>().SetClimbHighWall();
                     player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+                    myAudioPlayer.loop = true;
                     myAudioPlayer.Play();
                     isClimbing = true;
                 }
