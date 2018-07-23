@@ -13,6 +13,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
     // Keep track of states
     bool isLaunching = false;
     bool isCutsceneOn = false;
+    bool isEndingTriggered = false;
 
 
     public GameObject player;
@@ -27,6 +28,11 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
     public Vector3 floatingPointB;
     public float originalHeight; // The original height before starting launching.
     float phase2Timer;
+
+
+    public float launchingViewSize;
+    Vector3 launchingCameraPos;
+
 
     AudioSource myAudioPlayer;
 
@@ -51,6 +57,10 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
             if (launchingPhase == PHASE1)
             {
                 kun.transform.position += Vector3.up * launchingSpeed * Time.deltaTime;
+
+                // Camera follows KUN in phase 1.
+                launchingCameraPos = kun.transform.position + new Vector3(-47.8f, 10.2f, 0);
+                launchingCameraPos = new Vector3(launchingCameraPos.x, launchingCameraPos.y, -10);
             }else if (launchingPhase == PHASE2){
 
                 // When in phase 2,
@@ -59,6 +69,11 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
                 KUNFloating();
                 phase2Timer -= Time.deltaTime;
             }
+
+
+            // When launching,
+            // change camera view to customize view.
+            cameraObj.GetComponent<Camera_CustomizeView>().CustomizeView(launchingViewSize, launchingCameraPos);
 
 
             // If player walked away before KUN reaches the minimal height,
@@ -93,6 +108,9 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
                 // reset launching timer.
                 phase2Timer = phase2LaunchingTime;
             }
+
+            // Normalize camera view.
+            cameraObj.GetComponent<Camera_CustomizeView>().BackToNormal();
         }
 	}
 
@@ -100,8 +118,11 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
-            myAudioPlayer.Play();
-            isLaunching = true;
+            if (!isCutsceneOn)
+            {
+                myAudioPlayer.Play();
+                isLaunching = true;
+            }
         }
     }
 
@@ -128,6 +149,8 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
         if (phase2Timer <= 0)
         {
             isLaunching = false;
+            player.GetComponent<Player_Movement>().LockControl();
+            kun.GetComponent<Animator>().SetTrigger("SetCloseMouth");
             isCutsceneOn = true;
         }
     }
@@ -142,5 +165,19 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
         // When cutscene is triggered,
         // KUN flies away.
         kun.transform.position += Vector3.up * launchingSpeed * Time.deltaTime;
+        if (kun.transform.position.y >= 190f)
+        {
+            isEndingTriggered = true;
+        }
+
+
+        if (!isEndingTriggered)
+        {
+            cameraObj.GetComponent<Camera_CustomizeView>().CustomizeView(launchingViewSize, launchingCameraPos);
+            launchingViewSize += 0.015f;
+        }else{
+            cameraObj.GetComponent<Camera_CustomizeView>().BackToNormal();
+        }
+
     }
 }

@@ -36,10 +36,9 @@ public class Camera_CustomizeView : MonoBehaviour { // This script triggers cust
         if (isCustomizing){
             myMovement.LockCamera();
 
-            // Frame fades out.
-            if (cameraFrame.color.a >= 0.01f){
-                cameraFrame.color -= new Color(0, 0, 0, 0.7f * Time.deltaTime);
-            }
+            // Frame disapears.
+            cameraFrame.color = new Color(cameraFrame.color.r, cameraFrame.color.g, cameraFrame.color.b, 0f);
+
 
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetSize, moveSpeed * Time.deltaTime);
             transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
@@ -49,7 +48,7 @@ public class Camera_CustomizeView : MonoBehaviour { // This script triggers cust
             // Frame fades back in.
             if (cameraFrame.color.a <= 0.99f)
             {
-                cameraFrame.color += new Color(0, 0, 0, 1.2f * Time.deltaTime);
+                cameraFrame.color += new Color(0, 0, 0, 0.1f * Time.deltaTime);
             }
 
         }

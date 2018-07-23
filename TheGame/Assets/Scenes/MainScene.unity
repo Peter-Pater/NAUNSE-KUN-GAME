@@ -1531,13 +1531,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2015325409}
   kun: {fileID: 1953968853}
-  cameraObj: {fileID: 0}
+  cameraObj: {fileID: 519420028}
   launchingSpeed: 5
   phase2Height: 135
   phase2LaunchingTime: 7.5
   floatingPointA: {x: 126, y: 139, z: 0.2460868}
   floatingPointB: {x: 126, y: 134, z: 0.2460868}
   originalHeight: 97.5
+  launchingViewSize: 20.92986
 --- !u!82 &136021810
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6702,7 +6703,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 499878459}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 126, y: 133, z: -0.26171875}
+  m_LocalPosition: {x: 126, y: 98.1, z: -0.26171875}
   m_LocalScale: {x: 1, y: 1, z: 0.64252}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6881,7 +6882,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.11087
+  orthographic size: 20.929863
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6904,7 +6905,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.1, y: 120.9, z: -10}
+  m_LocalPosition: {x: 78.2, y: 118.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1688610400}
@@ -22651,7 +22652,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1953968853}
   m_LocalRotation: {x: 0, y: 0, z: 0.06975647, w: 0.9975641}
-  m_LocalPosition: {x: 133.1, y: 5.7, z: 0.24608684}
+  m_LocalPosition: {x: 133.1, y: 57, z: 0.24608684}
   m_LocalScale: {x: 1, y: 1, z: 0.6425233}
   m_Children:
   - {fileID: 1317591737}
