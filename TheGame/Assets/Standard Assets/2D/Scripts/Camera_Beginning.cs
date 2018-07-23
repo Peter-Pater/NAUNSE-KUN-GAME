@@ -86,7 +86,10 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
                     instructions.color -= new Color(0, 0, 0, 0.4f * Time.deltaTime);
                 }else{
                     instructions.color = new Color(1, 1, 1, 0f);
-                    isRevealingScreen = true;
+                    if (!isGameStart)
+                    {
+                        isRevealingScreen = true;
+                    }
                 }
             }
         }
@@ -119,6 +122,7 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
                 player.GetComponent<Player_Movement>().UnlockControl();
 
                 isGameStart = true;
+                isRevealingScreen = false;
             }
         }
     }

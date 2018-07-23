@@ -130,7 +130,6 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
             sittingTime -= Time.deltaTime;
             if (sittingTime <= 0f)
             {
-                cameraObj.GetComponent<Camera_Movement>().LockCamera();
                 if (curtainRender.color.a <= 0.99f)
                 {
                     curtainRender.color += new Color(0, 0, 0, 0.4f * Time.deltaTime);
@@ -233,7 +232,6 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
                 player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                 player.GetComponent<Player_Constraints>().enabled = false;
                 player.GetComponent<Player_Movement>().WalkRight();
-                Debug.Log("Walk right");
             }else{
                 player.GetComponent<Player_Movement>().Standstill();
                 player.GetComponent<Player_Constraints>().enabled = true;
