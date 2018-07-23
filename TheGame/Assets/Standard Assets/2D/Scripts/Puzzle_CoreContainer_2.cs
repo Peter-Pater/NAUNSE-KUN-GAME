@@ -148,7 +148,7 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
             }else{
                 triggers[current].GetComponent<Renderer>().enabled = false;
                 counter++;
-                if (counter >= 8){
+                if (counter >= 6){
                     ccEvent.isPuzzleTriggered = false;
                     ccEvent.isContainerOpen = true;
                     ccEvent.puzzle2Restart = false;
