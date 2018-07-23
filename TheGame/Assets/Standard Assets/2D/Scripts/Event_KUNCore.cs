@@ -221,6 +221,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 coreState = REPLACED;
 
                 kunTrans.GetChild(8).GetComponent<AudioSource>().Stop();
+                kunTrans.GetChild(8).GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
 
                 // Trigger sound effects and animation;
                 myAudioPlayer.Play();

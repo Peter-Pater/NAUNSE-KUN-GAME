@@ -175,4 +175,14 @@ public class Player_Animation : MonoBehaviour
         myAnimator.SetTrigger("SetSitDown");
     }
 
+
+    public void SetWakeUp(){
+        myAnimator.SetTrigger("SetWakeUp");
+    }
+
+
+    public void SetStandUp(){
+        myAnimator.SetTrigger("SetStandUp");
+    }
+
 }
