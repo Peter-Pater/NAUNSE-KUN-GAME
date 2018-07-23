@@ -38,6 +38,7 @@ public class Camera_EndingEvent : MonoBehaviour {
                 }
                 else
                 {
+                    credits.color = new Color(1, 1, 1, 1f);
                     creditsStaytingTime -= Time.deltaTime;
                 }
             }
@@ -49,6 +50,7 @@ public class Camera_EndingEvent : MonoBehaviour {
                 }
                 else
                 {
+                    credits.color = new Color(1, 1, 1, 0f);
                     display = ENDING;
                 }
             }
@@ -64,6 +66,7 @@ public class Camera_EndingEvent : MonoBehaviour {
                 }
                 else
                 {
+                    endingLine.color = new Color(1, 1, 1, 1f);
                     endingStayingTime -= Time.deltaTime;
                 }
             }
@@ -75,6 +78,7 @@ public class Camera_EndingEvent : MonoBehaviour {
                 }
                 else
                 {
+                    endingLine.color = new Color(1, 1, 1, 0f);
                     SceneManager.LoadScene("MainScene");
 
                 }

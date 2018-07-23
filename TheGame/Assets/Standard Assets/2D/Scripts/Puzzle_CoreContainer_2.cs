@@ -88,6 +88,17 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
             core.transform.RotateAround(new Vector2(transform.position.x, transform.position.y), Vector3.forward, -spinSpeed * Time.deltaTime * (float)0.8);
             Match(); 
         }
+
+        // Cheating code.
+        if (Input.GetKeyDown(KeyCode.C)){
+            ccEvent.isPuzzleTriggered = false;
+            ccEvent.isContainerOpen = true;
+            ccEvent.puzzle2Restart = false;
+            ccEvent.UnlockPlayer();
+            mergeTriggered = false;
+            //Debug.Log("Activated!");
+            Destroy(this.gameObject);
+        }
 	}
 
 
@@ -126,7 +137,6 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
                         //reseting = true;
                     }   
                 }
-                Debug.Log(Mathf.Abs(x0 - x1));
             }
 
         }

@@ -123,6 +123,23 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
                 phase2Timer = phase2LaunchingTime;
             }
         }
+
+        if (isEndingTriggered){
+            Debug.Log(sittingTime);
+            sittingTime -= Time.deltaTime;
+            if (sittingTime <= 0f)
+            {
+                SpriteRenderer curtainRender = cameraObj.transform.GetChild(0).GetComponent<SpriteRenderer>();
+                if (curtainRender.color.a <= 0.99f)
+                {
+                    curtainRender.color += new Color(0, 0, 0, 0.4f * Time.deltaTime);
+                }
+                else
+                {
+                    SceneManager.LoadScene("TemporaryEnding");
+                }
+            }
+        }
 	}
 
 
@@ -174,7 +191,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
             launchingPhase = PHASE2;
         }
 
-        // Start ending cutscene when phase 2 timer's up.
+        // Start launching cutscene when phase 2 timer's up.
         if (phase2Timer <= 0)
         {
             isLaunching = false;
@@ -215,6 +232,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
                 player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                 player.GetComponent<Player_Constraints>().enabled = false;
                 player.GetComponent<Player_Movement>().WalkRight();
+                Debug.Log("Walk right");
             }else{
                 player.GetComponent<Player_Movement>().Standstill();
                 player.GetComponent<Player_Constraints>().enabled = true;
@@ -227,16 +245,6 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
             // Player sits.
             cameraObj.GetComponent<Camera_CustomizeView>().BackToNormal();
             player.GetComponent<Player_Animation>().SetSitDown();
-
-            sittingTime -= Time.deltaTime;
-            if (sittingTime <= 0f){
-                SpriteRenderer curtainRender = cameraObj.transform.GetChild(0).GetComponent<SpriteRenderer>();
-                if (curtainRender.color.a <= 0.99f){
-                    curtainRender.color += new Color(0, 0, 0, 0.4f * Time.deltaTime);
-                }else{
-                    SceneManager.LoadScene("TemporaryEnding");
-                }
-            }
            
         }
 

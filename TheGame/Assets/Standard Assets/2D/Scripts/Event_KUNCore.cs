@@ -140,7 +140,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
         if (isCutsceneOn)
         {
-            // Disable rigidbody constraints on position
+            // Disable rigidbody constraints on player
             // since player will be moving without
             // player control.
             playerMove.LockControl();
@@ -167,7 +167,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
 
                 // Update cutscene camera pos based on player position.
-                cutsceneCameraPos = player.transform.position + new Vector3(-1.2f, -11.1f, 0);
+                cutsceneCameraPos = player.transform.position + new Vector3(-1.2f, -3.2f, 0);
                 cutsceneCameraPos = new Vector3(cutsceneCameraPos.x, cutsceneCameraPos.y, -10);
 
 
@@ -176,6 +176,8 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 if ((trans.isTransiting && trans.isRelocateComplete) || (!trans.isTransiting && !trans.isRelocateComplete))
                 {
                     cameraObj.GetComponent<Camera_CustomizeView>().CustomizeView(cutsceneCameraViewSize, cutsceneCameraPos);
+                    //player.transform.parent = kunTrans;
+                    player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
                     KUNRise();
                 }
 
@@ -236,7 +238,6 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
 
     void KUNRise(){
-        player.transform.parent = kunTrans;
 
         if (kunTrans.position.y < kunTargetHeight)
         {
@@ -257,10 +258,12 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
     void StopCutscene(){
         cameraObj.GetComponent<Camera_CustomizeView>().BackToNormal();
 
-        player.transform.parent = null;
+        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         player.GetComponent<Player_Constraints>().enabled = true;
         player.GetComponent<Player_Movement>().UnlockControl();
+
         isCutsceneOn = false;
+
     }
 
 }

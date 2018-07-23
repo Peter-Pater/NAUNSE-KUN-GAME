@@ -40,13 +40,14 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
         {
             if (titleStayingTime > 0)
             {
-
+                
                 if (title.color.a <= 0.99f)
                 {
                     title.color += new Color(0, 0, 0, 0.4f * Time.deltaTime);
                 }
                 else
                 {
+                    title.color = new Color(1, 1, 1, 1f);
                     titleStayingTime -= Time.deltaTime;
                 }
             }
@@ -58,6 +59,7 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
                 }
                 else
                 {
+                    title.color = new Color(1, 1, 1, 0f);
                     display = INSTRUC;
                 }
             }
@@ -73,6 +75,7 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
                 }
                 else
                 {
+                    instructions.color = new Color(1, 1, 1, 1f);
                     instructionStayingTime -= Time.deltaTime;
                 }
             }
@@ -82,6 +85,7 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
                 {
                     instructions.color -= new Color(0, 0, 0, 0.4f * Time.deltaTime);
                 }else{
+                    instructions.color = new Color(1, 1, 1, 0f);
                     isRevealingScreen = true;
                 }
             }
