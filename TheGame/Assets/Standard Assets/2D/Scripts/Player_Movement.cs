@@ -107,10 +107,4 @@ public class Player_Movement : MonoBehaviour
         isControlLocked = false;
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log(collision.name);
-    }
-
 }

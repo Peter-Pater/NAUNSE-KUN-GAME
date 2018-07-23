@@ -135,6 +135,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
             if (waitingForCutsceneTime <= 0){
                 isCutsceneOn = true;
+                isWaitingForCutscene = false;
             }
         }
 

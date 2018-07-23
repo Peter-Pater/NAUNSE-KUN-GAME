@@ -42,6 +42,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
     public SpriteRenderer lightRenderer; // The light column.
 
     SpriteRenderer textOnScreen;
+    SpriteRenderer curtainRender;
     AudioSource myAudioPlayer;
 
 
@@ -49,6 +50,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 	void Start () {
         myAudioPlayer = GetComponent<AudioSource>();
         textOnScreen = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        curtainRender = cameraObj.transform.GetChild(0).GetComponent<SpriteRenderer>();
 
         phase2Timer = phase2LaunchingTime;
 	}
@@ -125,11 +127,10 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
         }
 
         if (isEndingTriggered){
-            Debug.Log(sittingTime);
             sittingTime -= Time.deltaTime;
             if (sittingTime <= 0f)
             {
-                SpriteRenderer curtainRender = cameraObj.transform.GetChild(0).GetComponent<SpriteRenderer>();
+                cameraObj.GetComponent<Camera_Movement>().LockCamera();
                 if (curtainRender.color.a <= 0.99f)
                 {
                     curtainRender.color += new Color(0, 0, 0, 0.4f * Time.deltaTime);
