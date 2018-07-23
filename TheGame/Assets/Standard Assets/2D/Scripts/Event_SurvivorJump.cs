@@ -45,8 +45,8 @@ public class Event_SurvivorJump : MonoBehaviour { // This script manages event o
 	void OnTriggerEnter2D(Collider2D other){
         if (other.tag == "SurvivorTrigger" && !isSurvivorJumped){
             treeBody.GetComponent<Event_PushTree>().isPushFinished = true;
-            player.GetComponent<Player_Movement>().Standstill();
             player.GetComponent<Player_Movement>().LockControl();
+            player.GetComponent<Player_Movement>().Standstill();
             isCutsceneOn = true;
 		}
 	}

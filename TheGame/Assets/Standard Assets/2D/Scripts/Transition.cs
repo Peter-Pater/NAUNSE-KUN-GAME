@@ -43,7 +43,7 @@ public class Transition : MonoBehaviour { // The script transit player and camer
             if (!isRelocateComplete){
 
                 // Start transiting.
-                // Enable player movement.
+                // Disable player movement.
                 // Lock camera.
                 player.GetComponent<Player_Movement>().LockControl();
                 cameraObj.GetComponent<Camera_Movement>().LockCamera();
@@ -96,6 +96,7 @@ public class Transition : MonoBehaviour { // The script transit player and camer
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
         if (collision.tag == "Player"){
+            player.GetComponent<Player_Movement>().LockControl();
             player.GetComponent<Player_Movement>().Standstill();
             currentSceneObj.GetComponent<Scene_BGMManage>().StopBGM();
             isTransiting = true;

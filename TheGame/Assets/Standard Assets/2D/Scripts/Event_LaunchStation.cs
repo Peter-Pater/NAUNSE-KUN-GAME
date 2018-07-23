@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Event_LaunchStation : MonoBehaviour { // This script is about launching KUN.
 
@@ -37,7 +38,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 
 
     public float sittingPos;
-
+    float sittingTime = 6f;
     public SpriteRenderer lightRenderer; // The light column.
 
     SpriteRenderer textOnScreen;
@@ -226,6 +227,16 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
             // Player sits.
             cameraObj.GetComponent<Camera_CustomizeView>().BackToNormal();
             player.GetComponent<Player_Animation>().SetSitDown();
+
+            sittingTime -= Time.deltaTime;
+            if (sittingTime <= 0f){
+                SpriteRenderer curtainRender = cameraObj.transform.GetChild(0).GetComponent<SpriteRenderer>();
+                if (curtainRender.color.a <= 0.99f){
+                    curtainRender.color += new Color(0, 0, 0, 0.4f * Time.deltaTime);
+                }else{
+                    SceneManager.LoadScene("TemporaryEnding");
+                }
+            }
            
         }
 
