@@ -30,7 +30,7 @@ public class Camera_CustomizeView : MonoBehaviour { // This script triggers cust
 	// Update is called once per frame
 	void Update () {
         
-        moveSpeed = myMovement.smoothSpeed;
+        moveSpeed = myMovement.smoothSpeed / 3;
         originalSize = myMovement.viewSize;
 
         if (isCustomizing){
@@ -48,7 +48,7 @@ public class Camera_CustomizeView : MonoBehaviour { // This script triggers cust
             // Frame fades back in.
             if (cameraFrame.color.a <= 0.99f)
             {
-                cameraFrame.color += new Color(0, 0, 0, 0.1f * Time.deltaTime);
+                cameraFrame.color += new Color(0, 0, 0, 0.05f * Time.deltaTime);
             }
 
         }

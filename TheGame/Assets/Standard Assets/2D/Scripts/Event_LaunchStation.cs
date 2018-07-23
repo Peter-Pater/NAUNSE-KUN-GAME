@@ -31,7 +31,12 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 
 
     public float launchingViewSize;
-    Vector3 launchingCameraPos;
+    public Vector3 launchingCameraPos;
+    public float flyAwayViewSize;
+    public Vector3 flyAwayCameraPos;
+
+
+    public float sittingPos;
 
 
     AudioSource myAudioPlayer;
@@ -56,11 +61,8 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
             // KUN rises.
             if (launchingPhase == PHASE1)
             {
-                kun.transform.position += Vector3.up * launchingSpeed * Time.deltaTime;
+                kun.transform.position += Vector3.up * (launchingSpeed / 2) * Time.deltaTime;
 
-                // Camera follows KUN in phase 1.
-                launchingCameraPos = kun.transform.position + new Vector3(-47.8f, 10.2f, 0);
-                launchingCameraPos = new Vector3(launchingCameraPos.x, launchingCameraPos.y, -10);
             }else if (launchingPhase == PHASE2){
 
                 // When in phase 2,
@@ -165,7 +167,11 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
         // When cutscene is triggered,
         // KUN flies away.
         kun.transform.position += Vector3.up * launchingSpeed * Time.deltaTime;
-        if (kun.transform.position.y >= 190f)
+        launchingSpeed += 0.1f;
+
+        // When KUN flies up to certain height,
+        // trigger ending cutscene.
+        if (kun.transform.position.y >= 280f)
         {
             isEndingTriggered = true;
         }
@@ -173,10 +179,33 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 
         if (!isEndingTriggered)
         {
-            cameraObj.GetComponent<Camera_CustomizeView>().CustomizeView(launchingViewSize, launchingCameraPos);
-            launchingViewSize += 0.015f;
+            // During the first half of the cutscene,
+            // camera view increases as KUN flies further away.
+            //cameraObj.GetComponent<Camera_CustomizeView>().CustomizeView(launchingViewSize, launchingCameraPos);
+            //launchingViewSize += 0.015f;
+
+            // Customize camera view to flyaway view.
+            cameraObj.GetComponent<Camera_CustomizeView>().CustomizeView(flyAwayViewSize, flyAwayCameraPos);
+
+
+            // Player walks to the side and start looking at KUN.
+            if (player.transform.position.x < sittingPos){
+                player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                player.GetComponent<Player_Constraints>().enabled = false;
+                player.GetComponent<Player_Movement>().WalkRight();
+            }else{
+                player.GetComponent<Player_Movement>().Standstill();
+                player.GetComponent<Player_Constraints>().enabled = true;
+                player.GetComponent<Player_Animation>().StartLookingAtKUN();
+            }
         }else{
+
+            // During the second half of the cutscene (endind),
+            // camera rooms back to player.
+            // Player sits.
             cameraObj.GetComponent<Camera_CustomizeView>().BackToNormal();
+            player.GetComponent<Player_Animation>().SetSitDown();
+           
         }
 
     }
