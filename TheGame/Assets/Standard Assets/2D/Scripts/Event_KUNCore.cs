@@ -158,7 +158,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 // Start screen shake when rising.
                 if (!isScreenShaked)
                 {
-                    cameraObj.GetComponent<Camera_ScreenShake>().StartShake(16.5f, 0.05f, 0.05f);
+                    cameraObj.GetComponent<Camera_ScreenShake>().StartShake(18f, 0.05f, 0.05f);
                     isScreenShaked = true;
                 }
 
@@ -182,7 +182,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
                 // After rising to certian height,
                 // KUN transforms into "PENG".
-                if (kunTrans.position.y >= 25f)
+                if (kunTrans.position.y >= 27f)
                 {
                     KUNTransform();
                 }

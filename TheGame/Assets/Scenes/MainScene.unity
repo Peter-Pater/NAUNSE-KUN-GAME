@@ -1531,9 +1531,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2015325409}
   kun: {fileID: 1953968853}
-  launchingSpeed: 10
-  minimalHeight: 124.9
-  originalHeight: 88.2
+  cameraObj: {fileID: 0}
+  launchingSpeed: 5
+  phase2Height: 135
+  phase2LaunchingTime: 7.5
+  floatingPointA: {x: 126, y: 139, z: 0.2460868}
+  floatingPointB: {x: 126, y: 134, z: 0.2460868}
+  originalHeight: 97.5
 --- !u!82 &136021810
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6698,7 +6702,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 499878459}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 126, y: 0, z: -0.26171875}
+  m_LocalPosition: {x: 126, y: 133, z: -0.26171875}
   m_LocalScale: {x: 1, y: 1, z: 0.64252}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13751,7 +13755,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1183204050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.58, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2015325411}
@@ -15607,10 +15611,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.0113549335, y: -0.4141348}
-      - {x: -0.3670495, y: 0.003261346}
-      - {x: -0.4294624, y: 0.23471868}
-      - {x: -0.4599074, y: 0.29889}
+    - - {x: 0.11322738, y: -0.71263474}
+      - {x: -0.14314163, y: -0.7935431}
+      - {x: -0.43891603, y: -0.9432023}
+      - {x: -0.6514761, y: -0.5705479}
+      - {x: -0.56279176, y: 0.09783736}
       - {x: -0.50604373, y: 0.43070215}
       - {x: -0.4436036, y: 0.77601844}
       - {x: -0.35179767, y: 1.1444681}
@@ -17715,7 +17720,7 @@ GameObject:
   - component: {fileID: 1584325520}
   - component: {fileID: 1584325522}
   - component: {fileID: 1584325521}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19135,7 +19140,7 @@ GameObject:
   - component: {fileID: 1615284632}
   - component: {fileID: 1615284634}
   - component: {fileID: 1615284633}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Platform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20341,7 +20346,7 @@ MonoBehaviour:
   cameraObj: {fileID: 519420028}
   kunTrans: {fileID: 1953968854}
   transObj: {fileID: 1219178730}
-  kunTargetHeight: 86.9
+  kunTargetHeight: 97.5
   kunMovingSpeed: 5
   cutsceneCameraViewSize: 16.29122
   animFreezeTime: 2.5
@@ -20579,7 +20584,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 2b390939c053f4dc491da4517d154a0c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -23388,7 +23393,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2015325409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.87, y: 130.45, z: 0}
+  m_LocalPosition: {x: 48.87, y: 133.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1822378855}
