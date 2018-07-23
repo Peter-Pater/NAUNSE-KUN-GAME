@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Event_DoorPad : MonoBehaviour { // This script opens the exit inside KUN.
-
+    
     public GameObject kunExit; //Assign KUN exit game object to this variable in the inspector.
     public GameObject player;
 
     bool triggered = false;
 
     SpriteRenderer mySpriteRenderer;
-    Event_KUNExit exitEventScript;
+    SpriteRenderer exitRenderer;
+    //Event_KUNExit exitEventScript;
 
 
     // This timer is used to temporarily
@@ -26,8 +27,7 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
         
         mySpriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Refer to the exit event script.
-        exitEventScript = kunExit.GetComponent<Event_KUNExit>();
+        exitRenderer = kunExit.GetComponent<SpriteRenderer>();
 
         // Initialize freeze timer
         freezeTimer = animFreezeTime;
@@ -40,21 +40,11 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
         
         if (triggered)
         {
-            // When the door pad is triggered,
-            // change its color.
-            // Move up the exit door.
-            exitEventScript.moveUp();
-
-            // call move down
-            //exitEventScript.moveDown();
-
-            if (exitEventScript.upDownComplete)
-            {
-
-                // When the exit door finished moving,
-                // change the color back.
-                triggered = false;
+            if (exitRenderer.color.a >= 0.01f){
+                exitRenderer.color -= new Color(0, 0, 0, 0.7f * Time.deltaTime);
             }
+
+            kunExit.GetComponent<Collider2D>().isTrigger = true;
         }
 
 
@@ -76,7 +66,7 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
     {
         if (other.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.Space)){
+            if (Input.GetKeyDown(KeyCode.Space) && !triggered){
                 triggered = true;
                 GetComponent<AudioSource>().Play();
                 player.GetComponent<Player_Animation>().SetPressButton();

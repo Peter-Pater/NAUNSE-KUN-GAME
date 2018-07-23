@@ -220,6 +220,8 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.NONE;
                 coreState = REPLACED;
 
+                kunTrans.GetChild(8).GetComponent<AudioSource>().Stop();
+
                 // Trigger sound effects and animation;
                 myAudioPlayer.Play();
                 playerAnimationControl.SetReleaseCore();
