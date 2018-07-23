@@ -38,13 +38,15 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 
     public float sittingPos;
 
-
+    SpriteRenderer textOnScreen;
     AudioSource myAudioPlayer;
 
 
 	// Use this for initialization
 	void Start () {
         myAudioPlayer = GetComponent<AudioSource>();
+        textOnScreen = transform.GetChild(1).GetComponent<SpriteRenderer>();
+
         phase2Timer = phase2LaunchingTime;
 	}
 	
@@ -53,6 +55,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 	void Update () {
 
         UpdatePlayerAnimation();
+        UpdateTextOnMonitor();
 
 
         if (isLaunching){
@@ -120,7 +123,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
-            if (!isCutsceneOn)
+            if (!isCutsceneOn && !isLaunching)
             {
                 myAudioPlayer.Play();
                 isLaunching = true;
@@ -135,6 +138,15 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
             player.GetComponent<Player_Animation>().StartTyping();
         }else{
             player.GetComponent<Player_Animation>().StopTyping();
+        }
+    }
+
+
+    void UpdateTextOnMonitor(){
+        if (isLaunching){
+            textOnScreen.color = new Color(textOnScreen.color.r, textOnScreen.color.g, textOnScreen.color.b, 1f);
+        }else{
+            textOnScreen.color = new Color(textOnScreen.color.r, textOnScreen.color.g, textOnScreen.color.b, 0f);
         }
     }
 
