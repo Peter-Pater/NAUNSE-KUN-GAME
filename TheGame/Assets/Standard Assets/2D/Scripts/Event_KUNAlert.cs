@@ -96,7 +96,7 @@ public class Event_KUNAlert : MonoBehaviour { // This script triggers KUN alert 
     void UpdateAlertVolume(){
         if (kunAlarmPlayer.isPlaying){
             if (ccEvent.isPuzzleTriggered){
-                kunAlarmPlayer.volume = 0.15f;
+                kunAlarmPlayer.volume = 0.1f;
             }else{
                 kunAlarmPlayer.volume = 0.4f;
             }

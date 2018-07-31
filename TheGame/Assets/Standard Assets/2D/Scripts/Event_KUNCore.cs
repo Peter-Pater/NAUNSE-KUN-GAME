@@ -30,6 +30,8 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
 
     AudioSource myAudioPlayer;
+    AudioSource powerUpPlayer;
+    public AudioSource kunEnginePlayer;
 
 
     // Objects relevant to the cutscene
@@ -69,7 +71,10 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
         glassTrans = toolWall.transform.GetChild(1);
         glassTargetHeight = glassTrans.position.y + 1.5f;
+
+
         myAudioPlayer = GetComponent<AudioSource>();
+        powerUpPlayer = transform.GetChild(1).GetComponent<AudioSource>();
 
 
         trans = transObj.GetComponent<Transition>();
@@ -228,6 +233,8 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
                 // Trigger sound effects and animation;
                 myAudioPlayer.Play();
+                powerUpPlayer.Play();
+                kunEnginePlayer.Play();
                 playerAnimationControl.SetReleaseCore();
 
 

@@ -60,6 +60,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 	void Update () {
 
         UpdatePlayerAnimation();
+        UpdateTypingSound();
         UpdateTextOnMonitor();
         UpdateLightColumn();
 
@@ -148,9 +149,20 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
             if (!isCutsceneOn && !isLaunching)
             {
-                myAudioPlayer.Play();
                 isLaunching = true;
             }
+        }
+    }
+
+
+    void UpdateTypingSound(){
+        if (isLaunching){
+            if (!myAudioPlayer.isPlaying)
+            {
+                myAudioPlayer.Play();
+            }
+        }else{
+            myAudioPlayer.Stop();
         }
     }
 
