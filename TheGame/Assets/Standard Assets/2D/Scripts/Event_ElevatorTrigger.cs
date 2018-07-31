@@ -25,6 +25,7 @@ public class Event_ElevatorTrigger : MonoBehaviour { // This script triggers ele
     {
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
             myAudioPlayer.Play();
+            elevatorEvent.PlayerElevatorStartSound();
             elevatorEvent.isLifting = true;
         }
     }

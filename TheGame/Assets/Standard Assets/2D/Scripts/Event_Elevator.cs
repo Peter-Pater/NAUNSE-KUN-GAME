@@ -19,9 +19,17 @@ public class Event_Elevator : MonoBehaviour { // This script lifts the elevator.
     GameObject rightWall;
 
 
+    public AudioClip startSound;
+    public AudioClip stopSound;
+    AudioSource goingUpSoundPlayer;
+    AudioSource elevatorTriggerPlayer;
+
+
 	// Use this for initialization
 	void Start () {
         rightWall = transform.GetChild(2).gameObject;
+        goingUpSoundPlayer = transform.GetChild(0).GetComponent<AudioSource>();
+        elevatorTriggerPlayer = GetComponent<AudioSource>();
 	}
 
 
@@ -29,6 +37,7 @@ public class Event_Elevator : MonoBehaviour { // This script lifts the elevator.
     void Update()
     {
         UpdateRightWall();
+        UpdateSound();
 
         if (isLifting && currentState == DOWN){
             if (transform.position.y < targetHeight){
@@ -38,6 +47,7 @@ public class Event_Elevator : MonoBehaviour { // This script lifts the elevator.
             // Mark states when finished lifting.
             else{
                 isLifting = false;
+                PlayElevatorStopSound();
                 currentState = UP;
             }
         }
@@ -53,5 +63,37 @@ public class Event_Elevator : MonoBehaviour { // This script lifts the elevator.
         }else{
             rightWall.GetComponent<Collider2D>().isTrigger = true;
         }
+    }
+
+
+    void UpdateSound(){
+        if (isLifting){
+            if (!goingUpSoundPlayer.isPlaying)
+            {
+                goingUpSoundPlayer.Play();
+            }
+        }else{
+            goingUpSoundPlayer.Stop();
+        }
+    }
+
+
+    public void PlayerElevatorStartSound(){
+        if (elevatorTriggerPlayer.isPlaying){
+            elevatorTriggerPlayer.Stop();
+        }
+        elevatorTriggerPlayer.clip = startSound;
+        elevatorTriggerPlayer.Play();
+    }
+
+
+    void PlayElevatorStopSound()
+    {
+        if (elevatorTriggerPlayer.isPlaying)
+        {
+            elevatorTriggerPlayer.Stop();
+        }
+        elevatorTriggerPlayer.clip = stopSound;
+        elevatorTriggerPlayer.Play();
     }
 }
