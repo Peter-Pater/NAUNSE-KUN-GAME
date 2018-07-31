@@ -10,6 +10,11 @@ public class Event_KUNAlert : MonoBehaviour { // This script triggers KUN alert 
     public GameObject cameraObj;
     Camera_CustomizeView cameraCustomize;
 
+
+    public GameObject coreContainer;
+    Event_CoreContainer ccEvent;
+
+
     public GameObject kunAlarm;
     SpriteRenderer kunAlarmSprite;
     AudioSource kunAlarmPlayer;
@@ -29,6 +34,7 @@ public class Event_KUNAlert : MonoBehaviour { // This script triggers KUN alert 
 	void Start () {
         playerMove = player.GetComponent<Player_Movement>();
         cameraCustomize = cameraObj.GetComponent<Camera_CustomizeView>();
+        ccEvent = coreContainer.GetComponent<Event_CoreContainer>();
 
         kunAlarmSprite = kunAlarm.GetComponent<SpriteRenderer>();
         kunAlarmPlayer = kunAlarm.GetComponent<AudioSource>();
@@ -37,7 +43,9 @@ public class Event_KUNAlert : MonoBehaviour { // This script triggers KUN alert 
 
 	// Update is called once per frame
 	void Update () {
-		
+
+        UpdateAlertVolume();
+
         // When cutscene is on,
         if (isCutsceneOn){
 
@@ -83,4 +91,15 @@ public class Event_KUNAlert : MonoBehaviour { // This script triggers KUN alert 
             isCutsceneOn = true;
         }
 	}
+
+
+    void UpdateAlertVolume(){
+        if (kunAlarmPlayer.isPlaying){
+            if (ccEvent.isPuzzleTriggered){
+                kunAlarmPlayer.volume = 0.15f;
+            }else{
+                kunAlarmPlayer.volume = 0.4f;
+            }
+        }
+    }
 }

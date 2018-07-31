@@ -17540,6 +17540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2015325409}
   cameraObj: {fileID: 519420028}
+  coreContainer: {fileID: 540165033}
   kunAlarm: {fileID: 1183496105}
   targetViewSize: 15.26815
   targetPos: {x: 99.6, y: 9.4, z: -10}
@@ -23370,7 +23371,7 @@ GameObject:
   - component: {fileID: 1623844039}
   - component: {fileID: 1623844040}
   m_Layer: 0
-  m_Name: core_room_ladder
+  m_Name: Core Room Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
