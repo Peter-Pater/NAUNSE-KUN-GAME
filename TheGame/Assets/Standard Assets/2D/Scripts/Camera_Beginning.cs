@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Camera_Beginning : MonoBehaviour { // This script manages beginning event.
 
     public Text title;
-    public Text instructions;
     SpriteRenderer blackCurtain;
 
     public GameObject player;
@@ -16,7 +15,6 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
 
 
     int TITLE = 0;
-    int INSTRUC = 1;
     int display = 0;
 
 
@@ -43,56 +41,67 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
                 
                 if (title.color.a <= 0.99f)
                 {
-                    title.color += new Color(0, 0, 0, 0.4f * Time.deltaTime);
+                    title.color += new Color(0, 0, 0, 0.25f * Time.deltaTime);
                 }
                 else
                 {
                     title.color = new Color(1, 1, 1, 1f);
                     titleStayingTime -= Time.deltaTime;
+
+                    if (Input.GetKeyDown(KeyCode.Space)){
+                        titleStayingTime = 0;
+                    }
                 }
             }
             else
             {
                 if (title.color.a >= 0.01f)
                 {
-                    title.color -= new Color(0, 0, 0, 0.4f * Time.deltaTime);
+                    title.color -= new Color(0, 0, 0, 0.25f * Time.deltaTime);
+
+                    if (title.color.a <= 0.618f){
+                        if (!isGameStart)
+                        {
+                            isRevealingScreen = true;
+                        }
+                    }
                 }
                 else
                 {
                     title.color = new Color(1, 1, 1, 0f);
-                    display = INSTRUC;
+                    //display = INSTRUC;
                 }
             }
         }
-        else if (display == INSTRUC)
-        {
+        //else if (display == INSTRUC)
+        //{
 
-            if (instructionStayingTime > 0)
-            {
-                if (instructions.color.a <= 0.99f)
-                {
-                    instructions.color += new Color(0, 0, 0, 0.4f * Time.deltaTime);
-                }
-                else
-                {
-                    instructions.color = new Color(1, 1, 1, 1f);
-                    instructionStayingTime -= Time.deltaTime;
-                }
-            }
-            else
-            {
-                if (instructions.color.a >= 0.01f)
-                {
-                    instructions.color -= new Color(0, 0, 0, 0.4f * Time.deltaTime);
-                }else{
-                    instructions.color = new Color(1, 1, 1, 0f);
-                    if (!isGameStart)
-                    {
-                        isRevealingScreen = true;
-                    }
-                }
-            }
-        }
+            //if (instructionStayingTime > 0)
+            //{
+            //    if (instructions.color.a <= 0.99f)
+            //    {
+            //        instructions.color += new Color(0, 0, 0, 0.4f * Time.deltaTime);
+            //    }
+            //    else
+            //    {
+            //        instructions.color = new Color(1, 1, 1, 1f);
+            //        instructionStayingTime -= Time.deltaTime;
+            //    }
+            //}
+            //else
+            //{
+            //    if (instructions.color.a >= 0.01f)
+            //    {
+            //        instructions.color -= new Color(0, 0, 0, 0.4f * Time.deltaTime);
+            //    }else{
+            //        instructions.color = new Color(1, 1, 1, 0f);
+            //        if (!isGameStart)
+            //        {
+            //            isRevealingScreen = true;
+            //        }
+            //    }
+            //}
+        //}
 
 
         if (isRevealingScreen){
@@ -105,7 +114,7 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
     void RevealScreen(){
 
         if (blackCurtain.color.a >= 0.01f){
-            blackCurtain.color -= new Color(0, 0, 0, 0.4f * Time.deltaTime);
+            blackCurtain.color -= new Color(0, 0, 0, 0.22f * Time.deltaTime);
         }else{
             if (!isPlayerAwake)
             {

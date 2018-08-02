@@ -4654,7 +4654,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 311604170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38.3, y: 1.4, z: 0.5078056}
+  m_LocalPosition: {x: -6.56, y: 1.4, z: 0.5078056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1260355261}
@@ -7679,7 +7679,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0.084381536, b: 0.21698111, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.084381536, b: 0.21698111, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -7690,7 +7690,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.83411
+  orthographic size: 6.545986
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7713,7 +7713,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 197.8, y: 2.4, z: -10}
+  m_LocalPosition: {x: 199.1, y: 1.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1688610400}
@@ -7755,7 +7755,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 1789634593}
-  instructions: {fileID: 741187313}
   player: {fileID: 2015325409}
   titleStayingTime: 4
   instructionStayingTime: 6
@@ -24875,7 +24874,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17, y: 52}
+  m_AnchoredPosition: {x: -115, y: 81}
   m_SizeDelta: {x: 410.5, y: 188.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1789634593
