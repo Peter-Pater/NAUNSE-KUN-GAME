@@ -8,7 +8,9 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
     public Text title;
     SpriteRenderer blackCurtain;
 
+
     public GameObject player;
+    public Tutorial_Beginning beginningTutorial;
 
     public float titleStayingTime;
     public float instructionStayingTime;
@@ -69,39 +71,9 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
                 else
                 {
                     title.color = new Color(1, 1, 1, 0f);
-                    //display = INSTRUC;
                 }
             }
         }
-        //else if (display == INSTRUC)
-        //{
-
-            //if (instructionStayingTime > 0)
-            //{
-            //    if (instructions.color.a <= 0.99f)
-            //    {
-            //        instructions.color += new Color(0, 0, 0, 0.4f * Time.deltaTime);
-            //    }
-            //    else
-            //    {
-            //        instructions.color = new Color(1, 1, 1, 1f);
-            //        instructionStayingTime -= Time.deltaTime;
-            //    }
-            //}
-            //else
-            //{
-            //    if (instructions.color.a >= 0.01f)
-            //    {
-            //        instructions.color -= new Color(0, 0, 0, 0.4f * Time.deltaTime);
-            //    }else{
-            //        instructions.color = new Color(1, 1, 1, 0f);
-            //        if (!isGameStart)
-            //        {
-            //            isRevealingScreen = true;
-            //        }
-            //    }
-            //}
-        //}
 
 
         if (isRevealingScreen){
@@ -119,7 +91,12 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
             if (!isPlayerAwake)
             {
                 player.GetComponent<Player_Animation>().SetWakeUp();
-                isPlayerAwake = true;
+
+                if (player.GetComponent<Player_Animation>().GetCurrentStateInfo().IsName("SittingOnBed"))
+                {
+                    isPlayerAwake = true;
+                    beginningTutorial.displaySpace = true;
+                }
             }
         }
 

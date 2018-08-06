@@ -21,6 +21,11 @@ public class Player_Animation : MonoBehaviour
     }
 
 
+    public AnimatorStateInfo GetCurrentStateInfo(){
+        return myAnimator.GetCurrentAnimatorStateInfo(0);
+    }
+
+
     public void StartWalking()
     {
         myAnimator.SetBool("IsWalking", true);
