@@ -14,6 +14,7 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
     public GameObject player;
     public float playerClimbingSpeed;
 
+    public Tutorial_Generic instruction;
 
     AudioSource myAudioPlayer;
 
@@ -68,6 +69,11 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
 	private void OnTriggerStay2D(Collider2D collision)
 	{
         if (collision.tag == "Player"){
+
+            if (!instruction.isAlreadyTriggered){
+                instruction.ifDisplay = true;
+            }
+
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (!isPlayerClimbing)
@@ -76,8 +82,21 @@ public class Event_GiantStone : MonoBehaviour { // This script makes player clim
                     isPlayerClimbing = true; // Start climbing.
 
                     myAudioPlayer.Play();
+
+                    instruction.isAlreadyTriggered = true;
+                    instruction.ifDisplay = false;
                 }
             }
         }
 	}
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player"){
+            if (instruction.ifDisplay){
+                instruction.ifDisplay = false;
+            }
+        }
+    }
 }

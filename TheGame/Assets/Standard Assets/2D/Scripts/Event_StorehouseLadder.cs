@@ -12,6 +12,7 @@ public class Event_StorehouseLadder : MonoBehaviour { // This script makes playe
     public Vector3 playerTargetPos;
     public float goingUpSpeed;
 
+    public Tutorial_Generic instruction;
 
 	// Use this for initialization
 	void Start () {
@@ -54,13 +55,48 @@ public class Event_StorehouseLadder : MonoBehaviour { // This script makes playe
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.UpArrow))
+        if (collision.tag == "Player")
         {
-            if (!isPlayerClimbing)
+
+            if (instruction != null)
             {
-                player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0); // Stop current motion of player.
-                isPlayerClimbing = true; // Start climbing.
-            }                
+                if (!instruction.isAlreadyTriggered)
+                {
+                    instruction.ifDisplay = true;
+                }
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (!isPlayerClimbing)
+                {
+                    player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0); // Stop current motion of player.
+                    isPlayerClimbing = true; // Start climbing.
+
+                    if (instruction != null)
+                    {
+                        instruction.isAlreadyTriggered = true;
+                        instruction.ifDisplay = false;
+
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player"){
+
+            if (instruction != null)
+            {
+                if (instruction.ifDisplay)
+                {
+                    instruction.ifDisplay = false;
+                }
+            }
+
         }
     }
 }

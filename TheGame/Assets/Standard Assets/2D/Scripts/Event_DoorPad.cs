@@ -7,6 +7,8 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
     public GameObject kunExit; //Assign KUN exit game object to this variable in the inspector.
     public GameObject player;
 
+    public Tutorial_Generic instruction;
+
     bool triggered = false;
 
     SpriteRenderer mySpriteRenderer;
@@ -66,11 +68,28 @@ public class Event_DoorPad : MonoBehaviour { // This script opens the exit insid
     {
         if (other.tag == "Player")
         {
+            if (!instruction.isAlreadyTriggered){
+                instruction.ifDisplay = true;
+            }
+
             if (Input.GetKeyDown(KeyCode.Space) && !triggered){
                 triggered = true;
                 GetComponent<AudioSource>().Play();
                 player.GetComponent<Player_Animation>().SetPressButton();
                 freezeTimerStart = true;
+
+                instruction.isAlreadyTriggered = true;
+                instruction.ifDisplay = false;
+            }
+        }
+    }
+
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Player"){
+            if (instruction.ifDisplay){
+                instruction.ifDisplay = false;
             }
         }
     }

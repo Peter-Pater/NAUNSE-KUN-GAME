@@ -8,6 +8,8 @@ public class Event_PeakWindow : MonoBehaviour { // This script triggers views fr
     public Transform camTrans;
     public GameObject viewPrefab;
 
+    public Tutorial_Generic instruction;
+
 
     bool isViewTriggered = false;
     GameObject viewObj;
@@ -30,19 +32,43 @@ public class Event_PeakWindow : MonoBehaviour { // This script triggers views fr
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
+        if (collision.tag == "Player"){
 
-            if (!isViewTriggered){
-                playerMove.LockControl();
+            if (!instruction.isAlreadyTriggered){
+                instruction.ifDisplay = true;
+            }
 
-                viewObj = Instantiate(viewPrefab) as GameObject;
-                viewObj.transform.position = new Vector2(camTrans.position.x, camTrans.position.y);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                instruction.isAlreadyTriggered = true;
+                instruction.ifDisplay = false;
 
-                isViewTriggered = true;
-            }else{
-                Destroy(viewObj);
-                playerMove.UnlockControl();
-                isViewTriggered = false;
+                if (!isViewTriggered)
+                {
+                    playerMove.LockControl();
+
+                    viewObj = Instantiate(viewPrefab) as GameObject;
+                    viewObj.transform.position = new Vector2(camTrans.position.x, camTrans.position.y);
+
+                    isViewTriggered = true;
+                }
+                else
+                {
+                    Destroy(viewObj);
+                    playerMove.UnlockControl();
+                    isViewTriggered = false;
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            if (instruction.ifDisplay)
+            {
+                instruction.ifDisplay = false;
             }
         }
     }

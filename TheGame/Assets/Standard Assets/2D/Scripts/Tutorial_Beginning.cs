@@ -50,7 +50,7 @@ public class Tutorial_Beginning : MonoBehaviour { // This script manages tutoria
         }else{
             if (spaceTutorial.color.a >= 0.01f)
             {
-                spaceTutorial.color -= new Color(0, 0, 0, 0.8f * Time.deltaTime);
+                spaceTutorial.color -= new Color(0, 0, 0, 1f * Time.deltaTime);
             }else{
                 spaceTutorial.color = new Color(1, 1, 1, 0);
             }
@@ -69,9 +69,11 @@ public class Tutorial_Beginning : MonoBehaviour { // This script manages tutoria
                 {
                     leftrightTutorial.GetChild(0).GetComponent<SpriteRenderer>().color += new Color(0, 0, 0, 0.8f * Time.deltaTime);
                     leftrightTutorial.GetChild(1).GetComponent<SpriteRenderer>().color += new Color(0, 0, 0, 0.8f * Time.deltaTime);
+                    leftrightTutorial.GetChild(2).GetComponent<TextMesh>().color += new Color(0, 0, 0, 0.8f * Time.deltaTime);
                 }else{
                     leftrightTutorial.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                     leftrightTutorial.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                    leftrightTutorial.GetChild(2).GetComponent<TextMesh>().color = new Color(leftrightTutorial.GetChild(2).GetComponent<TextMesh>().color.r,leftrightTutorial.GetChild(2).GetComponent<TextMesh>().color.g, leftrightTutorial.GetChild(2).GetComponent<TextMesh>().color.b, 1);
                 }
             }
 
@@ -87,11 +89,13 @@ public class Tutorial_Beginning : MonoBehaviour { // This script manages tutoria
             {
                 leftrightTutorial.GetChild(0).GetComponent<SpriteRenderer>().color -= new Color(0, 0, 0, 0.8f * Time.deltaTime);
                 leftrightTutorial.GetChild(1).GetComponent<SpriteRenderer>().color -= new Color(0, 0, 0, 0.8f * Time.deltaTime);
+                leftrightTutorial.GetChild(2).GetComponent<TextMesh>().color -= new Color(0, 0, 0, 0.8f * Time.deltaTime);
             }
             else
             {
                 leftrightTutorial.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
                 leftrightTutorial.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+                leftrightTutorial.GetChild(2).GetComponent<TextMesh>().color = new Color(leftrightTutorial.GetChild(2).GetComponent<TextMesh>().color.r, leftrightTutorial.GetChild(2).GetComponent<TextMesh>().color.g, leftrightTutorial.GetChild(2).GetComponent<TextMesh>().color.b, 0);
             }
         }
     }
