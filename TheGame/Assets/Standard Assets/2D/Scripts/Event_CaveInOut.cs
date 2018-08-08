@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Event_CaveInOut : MonoBehaviour { // This script sends player into cave.
 
-    public Transform cavePortal; // "Portal" that sends player to cave. 
+    Transform cavePortal; // "Portal" that sends player to cave. 
     public float portalStayTime; // How long will portal stay there until it goes back up.
 
 
-    Vector3 portalPrevPos; // Portal's original position.
+    public Vector3 portalPrevPos; // Portal's original position.
     bool timerStart = false;
     float portalTimer;
 
 
 	// Use this for initialization
 	void Start () {
+        cavePortal = transform.GetChild(0);
         portalTimer = portalStayTime;
 	}
 	
@@ -48,7 +49,6 @@ public class Event_CaveInOut : MonoBehaviour { // This script sends player into 
             // move down the portal (which triggers transition when touching player)
             // so that player touches it.
             // Start the timer.
-            portalPrevPos = cavePortal.position;
             cavePortal.position = transform.position;
             timerStart = true;
         }

@@ -11785,8 +11785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1a03223528144a191d9e4b59b4b659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cavePortal: {fileID: 1603209807}
   portalStayTime: 1
+  portalPrevPos: {x: 39.77625, y: 42.05212, z: 0}
 --- !u!212 &714648972
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21824,7 +21824,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1467517696}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.39, z: 0}
+  m_LocalPosition: {x: 0, y: 1.3900007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1481901960}
@@ -22057,8 +22057,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1a03223528144a191d9e4b59b4b659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cavePortal: {fileID: 1467517697}
   portalStayTime: 1
+  portalPrevPos: {x: 3.02, y: 45.87157, z: 0}
 --- !u!212 &1481901963
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23997,7 +23997,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1603209806}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 1.158, z: 0}
+  m_LocalPosition: {x: 0.09999987, y: 1.1580002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 714648969}
@@ -25827,7 +25827,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 1fc22bd4704474ed98c3df4277f2ec1b, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
