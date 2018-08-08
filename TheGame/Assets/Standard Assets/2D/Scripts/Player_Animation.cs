@@ -65,7 +65,6 @@ public class Player_Animation : MonoBehaviour
     public void StopPushingTree()
     {
         myAnimator.SetBool("IsPushingTree", false);
-        myAnimator.SetBool("IsWalking", true);
 
     }
 

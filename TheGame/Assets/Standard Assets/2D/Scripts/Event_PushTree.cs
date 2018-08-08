@@ -30,9 +30,8 @@ public class Event_PushTree : MonoBehaviour { // This script manages pushing tre
 
         if (isPushFinished){
             isPlayerPushing = false;
-            player.GetComponent<Player_Animation>().StopPushingTree();
+            //player.GetComponent<Player_Animation>().StopPushingTree();
             myRigidbody.velocity = new Vector3(0, 0, 0);
-            //myRigidbody.gravityScale = 0;
         }
 
         if (isPlayerPushing){
@@ -64,6 +63,7 @@ public class Event_PushTree : MonoBehaviour { // This script manages pushing tre
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
             if (isCutDown && !isPlayerPushing && !isPushFinished){
                 player.transform.position = new Vector3(transform.position.x + 5.5f, player.transform.position.y, player.transform.position.z);
+                player.GetComponent<Player_Movement>().FlipLeft();
                 player.GetComponent<Player_Animation>().StartPushingTree();
                 isPlayerPushing = true;
             }
