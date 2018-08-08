@@ -27,6 +27,10 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
     SpriteRenderer openLayer;
 
 
+    GameObject puzzle1Obj;
+    GameObject puzzle2Obj;
+
+
     // This timer is used to temporarily
     // lock player control during
     // animation
@@ -51,6 +55,8 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
 
 	// Update is called once per frame
 	void Update () {
+
+        RelocatePuzzles();
 
         if (isContainerOpen)
         {
@@ -108,7 +114,7 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
                 myAudioPlayer.Play();
                 player.GetComponent<Player_Movement>().LockControl();
 
-                GameObject puzzle1Obj = Instantiate(puzzle1Prefab) as GameObject;
+                puzzle1Obj = Instantiate(puzzle1Prefab) as GameObject;
                 puzzle1Obj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
                 isPuzzleTriggered = true;
             }
@@ -136,7 +142,20 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
 
 
     public void TriggerPuzzle2(){
-        GameObject puzzle2Obj = Instantiate(puzzle2Prefab) as GameObject;
+        puzzle2Obj = Instantiate(puzzle2Prefab) as GameObject;
         puzzle2Obj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
+    }
+
+
+    void RelocatePuzzles(){
+        if (puzzle1Obj != null)
+        {
+            puzzle1Obj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
+        }
+
+        if (puzzle2Obj != null)
+        {
+            puzzle2Obj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
+        }
     }
 }

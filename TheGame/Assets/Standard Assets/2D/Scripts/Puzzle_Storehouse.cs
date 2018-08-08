@@ -39,7 +39,6 @@ public class Puzzle_Storehouse: MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		MoveCursor();
 
         if (isCorrect)
         {
@@ -53,6 +52,8 @@ public class Puzzle_Storehouse: MonoBehaviour {
                 Destroy(this.gameObject);
                 Destroy(GameObject.Find("cursor(Clone)"));
             }
+        }else{
+            MoveCursor();
         }
 	}
 	

@@ -17,6 +17,7 @@ public class Puzzle_CoreContainer_1 : MonoBehaviour
 
 
     Event_CoreContainer ccEvent;
+    float destroyDelay = 0.6f;
 
 
     // Use this for initialization
@@ -48,10 +49,6 @@ public class Puzzle_CoreContainer_1 : MonoBehaviour
     void Update()
     {
 
-        MoveCursor();
-        ChangeColor();
-
-
         // Check if the puzzle is solved.
         bool isSolved = CheckWinningCondition();
 
@@ -60,8 +57,17 @@ public class Puzzle_CoreContainer_1 : MonoBehaviour
         // trigger the second puzzle.
         // Destory this puzzle.
         if (isSolved){
-            ccEvent.TriggerPuzzle2();
-            Destroy(this.gameObject);
+            destroyDelay -= Time.deltaTime;
+
+            if (destroyDelay <= 0)
+            {
+                ccEvent.TriggerPuzzle2();
+                Destroy(this.gameObject);
+            }
+
+        }else{
+            MoveCursor();
+            ChangeColor();
         }
     }
 
