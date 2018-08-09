@@ -11,6 +11,7 @@ public class Puzzle_CoreContainer_1 : MonoBehaviour
 
 
     GameObject[][] squareMatrix = new GameObject[4][]; // An array of all 16 squares
+    GameObject[] squaresToBlink = new GameObject[6]; // An array of squares to blink at the beginning.
     GameObject currentSquareObj; // Keep track of the current gameObj.
 
     GameObject cursor;
@@ -18,6 +19,11 @@ public class Puzzle_CoreContainer_1 : MonoBehaviour
 
     Event_CoreContainer ccEvent;
     float destroyDelay = 0.6f;
+
+
+    public bool isPuzzleStarted = false;
+    public float blinkDelay;
+    public float blinkDuration;
 
 
     // Use this for initialization
@@ -37,6 +43,7 @@ public class Puzzle_CoreContainer_1 : MonoBehaviour
             squareMatrix[rowNum][columnNum] = sqToAdd;
         }
 
+
         // Initialize cursor
         cursor = transform.GetChild(16).gameObject;
 
@@ -48,26 +55,39 @@ public class Puzzle_CoreContainer_1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isPuzzleStarted)
+        {
+            blinkDelay -= Time.deltaTime;
 
-        // Check if the puzzle is solved.
-        bool isSolved = CheckWinningCondition();
-
-
-        // If this puzzle is solved,
-        // trigger the second puzzle.
-        // Destory this puzzle.
-        if (isSolved){
-            destroyDelay -= Time.deltaTime;
-
-            if (destroyDelay <= 0)
-            {
-                ccEvent.TriggerPuzzle2();
-                Destroy(this.gameObject);
+            if (blinkDelay <= 0){
+                SquareBlink();
             }
+        }
+        else
+        {
+            // Check if the puzzle is solved.
+            bool isSolved = CheckWinningCondition();
 
-        }else{
-            MoveCursor();
-            ChangeColor();
+
+            // If this puzzle is solved,
+            // trigger the second puzzle.
+            // Destory this puzzle.
+            if (isSolved)
+            {
+                destroyDelay -= Time.deltaTime;
+
+                if (destroyDelay <= 0)
+                {
+                    ccEvent.TriggerPuzzle2();
+                    Destroy(this.gameObject);
+                }
+
+            }
+            else
+            {
+                MoveCursor();
+                ChangeColor();
+            }
         }
     }
 
@@ -162,5 +182,30 @@ public class Puzzle_CoreContainer_1 : MonoBehaviour
         }
 
         return true;
+    }
+
+
+    void SquareBlink()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                squareMatrix[i][j].GetComponent<Puzzle_CC1_Square>().Blink();
+            }
+        }
+
+        blinkDuration -= Time.deltaTime;
+        if (blinkDuration <= 0){
+            
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    squareMatrix[i][j].GetComponent<Puzzle_CC1_Square>().InitiateColor();
+                }
+            }
+            isPuzzleStarted = true;
+        }
     }
 }
