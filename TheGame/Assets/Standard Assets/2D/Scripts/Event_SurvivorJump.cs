@@ -6,10 +6,11 @@ public class Event_SurvivorJump : MonoBehaviour { // This script manages event o
 
     public GameObject player;
 	public GameObject treeBody;
-	public GameObject survivor;
+    public Transform survivorTrans;
 
     bool isCutsceneOn = false;
     bool isSurvivorJumped = false;
+    bool isWaterSoundPlayed = false;
 
 
     // This timer is used to temporarily
@@ -26,20 +27,32 @@ public class Event_SurvivorJump : MonoBehaviour { // This script manages event o
 	
 	// Update is called once per frame
 	void Update () {
-		
-        if (isCutsceneOn){
+
+        if (isCutsceneOn)
+        {
             freezeTimer -= Time.deltaTime;
 
-            if (freezeTimer <= 1.2f){
+            if (freezeTimer <= 1.2f)
+            {
                 SurvivorJump();
                 isSurvivorJumped = true;
             }
 
-            if (freezeTimer <= 0){
+            if (freezeTimer <= 0)
+            {
                 player.GetComponent<Player_Movement>().UnlockControl();
                 isCutsceneOn = false;
             }
         }
+
+
+        if (survivorTrans.position.y < 10f && !isWaterSoundPlayed){
+            GetComponent<AudioSource>().Play();
+            isWaterSoundPlayed = true;
+        }
+
+
+
 	}
 	
 	void OnTriggerEnter2D(Collider2D other){
@@ -53,6 +66,6 @@ public class Event_SurvivorJump : MonoBehaviour { // This script manages event o
 	}
 	
 	void SurvivorJump(){
-        survivor.GetComponent<Animator>().SetTrigger("SetJump");
+        survivorTrans.GetComponent<Animator>().SetTrigger("SetJump");
 	}
 }

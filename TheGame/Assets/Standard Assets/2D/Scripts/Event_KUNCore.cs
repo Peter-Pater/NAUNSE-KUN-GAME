@@ -31,6 +31,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
     AudioSource myAudioPlayer;
     AudioSource powerUpPlayer;
+    AudioSource transformPlayer;
     public AudioSource kunEnginePlayer;
 
 
@@ -75,6 +76,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
 
         myAudioPlayer = GetComponent<AudioSource>();
         powerUpPlayer = transform.GetChild(1).GetComponent<AudioSource>();
+        transformPlayer = kunTrans.GetChild(0).GetComponent<AudioSource>();
 
 
         trans = transObj.GetComponent<Transition>();
@@ -258,6 +260,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
         
         if (!isTransfromed){
             kunTrans.GetComponent<Animator>().SetTrigger("SetTransform");
+            transformPlayer.Play();
             isTransfromed = true;
         }
     }
