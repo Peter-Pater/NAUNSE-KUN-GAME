@@ -52,6 +52,8 @@ public class Event_StorehouseLock : MonoBehaviour { // This script triggers the 
                     // instantiate the puzzle at the center of the camera.
                     // Mark the state.
                     player.GetComponent<Player_Movement>().LockControl();
+                    player.GetComponent<Player_Movement>().Standstill();
+
                     GameObject puzzleObj = Instantiate(puzzlePrefab) as GameObject;
                     puzzleObj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);
                     isPuzzleTriggered = true;

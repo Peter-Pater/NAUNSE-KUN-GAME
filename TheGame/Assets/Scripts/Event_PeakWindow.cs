@@ -40,12 +40,14 @@ public class Event_PeakWindow : MonoBehaviour { // This script triggers views fr
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                
                 instruction.isAlreadyTriggered = true;
                 instruction.ifDisplay = false;
 
                 if (!isViewTriggered)
                 {
                     playerMove.LockControl();
+                    playerMove.Standstill();
 
                     viewObj = Instantiate(viewPrefab) as GameObject;
                     viewObj.transform.position = new Vector2(camTrans.position.x, camTrans.position.y);

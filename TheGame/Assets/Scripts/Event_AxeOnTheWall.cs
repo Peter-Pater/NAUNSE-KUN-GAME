@@ -12,13 +12,23 @@ public class Event_AxeOnTheWall : MonoBehaviour { // This script makes player ob
     bool isAxeObtained = false;
 
 
+    // This timer is used to temporarily
+    // lock player control during
+    // animation
+    public float animFreezeTime;
+    float freezeTimer;
+    bool freezeTimerStart = false;
+
+
 	// Use this for initialization
 	void Start () {
         playerAnimationControl = player.GetComponent<Player_Animation>();
-
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+
+        freezeTimer = animFreezeTime;
 	}
 	
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -26,6 +36,20 @@ public class Event_AxeOnTheWall : MonoBehaviour { // This script makes player ob
             if (mySpriteRenderer.color.a >= 0.01f)
             {
                 mySpriteRenderer.color -= new Color(0, 0, 0, 0.7f * Time.deltaTime);
+            }
+        }
+
+
+        if (freezeTimerStart)
+        {
+            player.GetComponent<Player_Movement>().LockControl();
+
+            freezeTimer -= Time.deltaTime;
+            if (freezeTimer <= 0)
+            {
+                player.GetComponent<Player_Movement>().UnlockControl();
+                freezeTimer = animFreezeTime;
+                freezeTimerStart = false;
             }
         }
 	}
@@ -36,6 +60,7 @@ public class Event_AxeOnTheWall : MonoBehaviour { // This script makes player ob
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
             if (!isAxeObtained)
             {
+                freezeTimerStart = true;
                 playerAnimationControl.SetPickAxe();
                 player.GetComponent<Player_Items>().whatsInHand = General_ItemList.AXE;
 

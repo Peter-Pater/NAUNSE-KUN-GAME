@@ -113,6 +113,7 @@ public class Event_CoreContainer : MonoBehaviour { // This script triggers the t
             if (!isContainerOpen && !isPuzzleTriggered && isCoreInContainer){
                 myAudioPlayer.Play();
                 player.GetComponent<Player_Movement>().LockControl();
+                player.GetComponent<Player_Movement>().Standstill();
 
                 puzzle1Obj = Instantiate(puzzle1Prefab) as GameObject;
                 puzzle1Obj.transform.position = new Vector2(cameraTrans.position.x, cameraTrans.position.y);

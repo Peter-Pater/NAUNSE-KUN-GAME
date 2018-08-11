@@ -109,6 +109,7 @@ public class Event_BrokenMachine : MonoBehaviour { // This script triggers the f
                     // Mark the state.
                     myAudioPlayer.Play();
                     player.GetComponent<Player_Movement>().LockControl();
+                    player.GetComponent<Player_Movement>().Standstill();
 
 
                     puzzleObj = Instantiate(puzzlePrefab) as GameObject;
