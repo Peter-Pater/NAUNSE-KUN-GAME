@@ -11,6 +11,7 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
 
     public GameObject player;
     public Tutorial_Beginning beginningTutorial;
+    public Environment_InsideKunAlert alert;
 
     public float titleStayingTime;
     public float instructionStayingTime;
@@ -88,6 +89,8 @@ public class Camera_Beginning : MonoBehaviour { // This script manages beginning
         if (blackCurtain.color.a >= 0.01f){
             blackCurtain.color -= new Color(0, 0, 0, 0.22f * Time.deltaTime);
         }else{
+            alert.isStarted = true;
+
             if (!isPlayerAwake)
             {
                 player.GetComponent<Player_Animation>().SetWakeUp();

@@ -42,7 +42,7 @@ public class Scene_BGMManage : MonoBehaviour { // This script manages scene back
 	}
 
 
-    public void PlayeBGM(){
+    public void PlayBGM(){
         myAudioPlayer.Play();
         raiseVolume = true;
 

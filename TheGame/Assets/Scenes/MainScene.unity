@@ -284,7 +284,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: add9c4085075c466e96ffe571f8de03e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3584,7 +3584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6eada4517b90441dac73035641ef719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetVolume: 0.2
+  targetVolume: 0.5
 --- !u!1 &248936897
 GameObject:
   m_ObjectHideFlags: 0
@@ -3855,7 +3855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6eada4517b90441dac73035641ef719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetVolume: 0.65
+  targetVolume: 1
 --- !u!1 &257571835
 GameObject:
   m_ObjectHideFlags: 0
@@ -8431,6 +8431,7 @@ MonoBehaviour:
   title: {fileID: 1789634593}
   player: {fileID: 2015325409}
   beginningTutorial: {fileID: 281191040}
+  alert: {fileID: 1895396950}
   titleStayingTime: 4
   instructionStayingTime: 6
 --- !u!1 &530289927
@@ -24349,7 +24350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6eada4517b90441dac73035641ef719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetVolume: 0.65
+  targetVolume: 1
 --- !u!1 &1603209806
 GameObject:
   m_ObjectHideFlags: 0
@@ -28877,7 +28878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6eada4517b90441dac73035641ef719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetVolume: 0.65
+  targetVolume: 1
 --- !u!1 &1880399451
 GameObject:
   m_ObjectHideFlags: 0
@@ -28949,6 +28950,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1895396947}
   - component: {fileID: 1895396948}
+  - component: {fileID: 1895396950}
+  - component: {fileID: 1895396949}
   m_Layer: 0
   m_Name: Red Light
   m_TagString: Untagged
@@ -29015,6 +29018,115 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!82 &1895396949
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1895396946}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7308b6ba13a814f7f95ded66bb1e1d76, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1895396950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1895396946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 477d37ec6c2d6482f807237daa431b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetVolume: 0.35
+  isStarted: 0
+  camMov: {fileID: 519420030}
 --- !u!1001 &1901636035
 Prefab:
   m_ObjectHideFlags: 0

@@ -67,7 +67,7 @@ public class Transition : MonoBehaviour { // The script transit player and camer
                     cameraObj.GetComponent<Camera_Movement>().currentScene = targetScene;
                     cameraObj.GetComponent<Camera_Movement>().UnlockCamera();
 
-                    targetSceneObj.GetComponent<Scene_BGMManage>().PlayeBGM();
+                    targetSceneObj.GetComponent<Scene_BGMManage>().PlayBGM();
 
                     isRelocateComplete = true;
                 }
