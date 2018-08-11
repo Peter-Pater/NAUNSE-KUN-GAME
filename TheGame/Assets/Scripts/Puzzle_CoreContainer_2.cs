@@ -111,9 +111,9 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
 
 
     void Match(){
-
+        
         if (spinSpeed == 0){
-            spinSpeed = 80;
+            spinSpeed = 60;
         }else if (Input.GetKeyDown(KeyCode.Space) && !mergeTriggered){
 
             float x0 = spinningObj[current].transform.position.x;
@@ -142,13 +142,13 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
         }
 
         if (mergeTriggered){
-
-            if (Mathf.Abs(staticObj[current].transform.position.x - triggers[current].transform.position.x) > 0.1f || Mathf.Abs(staticObj[current].transform.position.y - triggers[current].transform.position.y) > 0.1f){
-                triggers[current].transform.position = Vector3.MoveTowards(triggers[current].transform.position, staticObj[current].transform.position, 15 * Time.deltaTime);
+            
+            if (Mathf.Abs(staticObj[current].transform.position.x - triggers[current].transform.position.x) > 0.2f || Mathf.Abs(staticObj[current].transform.position.y - triggers[current].transform.position.y) > 0.2f){
+                triggers[current].transform.position = Vector3.MoveTowards(triggers[current].transform.position, staticObj[current].transform.position, (Mathf.Abs(spinSpeed) / 4) * Time.deltaTime);
             }else{
                 triggers[current].GetComponent<Renderer>().enabled = false;
                 counter++;
-                if (counter >= 6){
+                if (counter >= 8){
                     ccEvent.isPuzzleTriggered = false;
                     ccEvent.isContainerOpen = true;
                     ccEvent.puzzle2Restart = false;
@@ -158,11 +158,11 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
                     Destroy(this.gameObject);
                 }else{
                     if (counter == 2){
-                        spinSpeed = 120;
+                        spinSpeed = 80;
                     }else if (counter == 4){
-                        spinSpeed = -160;
+                        spinSpeed = -100;
                     }else if (counter == 7){
-                        spinSpeed = 200;
+                        spinSpeed = 150;
                     }
                     current = order[counter];
                     UpdateCursorPosition(current, order[counter - 1]);

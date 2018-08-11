@@ -11,6 +11,12 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
     int launchingPhase = 0;
 
 
+    // Keep track of floating state in launching phase 2.
+    int FLOATINGUP = 0;
+    int FLOATINGDOWN = 1;
+    int floatingState = 0;
+
+
     // Keep track of states
     bool isLaunching = false;
     bool isCutsceneOn = false;
@@ -25,8 +31,8 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 
     public float phase2Height; // The minimal height KUN has to reach in order to get to phase 2.
     public float phase2LaunchingTime; // The minimal launching time KUN has to go through before launching in phase 2.
-    public Vector3 floatingPointA; // The range of floating in phase 2.
-    public Vector3 floatingPointB;
+    public float floatingHeightA; // The range of floating in phase 2.
+    public float floatingHeightB;
     public float originalHeight; // The original height before starting launching.
     float phase2Timer;
 
@@ -124,6 +130,11 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
                 // If in phase 2,
                 // reset launching timer.
                 phase2Timer = phase2LaunchingTime;
+
+                // KUN goes back to phase 2 starting height.
+                if (kun.transform.position.y > phase2Height){
+                    kun.transform.position += Vector3.down * launchingSpeed * Time.deltaTime;
+                }
             }
         }
 
@@ -215,7 +226,30 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 
 
     void KUNFloating(){
-        kun.transform.position = Vector3.Lerp(floatingPointA, floatingPointB, Mathf.Sin(Time.time * Mathf.PI * 0.2f));
+        if (floatingState == FLOATINGUP)
+        {
+            
+            if (kun.transform.position.y < floatingHeightA)
+            {
+                kun.transform.position += Vector3.up * launchingSpeed * Time.deltaTime;
+            }
+            else
+            {
+                floatingState = FLOATINGDOWN;
+            }
+        }
+        else if (floatingState == FLOATINGDOWN)
+        {
+
+            if (transform.position.y > floatingHeightB)
+            {
+                transform.position += Vector3.down * launchingSpeed * Time.deltaTime;
+            }
+            else
+            {
+                floatingState = FLOATINGUP;
+            }
+        }
     }
 
 
