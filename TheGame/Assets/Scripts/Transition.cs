@@ -13,6 +13,7 @@ public class Transition : MonoBehaviour { // The script transit player and camer
     public GameObject targetPosObj;
     public Vector3 cameraTargetPos;
     public int targetScene;
+    public int targetFacingDirect;
 
 
     // Keep track of transition state
@@ -60,6 +61,11 @@ public class Transition : MonoBehaviour { // The script transit player and camer
                     // relocate player and camera to the new position.
                     player.transform.position = targetPosObj.transform.position;
                     cameraObj.transform.position = cameraTargetPos;
+                    if (targetFacingDirect == 1){
+                        player.GetComponent<Player_Movement>().FlipRight();
+                    }else{
+                        player.GetComponent<Player_Movement>().FlipLeft();
+                    }
 
 
                     // Change the current scene.

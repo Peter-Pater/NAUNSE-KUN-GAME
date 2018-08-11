@@ -184,7 +184,6 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
                 if ((trans.isTransiting && trans.isRelocateComplete) || (!trans.isTransiting && !trans.isRelocateComplete))
                 {
                     cameraObj.GetComponent<Camera_CustomizeView>().CustomizeView(cutsceneCameraViewSize, cutsceneCameraPos);
-                    //player.transform.parent = kunTrans;
                     player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
                     KUNRise();
                 }

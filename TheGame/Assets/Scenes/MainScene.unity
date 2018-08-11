@@ -492,6 +492,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 1749829708}
   cameraTargetPos: {x: 198.3, y: 2, z: -10}
   targetScene: 0
+  targetFacingDirect: 1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 6584484}
@@ -3090,6 +3091,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 1855851248}
   cameraTargetPos: {x: 39.8, y: 37, z: -10}
   targetScene: 1
+  targetFacingDirect: 1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 1336059401}
@@ -3437,6 +3439,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 2029059635}
   cameraTargetPos: {x: 32.8, y: 75.9, z: -10}
   targetScene: 1
+  targetFacingDirect: 1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 1879792791}
@@ -7690,6 +7693,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 1221035373}
   cameraTargetPos: {x: 2.1, y: 42.2, z: -10}
   targetScene: 1
+  targetFacingDirect: -1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 1336059401}
@@ -10249,6 +10253,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 1244688766}
   cameraTargetPos: {x: -47.3, y: 1.6, z: -10}
   targetScene: 2
+  targetFacingDirect: -1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 6584484}
@@ -12616,6 +12621,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 1014944804}
   cameraTargetPos: {x: 199.28, y: 42.13, z: -10}
   targetScene: 3
+  targetFacingDirect: 1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 6584484}
@@ -18997,6 +19003,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 3064872}
   cameraTargetPos: {x: 93.7, y: 19.2, z: -10}
   targetScene: 1
+  targetFacingDirect: -1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 1595646074}
@@ -19912,6 +19919,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 1314740294}
   cameraTargetPos: {x: 192, y: 77.8, z: -10}
   targetScene: 5
+  targetFacingDirect: 1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 6584484}
@@ -21219,6 +21227,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 1329350636}
   cameraTargetPos: {x: -14.8, y: 1.6, z: -10}
   targetScene: 1
+  targetFacingDirect: 1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 245376958}
@@ -21953,7 +21962,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d09bc1fa20b5847ca818e8c6ec40fe00, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -22566,6 +22575,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 1424415303}
   cameraTargetPos: {x: 275.6, y: 70.9, z: -10}
   targetScene: 4
+  targetFacingDirect: 1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 6584484}
@@ -24738,6 +24748,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 1458277158}
   cameraTargetPos: {x: 321.81, y: 72.17, z: -10}
   targetScene: 4
+  targetFacingDirect: -1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 6584484}
@@ -27023,6 +27034,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 1109955600}
   cameraTargetPos: {x: 4.5, y: 58.7, z: -10}
   targetScene: 1
+  targetFacingDirect: -1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 256412191}
@@ -28726,6 +28738,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 1632494722}
   cameraTargetPos: {x: 90.9, y: 1.6, z: -10}
   targetScene: 1
+  targetFacingDirect: -1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 579123007}
@@ -30191,7 +30204,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 59f410c0e78c147489b6239465755551, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.35
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -31835,6 +31848,7 @@ MonoBehaviour:
   targetPosObj: {fileID: 1753647627}
   cameraTargetPos: {x: 201, y: 92.9, z: -10}
   targetScene: 6
+  targetFacingDirect: -1
   isTransiting: 0
   isRelocateComplete: 0
   currentSceneObj: {fileID: 256412191}
