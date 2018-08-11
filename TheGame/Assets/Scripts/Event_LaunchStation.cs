@@ -132,8 +132,8 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
                 phase2Timer = phase2LaunchingTime;
 
                 // KUN goes back to phase 2 starting height.
-                if (kun.transform.position.y > phase2Height){
-                    kun.transform.position += Vector3.down * 0.3f * Time.deltaTime;
+                if (kun.transform.position.y > floatingHeightB){
+                    kun.transform.position += Vector3.down * 2f * Time.deltaTime;
                 }
             }
         }
@@ -160,7 +160,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
         if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.Space)){
             if (!isCutsceneOn && !isLaunching)
             {
-                player.transform.position = new Vector3(transform.position.x - 0.25f, player.transform.position.y, 0);
+                player.transform.position = new Vector3(transform.position.x - 0.35f, player.transform.position.y, 0);
                 player.GetComponent<Player_Movement>().FlipRight();
                 isLaunching = true;
             }
@@ -233,7 +233,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
             
             if (kun.transform.position.y < floatingHeightA)
             {
-                kun.transform.position += Vector3.up * 0.3f * Time.deltaTime;
+                kun.transform.position += Vector3.up * 2f * Time.deltaTime;
             }
             else
             {
@@ -242,10 +242,10 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
         }
         else if (floatingState == FLOATINGDOWN)
         {
-
+            
             if (transform.position.y > floatingHeightB)
             {
-                transform.position += Vector3.down * 0.3f * Time.deltaTime;
+                kun.transform.position += Vector3.down * 2f * Time.deltaTime;
             }
             else
             {
