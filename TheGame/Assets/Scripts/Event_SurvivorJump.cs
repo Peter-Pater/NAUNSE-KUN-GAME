@@ -32,7 +32,7 @@ public class Event_SurvivorJump : MonoBehaviour { // This script manages event o
         {
             freezeTimer -= Time.deltaTime;
 
-            if (freezeTimer <= 1.2f)
+            if (freezeTimer <= 3.5f)
             {
                 SurvivorJump();
                 isSurvivorJumped = true;
@@ -40,16 +40,22 @@ public class Event_SurvivorJump : MonoBehaviour { // This script manages event o
 
             if (freezeTimer <= 0)
             {
+                if (!isWaterSoundPlayed)
+                {
+                    GetComponent<AudioSource>().Play();
+                    isWaterSoundPlayed = true;
+                }
+
                 player.GetComponent<Player_Movement>().UnlockControl();
                 isCutsceneOn = false;
             }
         }
 
 
-        if (survivorTrans.position.y < 10f && !isWaterSoundPlayed){
-            GetComponent<AudioSource>().Play();
-            isWaterSoundPlayed = true;
-        }
+        //if (survivorTrans.position.y < 10f && !isWaterSoundPlayed){
+        //    GetComponent<AudioSource>().Play();
+        //    isWaterSoundPlayed = true;
+        //}
 
 
 

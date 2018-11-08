@@ -31628,7 +31628,7 @@ MonoBehaviour:
   player: {fileID: 2015325409}
   treeBody: {fileID: 1590792393}
   survivorTrans: {fileID: 178736224}
-  freezeTime: 3
+  freezeTime: 5
 --- !u!82 &2017952627
 AudioSource:
   m_ObjectHideFlags: 0
