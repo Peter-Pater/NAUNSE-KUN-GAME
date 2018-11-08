@@ -152,6 +152,7 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
             // since player will be moving without
             // player control.
             playerMove.LockControl();
+            //playerMove.isCutScene = true;
             player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             player.GetComponent<Player_Constraints>().enabled = false;
 
@@ -260,6 +261,8 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
         if (!isTransfromed){
             kunTrans.GetComponent<Animator>().SetTrigger("SetTransform");
             transformPlayer.Play();
+
+            kunTrans.GetChild(9).GetComponent<Collider2D>().isTrigger = false;
             isTransfromed = true;
         }
     }
@@ -268,9 +271,10 @@ public class Event_KUNCore : MonoBehaviour { // This script controls events rega
     void StopCutscene(){
         cameraObj.GetComponent<Camera_CustomizeView>().BackToNormal();
 
-        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        //player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         player.GetComponent<Player_Constraints>().enabled = true;
-        player.GetComponent<Player_Movement>().UnlockControl();
+        playerMove.isCutScene = false;
+        playerMove.UnlockControl();
 
         isCutsceneOn = false;
 

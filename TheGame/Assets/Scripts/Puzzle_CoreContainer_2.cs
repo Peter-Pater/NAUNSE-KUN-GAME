@@ -90,15 +90,15 @@ public class Puzzle_CoreContainer_2 : MonoBehaviour { // This script is about th
         }
 
         // Cheating code.
-        if (Input.GetKeyDown(KeyCode.C)){
-            ccEvent.isPuzzleTriggered = false;
-            ccEvent.isContainerOpen = true;
-            ccEvent.puzzle2Restart = false;
-            ccEvent.UnlockPlayer();
-            mergeTriggered = false;
-            //Debug.Log("Activated!");
-            Destroy(this.gameObject);
-        }
+        //if (Input.GetKeyDown(KeyCode.C)){
+        //    ccEvent.isPuzzleTriggered = false;
+        //    ccEvent.isContainerOpen = true;
+        //    ccEvent.puzzle2Restart = false;
+        //    ccEvent.UnlockPlayer();
+        //    mergeTriggered = false;
+        //    //Debug.Log("Activated!");
+        //    Destroy(this.gameObject);
+        //}
 	}
 
 

@@ -6,6 +6,7 @@ public class Player_Movement : MonoBehaviour
 { // This script is player control
 
     bool isControlLocked = false;
+    public bool isCutScene = false;
 
     public float xSpeed = 0f; // How fast player moves. Assigned in the inspector.
 
@@ -107,4 +108,8 @@ public class Player_Movement : MonoBehaviour
         isControlLocked = false;
     }
 
+
+    public bool GetControlLockState(){
+        return isControlLocked;
+    }
 }

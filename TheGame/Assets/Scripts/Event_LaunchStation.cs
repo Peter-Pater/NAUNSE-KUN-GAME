@@ -108,7 +108,8 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 
 
         }else if (isCutsceneOn){
-            
+
+            player.GetComponent<Player_Movement>().isCutScene = true;
             DoCutscene();
 
 
@@ -243,7 +244,7 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
         else if (floatingState == FLOATINGDOWN)
         {
             
-            if (transform.position.y > floatingHeightB)
+            if (kun.transform.position.y > floatingHeightB)
             {
                 kun.transform.position += Vector3.down * 2f * Time.deltaTime;
             }
@@ -277,12 +278,13 @@ public class Event_LaunchStation : MonoBehaviour { // This script is about launc
 
             // Player walks to the side and start looking at KUN.
             if (player.transform.position.x < sittingPos){
-                player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-                player.GetComponent<Player_Constraints>().enabled = false;
+                //player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                //player.GetComponent<Player_Constraints>().enabled = false;
                 player.GetComponent<Player_Movement>().WalkRight();
             }else{
                 player.GetComponent<Player_Movement>().Standstill();
-                player.GetComponent<Player_Constraints>().enabled = true;
+                //player.GetComponent<Player_Constraints>().enabled = true;
+                player.GetComponent<Player_Movement>().isCutScene = false;
                 player.GetComponent<Player_Animation>().StartLookingAtKUN();
             }
         }else{
